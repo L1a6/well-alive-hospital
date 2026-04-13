@@ -3,34 +3,34 @@
 @tailwind utilities;
 
 :root {
-  --background: 150 48% 6%;
-  --foreground: 160 33% 92%;
-  --card: 156 26% 14%;
-  --card-foreground: 160 33% 92%;
-  --popover: 156 26% 14%;
-  --popover-foreground: 160 33% 92%;
-  --primary: 154 49% 40%;
-  --primary-foreground: 160 33% 92%;
-  --secondary: 155 25% 21%;
-  --secondary-foreground: 160 33% 92%;
-  --muted: 155 14% 24%;
-  --muted-foreground: 155 12% 74%;
+  --background: 220 24% 98%;
+  --foreground: 156 40% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 156 40% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 156 40% 12%;
+  --primary: 154 49% 34%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 150 26% 94%;
+  --secondary-foreground: 156 40% 12%;
+  --muted: 210 25% 95%;
+  --muted-foreground: 160 10% 35%;
   --accent: 152 28% 55%;
   --accent-foreground: 158 40% 9%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
-  --border: 160 10% 34%;
-  --input: 160 10% 34%;
-  --ring: 154 49% 40%;
+  --border: 150 13% 85%;
+  --input: 150 13% 85%;
+  --ring: 154 49% 34%;
   --radius: 1rem;
 
-  --forest-950: #04110d;
-  --forest-900: #081912;
-  --forest-800: #0c241b;
+  --forest-950: #0b2119;
+  --forest-900: #123428;
+  --forest-800: #164133;
   --emerald-500: #2f8a66;
   --emerald-400: #3ea37a;
-  --silver-100: #ebf4f0;
-  --silver-200: #d8e5df;
+  --silver-100: #f4f7f6;
+  --silver-200: #dce6e2;
   --glass-white: rgba(237, 246, 243, 0.18);
 }
 
@@ -42,11 +42,12 @@
   body {
     margin: 0;
     min-height: 100vh;
-    color: var(--silver-100);
+    overflow-x: hidden;
+    color: hsl(var(--foreground));
     background:
-      radial-gradient(circle at 14% 13%, rgba(66, 129, 103, 0.26), transparent 32%),
-      radial-gradient(circle at 83% 8%, rgba(139, 160, 154, 0.24), transparent 44%),
-      linear-gradient(160deg, var(--forest-950) 10%, var(--forest-800) 52%, var(--forest-900) 100%);
+      radial-gradient(circle at 18% 9%, rgba(87, 150, 122, 0.1), transparent 28%),
+      radial-gradient(circle at 86% 4%, rgba(149, 167, 161, 0.12), transparent 35%),
+      linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
     font-family: var(--font-jakarta), "Segoe UI", sans-serif;
     font-weight: 500;
     font-feature-settings: "ss01" 1, "cv03" 1;
@@ -63,7 +64,7 @@
     margin: 0;
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: var(--silver-100);
+    color: #102c22;
   }
 
   p {
@@ -102,7 +103,7 @@
   }
 
   .section-title {
-    color: var(--silver-100);
+    color: #102c22;
     font-size: clamp(1.8rem, 5vw, 3.6rem);
     letter-spacing: -0.03em;
     line-height: 1.05;

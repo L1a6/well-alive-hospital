@@ -1,69 +1,88 @@
 "use client";
 
-import Link from "next/link";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 
 import styles from "./page.module.css";
 
-const serviceCards = [
+const heroPoster =
+  "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1800";
+const heroVideo =
+  "https://videos.pexels.com/video-files/7088485/7088485-hd_1920_1080_25fps.mp4";
+
+const bentoStats = [
+  { value: "24/7", label: "Emergency" },
+  { value: "18", label: "Specialties" },
+  { value: "09m", label: "Avg Triage" },
+];
+
+const services = [
   {
-    title: "Neural Diagnostics",
-    detail:
-      "AI-assisted imaging and cross-specialist review that compresses diagnosis time while increasing confidence in every treatment path.",
-    image:
-      "https://source.unsplash.com/featured/1200x900/?medical,diagnostics,technology&sig=11",
-    tone: "Emerald Grid",
+    title: "Acute",
+    body: "Rapid emergency response and stabilization.",
+    icon: "A",
   },
   {
-    title: "Cardio Continuum",
-    detail:
-      "Emergency triage, catheter lab access, and monitored recovery modeled as one fluid pathway with minute-level escalation controls.",
-    image: "https://source.unsplash.com/featured/1200x900/?hospital,cardiology,care&sig=12",
-    tone: "Forest Pulse",
+    title: "Imaging",
+    body: "High-definition diagnostics and reporting.",
+    icon: "I",
   },
   {
-    title: "Maternal Suites",
-    detail:
-      "Quiet birthing suites with neonatal support, private digital check-ins, and family-ready recovery programs.",
-    image: "https://source.unsplash.com/featured/1200x900/?maternity,hospital,modern&sig=13",
-    tone: "Silver Calm",
+    title: "Surgery",
+    body: "Modern theatres with guided recovery.",
+    icon: "S",
   },
   {
-    title: "Precision Surgery",
-    detail:
-      "Hybrid operating rooms with synchronized anesthesia analytics and post-op telemetry for faster stabilization.",
-    image: "https://source.unsplash.com/featured/1200x900/?surgery,medical,robotics&sig=14",
-    tone: "Matte Depth",
+    title: "Maternity",
+    body: "Safe maternal and neonatal care.",
+    icon: "M",
+  },
+  {
+    title: "Cardio",
+    body: "Advanced heart care and monitoring.",
+    icon: "C",
   },
 ];
 
-const careSignals = [
-  { label: "Live Bed Intelligence", value: "24/7" },
-  { label: "Clinical Teams", value: "42" },
-  { label: "Patient Guidance Score", value: "98.4%" },
-  { label: "Average Triage Window", value: "6 min" },
+const doctors = [
+  {
+    name: "Dr. Imoh Ekanem",
+    role: "Cardiology",
+    photo:
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=900",
+  },
+  {
+    name: "Dr. Nseabasi Udo",
+    role: "Emergency",
+    photo:
+      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=900",
+  },
+  {
+    name: "Dr. Emem James",
+    role: "Obstetrics",
+    photo:
+      "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=900",
+  },
+  {
+    name: "Dr. Victor Essien",
+    role: "Surgery",
+    photo:
+      "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&q=80&w=900",
+  },
 ];
 
-const pathways = [
-  {
-    title: "Intake Layer",
-    copy: "Unified digital intake and nurse verification with contextual triage prompts.",
-  },
-  {
-    title: "Decision Layer",
-    copy: "Medical teams review diagnostics in shared command views to reduce handoff delay.",
-  },
-  {
-    title: "Recovery Layer",
-    copy: "Follow-up guidance, remote monitoring, and specialist touchpoints stay continuous post-discharge.",
-  },
+const quotes = [
+  "Care that feels personal.",
+  "Calm spaces. Fast action.",
+  "Trusted hands, every day.",
 ];
 
 export default function HomePage() {
   const pageRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [navSolid, setNavSolid] = useState(false);
+  const [activeDoctor, setActiveDoctor] = useState(doctors[0]);
 
   useLayoutEffect(() => {
     if (!pageRef.current) {
@@ -72,416 +91,354 @@ export default function HomePage() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const lenis = new Lenis({
-      duration: 1.2,
-      smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.15,
-    });
-
-    let rafId = 0;
-    const onFrame = (time: number) => {
-      lenis.raf(time);
-      rafId = window.requestAnimationFrame(onFrame);
+    const onScroll = () => {
+      setNavSolid(window.scrollY > 28);
     };
 
-    rafId = window.requestAnimationFrame(onFrame);
-    lenis.on("scroll", ScrollTrigger.update);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-    const tiltCleanup: Array<() => void> = [];
+    const onResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", onResize);
 
     const ctx = gsap.context(() => {
-      const heroTimeline = gsap.timeline({
+      gsap.to("[data-hero-word]", {
+        scale: 2,
+        opacity: 0,
+        ease: "none",
         scrollTrigger: {
-          trigger: ".heroPin",
+          trigger: "#hero",
           start: "top top",
-          end: "+=170%",
-          scrub: 1.2,
-          pin: true,
+          end: "bottom top",
+          scrub: true,
         },
       });
 
-      heroTimeline
-        .to(
-          ".heroCopy",
-          {
-            scale: 1.3,
-            yPercent: -16,
-            opacity: 0.08,
-            filter: "blur(5px)",
-            ease: "none",
-          },
-          0,
-        )
-        .to(
-          ".heroGlass",
-          {
-            yPercent: -20,
-            opacity: 0,
-            ease: "none",
-          },
-          0,
-        )
-        .to(
-          ".heroLayerMid",
-          {
-            yPercent: -12,
-            scale: 1.15,
-            ease: "none",
-          },
-          0,
-        )
-        .to(
-          ".heroLayerBack",
-          {
-            yPercent: -4,
-            scale: 1.22,
-            ease: "none",
-          },
-          0,
-        )
-        .to(
-          ".heroOverlay",
-          {
-            opacity: 0.78,
-            ease: "none",
-          },
-          0,
-        );
-
       gsap.fromTo(
-        ".curtainLeft",
-        { xPercent: 0 },
-        {
-          xPercent: -104,
-          ease: "power4.inOut",
-          scrollTrigger: {
-            trigger: ".curtainStage",
-            start: "top 82%",
-            end: "top 32%",
-            scrub: true,
-          },
-        },
-      );
-
-      gsap.fromTo(
-        ".curtainRight",
-        { xPercent: 0 },
-        {
-          xPercent: 104,
-          ease: "power4.inOut",
-          scrollTrigger: {
-            trigger: ".curtainStage",
-            start: "top 82%",
-            end: "top 32%",
-            scrub: true,
-          },
-        },
-      );
-
-      gsap.fromTo(
-        ".serviceHeadline",
-        { y: 72, opacity: 0 },
+        "[data-reveal]",
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.1,
-          ease: "power3.out",
+          duration: 0.85,
+          ease: "power2.out",
+          stagger: 0.12,
           scrollTrigger: {
-            trigger: ".curtainStage",
-            start: "top 56%",
+            trigger: "[data-reveal-root]",
+            start: "top 82%",
           },
         },
       );
 
-      const revealBlocks = gsap.utils.toArray<HTMLElement>("[data-reveal]");
-      revealBlocks.forEach((block, index) => {
+      const bento = gsap.utils.toArray<HTMLElement>("[data-bento-item]");
+      bento.forEach((item, index) => {
+        const directions = [
+          { x: -40, y: 20 },
+          { x: 40, y: 0 },
+          { x: 0, y: 40 },
+          { x: -20, y: -30 },
+        ];
+        const from = directions[index % directions.length];
+
         gsap.fromTo(
-          block,
-          { y: 72, opacity: 0, clipPath: "inset(0 0 100% 0)" },
+          item,
+          { x: from.x, y: from.y, opacity: 0 },
           {
+            x: 0,
             y: 0,
             opacity: 1,
-            clipPath: "inset(0 0 0% 0)",
-            duration: 1,
-            ease: "power3.out",
-            delay: index % 3 === 0 ? 0 : 0.08,
+            duration: 0.75,
+            delay: index * 0.2,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: block,
-              start: "top 88%",
+              trigger: "#about",
+              start: "top 78%",
             },
           },
         );
       });
 
-      const cards = gsap.utils.toArray<HTMLElement>(".tiltCard");
-      cards.forEach((card) => {
-        const glow = card.querySelector<HTMLElement>("[data-glow]");
+      const serviceTrack = document.querySelector<HTMLElement>("[data-service-track]");
+      const serviceWrap = document.querySelector<HTMLElement>("[data-service-wrap]");
 
-        const onMove = (event: PointerEvent) => {
-          const rect = card.getBoundingClientRect();
-          const x = (event.clientX - rect.left) / rect.width - 0.5;
-          const y = (event.clientY - rect.top) / rect.height - 0.5;
+      if (serviceTrack && serviceWrap) {
+        const updateHorizontal = () => {
+          const distance = Math.max(0, serviceTrack.scrollWidth - serviceWrap.clientWidth);
 
-          gsap.to(card, {
-            rotateY: x * 9,
-            rotateX: y * -9,
-            y: -6,
-            duration: 0.35,
-            ease: "power2.out",
-            transformPerspective: 1000,
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: "#services",
+              start: "top top",
+              end: `+=${Math.max(900, distance + 500)}`,
+              scrub: 1,
+              pin: true,
+              invalidateOnRefresh: true,
+            },
           });
 
-          if (glow) {
-            gsap.to(glow, {
-              x: x * 24,
-              y: y * 24,
-              opacity: 0.85,
-              duration: 0.35,
-              ease: "power2.out",
-            });
-          }
+          tl.to(serviceTrack, {
+            x: -distance,
+            ease: "none",
+          });
         };
 
-        const onLeave = () => {
-          gsap.to(card, {
-            rotateY: 0,
-            rotateX: 0,
+        updateHorizontal();
+      }
+
+      const quoteItems = gsap.utils.toArray<HTMLElement>("[data-quote]");
+      quoteItems.forEach((quote, index) => {
+        gsap.fromTo(
+          quote,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
             y: 0,
-            duration: 0.55,
-            ease: "power3.out",
-          });
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: quote,
+              start: "top 85%",
+            },
+          },
+        );
 
-          if (glow) {
-            gsap.to(glow, {
-              x: 0,
-              y: 0,
-              opacity: 0.4,
-              duration: 0.55,
-              ease: "power3.out",
-            });
-          }
-        };
-
-        card.addEventListener("pointermove", onMove);
-        card.addEventListener("pointerleave", onLeave);
-
-        tiltCleanup.push(() => {
-          card.removeEventListener("pointermove", onMove);
-          card.removeEventListener("pointerleave", onLeave);
-        });
+        if (index > 0) {
+          gsap.set(quote, { opacity: 0.45 });
+        }
       });
-
-      ScrollTrigger.refresh();
     }, pageRef);
 
     return () => {
-      tiltCleanup.forEach((cleanup) => cleanup());
       ctx.revert();
-      window.cancelAnimationFrame(rafId);
-      lenis.destroy();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
   return (
     <div ref={pageRef} className={styles.page}>
-      <div className={styles.atmosphere} />
+      <header className={`${styles.nav} ${navSolid ? styles.navSolid : ""}`}>
+        <div className={styles.navInner}>
+          <a href="#hero" className={styles.logo}>
+            <span>WA</span>
+            <p>Well Alive</p>
+          </a>
 
-      <header className={styles.nav} data-reveal>
-        <div className={styles.brand}>
-          <span className={styles.brandMark}>WA</span>
-          <div>
-            <p className={styles.brandKicker}>Well Alive Hospital</p>
-            <p className={styles.brandCity}>Uyo Clinical Nexus</p>
-          </div>
+          <button
+            type="button"
+            className={`${styles.menu} ${menuOpen ? styles.menuOpen : ""}`}
+            aria-label="Toggle navigation"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <nav className={`${styles.navLinks} ${menuOpen ? styles.navLinksOpen : ""}`}>
+            <a href="#hero" onClick={() => setMenuOpen(false)}>
+              Home
+            </a>
+            <a href="#services" onClick={() => setMenuOpen(false)}>
+              Services
+            </a>
+            <a href="#doctors" onClick={() => setMenuOpen(false)}>
+              Doctors
+            </a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>
+              Contact
+            </a>
+            <a href="#contact" className={styles.navCta} onClick={() => setMenuOpen(false)}>
+              Book
+            </a>
+          </nav>
         </div>
-
-        <nav className={styles.navLinks}>
-          <a href="#services">Services</a>
-          <a href="#innovation">Innovation</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <a href="#contact" className={styles.navCta}>
-          Private Appointment
-        </a>
       </header>
 
       <main>
-        <section className={`${styles.heroPin} heroPin`}>
-          <div
-            className={`${styles.heroLayerBack} heroLayerBack`}
-            style={{
-              backgroundImage:
-                "url('https://source.unsplash.com/featured/2000x1300/?hospital,medical,architecture,technology&sig=1')",
-            }}
-          >
-            <video className={styles.heroVideo} autoPlay muted loop playsInline>
-              <source
-                src="https://videos.pexels.com/video-files/7088485/7088485-hd_1920_1080_25fps.mp4"
-                type="video/mp4"
-              />
+        <section id="hero" className={styles.hero}>
+          <h1 data-hero-word className={styles.heroWord}>
+            WELL ALIVE
+          </h1>
+
+          <div className={styles.heroMediaShell}>
+            <video className={styles.heroVideo} autoPlay muted loop playsInline poster={heroPoster}>
+              <source src={heroVideo} type="video/mp4" />
             </video>
           </div>
 
-          <div
-            className={`${styles.heroLayerMid} heroLayerMid`}
-            style={{
-              backgroundImage:
-                "url('https://source.unsplash.com/featured/2000x1300/?hospital,interior,medical,light&sig=2')",
-            }}
-          />
-
-          <div className={`${styles.heroOverlay} heroOverlay`} />
-
-          <div className={`${styles.heroCopy} heroCopy`}>
-            <p className={styles.eyebrow}>Cinematic Medical-Tech Experience</p>
-            <h1>
-              Well Alive Hospital
-              <span>Engineered Care in Uyo</span>
-            </h1>
-            <p className={styles.heroLead}>
-              A precision-led healthcare environment where diagnostics, treatment, and
-              recovery are orchestrated as one seamless premium journey.
+          <article className={styles.heroCard} data-reveal-root>
+            <p className={styles.miniTag} data-reveal>
+              Uyo, Nigeria
             </p>
-
-            <div className={styles.heroActions}>
-              <a href="#services" className={styles.liquidCta}>
-                Explore Care Programs
-              </a>
-              <a href="#contact" className={styles.ghostCta}>
-                Book Consultation
-              </a>
-            </div>
-          </div>
-
-          <aside className={`${styles.heroGlass} heroGlass tiltCard`}>
-            <span data-glow className={styles.cardGlow} />
-            <p className={styles.heroGlassLabel}>Command Center Snapshot</p>
-            <div className={styles.heroGlassRows}>
-              <p>
-                <strong>18</strong>
-                <span>live specialty channels</span>
-              </p>
-              <p>
-                <strong>5D</strong>
-                <span>care pathway mapping</span>
-              </p>
-              <p>
-                <strong>99.2%</strong>
-                <span>care continuity confidence</span>
-              </p>
-            </div>
-          </aside>
+            <h2 data-reveal>Life, Defined.</h2>
+            <p data-reveal>
+              World-class hospital care with fast diagnostics, modern facilities, and trusted specialists.
+            </p>
+            <a href="#contact" className={styles.heroCta} data-reveal>
+              Book
+            </a>
+          </article>
         </section>
 
-        <section className={styles.signalStrip}>
-          {careSignals.map((signal) => (
-            <article key={signal.label} className={`${styles.signalCard} tiltCard`} data-reveal>
-              <span data-glow className={styles.cardGlow} />
-              <p>{signal.label}</p>
-              <h3>{signal.value}</h3>
+        <section id="about" className={styles.about}>
+          <div className={styles.aboutHead}>
+            <p>About</p>
+            <h2>Built For Uyo</h2>
+          </div>
+
+          <div className={styles.bentoGrid}>
+            <article className={`${styles.bentoLarge} ${styles.bentoCard}`} data-bento-item>
+              <img
+                src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&q=80&w=1200"
+                alt="Hospital interior"
+                loading="lazy"
+              />
             </article>
-          ))}
+
+            {bentoStats.map((stat) => (
+              <article key={stat.label} className={`${styles.bentoStat} ${styles.bentoCard}`} data-bento-item>
+                <h3>{stat.value}</h3>
+                <p>{stat.label}</p>
+              </article>
+            ))}
+
+            <article className={`${styles.bentoTall} ${styles.bentoCard}`} data-bento-item>
+              <h3>Human Care</h3>
+              <p>
+                We combine medical technology, clinical speed, and patient empathy into one connected care
+                model.
+              </p>
+            </article>
+          </div>
         </section>
 
-        <section id="services" className={`${styles.curtainStage} curtainStage`}>
-          <div className={styles.curtainMask}>
-            <div className={`${styles.curtainPanel} ${styles.curtainLeft} curtainLeft`} />
-            <div className={`${styles.curtainPanel} ${styles.curtainRight} curtainRight`} />
+        <section id="services" className={styles.services}>
+          <div className={styles.servicesHeader}>
+            <p>Clinical Units</p>
+            <h2>Service Track</h2>
           </div>
 
-          <div className={`${styles.serviceHeadline} serviceHeadline`}>
-            <p>Adaptive Clinical Programs</p>
-            <h2>Asymmetrical by design. Precise by outcome.</h2>
-          </div>
-
-          <div className={styles.serviceGrid}>
-            {serviceCards.map((service, index) => (
-              <article
-                key={service.title}
-                className={`${styles.serviceCard} tiltCard ${index % 2 === 0 ? styles.serviceCardTall : ""}`}
-                data-reveal
-              >
-                <span data-glow className={styles.cardGlow} />
-                <div
-                  className={styles.cardMedia}
-                  style={{ backgroundImage: `url('${service.image}')` }}
-                  aria-hidden="true"
-                />
-                <div className={styles.cardBody}>
-                  <p>{service.tone}</p>
+          <div className={styles.servicesWrap} data-service-wrap>
+            <div className={styles.servicesTrack} data-service-track>
+              {services.map((service) => (
+                <article key={service.title} className={styles.serviceCard}>
+                  <span>{service.icon}</span>
                   <h3>{service.title}</h3>
-                  <p>{service.detail}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="innovation" className={styles.innovation}>
-          <div className={styles.innovationGrid}>
-            <article className={`${styles.protocolPanel} tiltCard`} data-reveal>
-              <span data-glow className={styles.cardGlow} />
-              <p className={styles.panelKicker}>Medical-Tech Luxury</p>
-              <h2>Matte silver interfaces. Forest depth architecture.</h2>
-              <p>
-                Every environment from triage bays to recovery suites is tuned for visual
-                calm, data clarity, and private patient confidence.
-              </p>
-              <Link href="/contact" className={styles.inlineLink}>
-                Schedule an executive facility walk-through
-              </Link>
-            </article>
-
-            <article
-              className={`${styles.imagePanel} tiltCard`}
-              data-reveal
-              style={{
-                backgroundImage:
-                  "url('https://source.unsplash.com/featured/1500x1100/?hospital,interior,modern,clean&sig=31')",
-              }}
-            >
-              <span data-glow className={styles.cardGlow} />
-              <p>Immersive, clinical, warm.</p>
-            </article>
-          </div>
-
-          <div className={styles.pathwayGrid}>
-            {pathways.map((path, index) => (
-              <article key={path.title} className={`${styles.pathwayCard} tiltCard`} data-reveal>
-                <span data-glow className={styles.cardGlow} />
-                <span className={styles.pathIndex}>0{index + 1}</span>
-                <h3>{path.title}</h3>
-                <p>{path.copy}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="contact" className={styles.finalCta} data-reveal>
-          <div className={styles.finalCard}>
-            <p>Well Alive Hospital, Uyo</p>
-            <h2>Reserve Your Priority Consultation</h2>
-            <p>
-              A dedicated care architect will coordinate your visit, specialist routing,
-              and complete treatment briefing before arrival.
-            </p>
-            <div className={styles.heroActions}>
-              <a href="mailto:care@wellalivehospital.com" className={styles.liquidCta}>
-                care@wellalivehospital.com
-              </a>
-              <a href="tel:+2349131193359" className={styles.ghostCta}>
-                +234 913 119 3359
-              </a>
+                  <p>{service.body}</p>
+                </article>
+              ))}
             </div>
+          </div>
+        </section>
+
+        <section
+          id="doctors"
+          className={styles.doctors}
+          style={{
+            backgroundImage: `linear-gradient(115deg, rgba(1,50,32,0.8), rgba(1,50,32,0.36)), url('${activeDoctor.photo}')`,
+          }}
+        >
+          <div className={styles.doctorHead}>
+            <p>Doctors</p>
+            <h2>Meet Experts</h2>
+          </div>
+
+          <div className={styles.doctorList}>
+            {doctors.map((doctor, index) => (
+              <button
+                key={doctor.name}
+                type="button"
+                className={styles.doctorItem}
+                style={{ marginLeft: `${index * 8}%` }}
+                onMouseEnter={() => setActiveDoctor(doctor)}
+                onFocus={() => setActiveDoctor(doctor)}
+              >
+                <img src={doctor.photo} alt={doctor.name} loading="lazy" />
+                <div>
+                  <h3>{doctor.name}</h3>
+                  <p>{doctor.role}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.editorial}>
+          <div className={styles.blogList}>
+            <p>Insights</p>
+            <ul>
+              <li>
+                <span>01</span>
+                <h3>Smarter Recovery</h3>
+              </li>
+              <li>
+                <span>02</span>
+                <h3>Early Detection</h3>
+              </li>
+              <li>
+                <span>03</span>
+                <h3>Better Outcomes</h3>
+              </li>
+            </ul>
+          </div>
+
+          <div className={styles.quoteWall}>
+            {quotes.map((quote) => (
+              <blockquote key={quote} data-quote>
+                {quote}
+              </blockquote>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className={styles.contactAnchor}>
+          <div className={styles.contactInfo}>
+            <p>Contact</p>
+            <h2>Shelter Afrique</h2>
+            <p>care@wellalivehospital.com</p>
+            <p>+234 913 119 3359</p>
+            <p>Uyo, Akwa Ibom</p>
+          </div>
+
+          <div className={styles.mapWrap}>
+            <iframe
+              title="Shelter Afrique Map"
+              src="https://www.google.com/maps?q=Shelter+Afrique,+Uyo&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </section>
       </main>
 
       <footer className={styles.footer}>
-        <p>Well Alive Hospital, Uyo</p>
-        <p>Emerald intelligence for modern patient care.</p>
+        <div>
+          <h4>About</h4>
+          <p>High-trust medical care for modern families.</p>
+        </div>
+        <div>
+          <h4>Links</h4>
+          <a href="#hero">Home</a>
+          <a href="#services">Services</a>
+          <a href="#doctors">Doctors</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p>care@wellalivehospital.com</p>
+          <p>+234 913 119 3359</p>
+        </div>
+        <div>
+          <h4>Socials</h4>
+          <a href="#">Instagram</a>
+          <a href="#">X</a>
+          <a href="#">LinkedIn</a>
+        </div>
       </footer>
     </div>
   );
