@@ -4,7 +4,9 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+import { Menu, X } from "lucide-react";
 
+import AboutPage from "../components/ui/about-page";
 import FeatureCarousel from "../components/ui/feature-carousel";
 import Team, { type TeamMember } from "../components/ui/team";
 import styles from "./page.module.css";
@@ -68,6 +70,13 @@ const doctors: DoctorProfile[] = [
       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1000",
   },
   {
+    name: "Dr. Victor Essien",
+    specialty: "General Surgery",
+    credentials: "MBBS, FICS",
+    image:
+      "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&q=80&w=1000",
+  },
+  {
     name: "Dr. Nseabasi Udo",
     specialty: "Emergency Medicine",
     credentials: "MBChB, FMCP",
@@ -80,13 +89,6 @@ const doctors: DoctorProfile[] = [
     credentials: "MBBS, FWACS",
     image:
       "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=1000",
-  },
-  {
-    name: "Dr. Victor Essien",
-    specialty: "General Surgery",
-    credentials: "MBBS, FICS",
-    image:
-      "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&q=80&w=1000",
   },
   {
     name: "Dr. Mfon Uwah",
@@ -359,7 +361,9 @@ export default function HomePage() {
       <header className={`${styles.nav} ${navSolid ? styles.navSolid : ""}`}>
         <div className={styles.navInner}>
           <a href="#hero" className={styles.logo} data-cursor="grow">
-            <span>WA</span>
+            <span className={styles.logoMark} aria-hidden="true">
+              <span className={styles.logoPulse} />
+            </span>
             <p>Well Alive</p>
           </a>
 
@@ -370,9 +374,7 @@ export default function HomePage() {
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            <span />
-            <span />
-            <span />
+            <span>{menuOpen ? "Close" : "Menu"}</span>
           </button>
 
           <nav className={`${styles.navLinks} ${menuOpen ? styles.navLinksOpen : ""}`}>
@@ -415,7 +417,7 @@ export default function HomePage() {
                   key={slide.title}
                   className={`${styles.heroSlide} ${activeSlide === index ? styles.heroSlideActive : ""}`}
                   style={{
-                    backgroundImage: `linear-gradient(130deg, rgba(4, 20, 15, 0.76), rgba(8, 35, 26, 0.4)), url('${slide.image}')`,
+                    backgroundImage: `linear-gradient(130deg, rgba(7, 28, 21, 0.84), rgba(38, 169, 122, 0.34)), url('${slide.image}')`,
                   }}
                 />
               ))}
@@ -455,47 +457,8 @@ export default function HomePage() {
           </section>
 
           <section id="about" className={styles.about}>
-            <div className={styles.sectionHead} data-reveal>
-              <p>About Well Alive</p>
-              <h2>Precision medicine with a calm, human experience.</h2>
-            </div>
-
-            <div className={styles.aboutLayout}>
-              <figure className={styles.aboutVisual} data-reveal data-cursor="grow">
-                <img
-                  src="https://images.unsplash.com/photo-1516549655669-df83a0774514?auto=format&fit=crop&q=80&w=1600"
-                  alt="Well Alive Hospital care corridor"
-                  loading="lazy"
-                />
-              </figure>
-
-              <article className={styles.aboutBody} data-reveal>
-                <p>
-                  We combine advanced clinical systems with a patient-first culture. Every service line
-                  is designed to reduce delay, strengthen decision quality, and preserve dignity.
-                </p>
-
-                <ul className={styles.aboutList}>
-                  <li>Integrated emergency-to-specialist pathways</li>
-                  <li>High-precision diagnostics with rapid reporting</li>
-                  <li>Compassion-led care coordination for families</li>
-                </ul>
-
-                <div className={styles.aboutStats}>
-                  <div>
-                    <strong>24/7</strong>
-                    <span>Emergency readiness</span>
-                  </div>
-                  <div>
-                    <strong>35+</strong>
-                    <span>Clinical specialists</span>
-                  </div>
-                  <div>
-                    <strong>15k+</strong>
-                    <span>Patients supported</span>
-                  </div>
-                </div>
-              </article>
+            <div data-reveal>
+              <AboutPage />
             </div>
           </section>
         </div>
@@ -507,7 +470,7 @@ export default function HomePage() {
             data-reveal
           >
             <p>Clinical Services</p>
-            <h2 style={{ maxWidth: "700px" }}>Specialized care domains, unified by speed and quality.</h2>
+            <h2 style={{ maxWidth: "560px" }}>Advanced Care Units.</h2>
           </div>
 
           <FeatureCarousel />

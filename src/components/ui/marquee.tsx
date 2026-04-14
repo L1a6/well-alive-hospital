@@ -24,6 +24,7 @@ export function Marquee({
         vertical ? "flex-col" : "flex-row",
         className,
       )}
+      style={{ gap: "var(--gap)" }}
     >
       {Array.from({ length: repeat }).map((_, index) => (
         <div
