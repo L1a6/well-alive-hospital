@@ -2,111 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: 220 24% 98%;
-  --foreground: 156 40% 12%;
-  --card: 0 0% 100%;
-  --card-foreground: 156 40% 12%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 156 40% 12%;
-  --primary: 154 49% 34%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 150 26% 94%;
-  --secondary-foreground: 156 40% 12%;
-  --muted: 210 25% 95%;
-  --muted-foreground: 160 10% 35%;
-  --accent: 152 28% 55%;
-  --accent-foreground: 158 40% 9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 150 13% 85%;
-  --input: 150 13% 85%;
-  --ring: 154 49% 34%;
-  --radius: 1rem;
-
-  --forest-950: #0b2119;
-  --forest-900: #123428;
-  --forest-800: #164133;
-  --emerald-500: #2f8a66;
-  --emerald-400: #3ea37a;
-  --silver-100: #f4f7f6;
-  --silver-200: #dce6e2;
-  --glass-white: rgba(237, 246, 243, 0.18);
-}
-
 @layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-    color: hsl(var(--foreground));
-    background:
-      radial-gradient(circle at 18% 9%, rgba(87, 150, 122, 0.1), transparent 28%),
-      radial-gradient(circle at 86% 4%, rgba(149, 167, 161, 0.12), transparent 35%),
-      linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+  html, body {
+    @apply bg-[#F6F7F6] text-[#0A110E] break-words;
     font-family: "Inter", "Segoe UI", sans-serif;
-    font-weight: 500;
-    font-feature-settings: "ss01" 1, "cv03" 1;
-    text-rendering: geometricPrecision;
-    -webkit-font-smoothing: antialiased;
   }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 0;
-    font-weight: 700;
-    font-family: "Plus Jakarta Sans", "Inter", "Segoe UI", sans-serif;
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
     letter-spacing: -0.02em;
-    color: #102c22;
+    @apply text-[#0A110E];
   }
-
-  p {
-    margin: 0;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  ::selection {
-    background: rgba(66, 163, 124, 0.45);
-    color: #f8fcfa;
+  
+  * {
+    box-sizing: border-box;
   }
 }
 
 @layer components {
   .page-container {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply w-full max-w-[96vw] xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-
+  
   .primary-btn {
-    @apply inline-flex items-center justify-center transition;
-    border-radius: 999px;
-    border: 1px solid rgba(224, 236, 230, 0.36);
-    background: linear-gradient(145deg, rgba(24, 93, 68, 0.92), rgba(141, 161, 155, 0.4));
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.32);
-    color: #f4fbf8;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    line-height: 1;
-    padding: 14px 20px;
+    @apply inline-flex items-center justify-center rounded-full transition-all duration-300 text-sm font-bold uppercase tracking-wider px-6 py-4 bg-[#0B2118] text-[#F4FBF8] border border-white/10 hover:bg-[#153B2B] hover:shadow-xl hover:-translate-y-0.5;
   }
 
-  .section-title {
-    color: #102c22;
-    font-size: clamp(1.8rem, 5vw, 3.6rem);
-    letter-spacing: -0.03em;
-    line-height: 1.05;
+  .nav-link {
+    @apply text-sm font-medium text-[#0B2118]/80 hover:text-[#0B2118] transition-colors duration-200 uppercase tracking-widest relative;
   }
 }
