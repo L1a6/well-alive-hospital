@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/plus-jakarta-sans/700.css";
+import "@fontsource/plus-jakarta-sans/800.css";
 
 import "./globals.css";
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-  variable: "--font-jakarta",
-});
 
 export const metadata: Metadata = {
   title: "Well Alive Hospital, Uyo",
@@ -21,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`no-js ${plusJakarta.variable}`}>
+    <html lang="en" className="no-js">
       <head>
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico" />
