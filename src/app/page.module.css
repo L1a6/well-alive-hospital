@@ -201,8 +201,11 @@
 
 .main {
   display: block;
-  /* Next section overlaps hero, let's keep padding 0, rely on stacking */
   padding-top: 4.5rem;
+}
+
+.heroAboutStack {
+  position: relative;
 }
 
 .hero {
@@ -214,7 +217,8 @@
   max-height: 80vh;
   border-radius: 40px; /* Stronger curve */
   overflow: hidden;
-  position: relative;
+  position: sticky;
+  top: 5rem;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
 }
 
@@ -369,12 +373,13 @@
 }
 
 .about {
-  margin-top: 5rem;
+  margin-top: 2rem;
   padding: 3rem 1.5rem;
   border-radius: 40px; /* Strong curve */
   background: white;
-  box-shadow: none; /* No borders/shadows as requested */
-  /* Remove border if any was there */
+  box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 2;
 }
 
 .sectionHead {
@@ -526,6 +531,11 @@
   margin-top: 0.18rem;
   color: #3c6757;
   font-size: 0.8rem;
+}
+
+.servicesFeatureSection {
+  width: 100%;
+  margin-top: 5rem;
 }
 
 .servicesViewport {

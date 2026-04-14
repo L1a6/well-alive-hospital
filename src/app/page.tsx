@@ -5,17 +5,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
+import FeatureCarousel from "../components/ui/feature-carousel";
+import Team, { type TeamMember } from "../components/ui/team";
 import styles from "./page.module.css";
 
 type HeroSlide = {
   title: string;
   subtitle: string;
-  image: string;
-};
-
-type ServiceCard = {
-  title: string;
-  description: string;
   image: string;
 };
 
@@ -63,38 +59,11 @@ const heroSlides: HeroSlide[] = [
   },
 ];
 
-const serviceCards: ServiceCard[] = [
-  {
-    title: "Emergency Medicine",
-    description: "24/7 triage, stabilization, imaging, and high-speed intervention for critical scenarios.",
-    image:
-      "https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?auto=format&fit=crop&q=80&w=1400",
-  },
-  {
-    title: "Advanced Diagnostics",
-    description: "Integrated laboratory and imaging pipelines with specialist review and rapid reporting.",
-    image:
-      "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80&w=1400",
-  },
-  {
-    title: "Surgical Care",
-    description: "Modern theatre systems, perioperative safety protocols, and structured recovery pathways.",
-    image:
-      "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1400",
-  },
-  {
-    title: "Maternal & Child",
-    description: "Evidence-led maternity and pediatric services with privacy-centered family support.",
-    image:
-      "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=1400",
-  },
-];
-
 const doctors: DoctorProfile[] = [
   {
-    name: "Dr. Imoh Ekanem",
-    specialty: "Cardiology",
-    credentials: "MBBS, FWACP",
+    name: "Dr. Israel Ben",
+    specialty: "Consultant General Surgeon",
+    credentials: "MD, Well Alive Hospital",
     image:
       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1000",
   },
@@ -161,19 +130,22 @@ const blogPosts: BlogPost[] = [
     title: "Understanding Cardiology Innovations in 2024",
     date: "April 10, 2024",
     category: "Insights",
-    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800",
   },
   {
     title: "Mental Health Strategies for Fast-paced Lives",
     date: "March 22, 2024",
     category: "Wellness",
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
   },
   {
     title: "Pediatric Nutrition: What Parents Must Know",
     date: "March 05, 2024",
     category: "Pediatrics",
-    image: "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=800",
   },
 ];
 
@@ -186,6 +158,12 @@ export default function HomePage() {
   const [navSolid, setNavSolid] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeQuote, setActiveQuote] = useState(0);
+
+  const doctorTeam: TeamMember[] = doctors.map((doctor) => ({
+    image: doctor.image,
+    name: doctor.name,
+    role: `${doctor.specialty} - ${doctor.credentials}`,
+  }));
 
   useEffect(() => {
     const slideTimer = window.setInterval(() => {
@@ -295,58 +273,6 @@ export default function HomePage() {
     }
 
     const ctx = gsap.context(() => {
-      // 3D Stacking Sections Reveal - ONLY Hero and About
-      const stackSections = [
-        document.getElementById("hero"),
-        document.getElementById("about"),
-      ].filter(Boolean) as HTMLElement[];
-
-      stackSections.forEach((section, i) => {
-        ScrollTrigger.create({
-          trigger: section,
-          start: "top 5.5rem",
-          end: "bottom top",
-          pin: true,
-          pinSpacing: false,
-        });
-
-        if (i < stackSections.length - 1) {
-          gsap.to(section, {
-            scale: 0.92,
-            opacity: 0,
-            y: -50,
-            ease: "none",
-            scrollTrigger: {
-              trigger: stackSections[i + 1],
-              start: "top bottom",
-              end: "top 5.5rem",
-              scrub: true,
-            },
-          });
-        }
-        
-        // ensure correct z-index
-        section.style.zIndex = i.toString();
-        section.style.position = "relative";
-      });
-
-      // GSAP Horizontal scroll for services
-      const servicesSection = document.getElementById("services");
-      const servicesTrack = document.getElementById("services-track");
-      if (servicesSection && servicesTrack) {
-        gsap.to(servicesTrack, {
-          x: () => -(servicesTrack.scrollWidth - window.innerWidth + 40),
-          ease: "none",
-          scrollTrigger: {
-            trigger: servicesSection,
-            pin: true,
-            scrub: 1,
-            end: () => "+=" + servicesTrack.scrollWidth,
-            invalidateOnRefresh: true,
-          }
-        });
-      }
-
       gsap.to("[data-hero-parallax]", {
         yPercent: -14,
         ease: "none",
@@ -468,7 +394,12 @@ export default function HomePage() {
             <a href="#testimonials" onClick={() => setMenuOpen(false)} data-cursor="grow">
               Testimonials
             </a>
-            <a href="#contact" className={styles.navCta} data-cursor="grow" onClick={() => setMenuOpen(false)}>
+            <a
+              href="#contact"
+              className={styles.navCta}
+              data-cursor="grow"
+              onClick={() => setMenuOpen(false)}
+            >
               Book Consultation
             </a>
           </nav>
@@ -476,136 +407,113 @@ export default function HomePage() {
       </header>
 
       <main className={styles.main}>
-        <section id="hero" className={styles.hero}>
-          <div className={styles.heroSlides} aria-hidden="true">
-            {heroSlides.map((slide, index) => (
-              <div
-                key={slide.title}
-                className={`${styles.heroSlide} ${activeSlide === index ? styles.heroSlideActive : ""}`}
-                style={{
-                  backgroundImage: `linear-gradient(130deg, rgba(4, 20, 15, 0.76), rgba(8, 35, 26, 0.4)), url('${slide.image}')`,
-                }}
-              />
-            ))}
-            <div className={styles.heroTexture} data-hero-parallax />
-          </div>
-
-          <div ref={heroCopyRef} className={styles.heroContent} data-hero-copy>
-            <p className={styles.heroKicker} data-slide-text>
-              Well Alive Hospital, Uyo
-            </p>
-            <h1 data-slide-text>{heroSlides[activeSlide].title}</h1>
-            <p className={styles.heroLead} data-slide-text>
-              {heroSlides[activeSlide].subtitle}
-            </p>
-
-            <div className={styles.heroActions} data-slide-text>
-              <a href="#contact" className={styles.primaryCta} data-cursor="grow">
-                Book Consultation
-              </a>
-              <a href="#services" className={styles.secondaryCta} data-cursor="grow">
-                Explore Services
-              </a>
-            </div>
-
-            <div className={styles.heroPager} data-slide-text>
+        <div className={styles.heroAboutStack}>
+          <section id="hero" className={styles.hero}>
+            <div className={styles.heroSlides} aria-hidden="true">
               {heroSlides.map((slide, index) => (
-                <button
+                <div
                   key={slide.title}
-                  type="button"
-                  className={`${styles.heroDot} ${activeSlide === index ? styles.heroDotActive : ""}`}
-                  onClick={() => setActiveSlide(index)}
-                  aria-label={`Show slide ${index + 1}`}
+                  className={`${styles.heroSlide} ${activeSlide === index ? styles.heroSlideActive : ""}`}
+                  style={{
+                    backgroundImage: `linear-gradient(130deg, rgba(4, 20, 15, 0.76), rgba(8, 35, 26, 0.4)), url('${slide.image}')`,
+                  }}
                 />
               ))}
+              <div className={styles.heroTexture} data-hero-parallax />
             </div>
-          </div>
-        </section>
 
-        <section id="about" className={styles.about}>
-          <div className={styles.sectionHead} data-reveal>
-            <p>About Well Alive</p>
-            <h2>Precision medicine with a calm, human experience.</h2>
-          </div>
-
-          <div className={styles.aboutLayout}>
-            <figure className={styles.aboutVisual} data-reveal>
-              <img
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1600"
-                alt="Well Alive Hospital care corridor"
-                loading="lazy"
-              />
-            </figure>
-
-            <article className={styles.aboutBody} data-reveal>
-              <h3>Redefining Healthcare Architecture.</h3>
-              <p>
-                We blend intelligent clinical workflows with an environment designed entirely for patient calm. Beyond advanced diagnostics and surgical excellence, our spaces are intentionally curated to reduce anxiety, enhance clarity, and support the healing process.
+            <div ref={heroCopyRef} className={styles.heroContent} data-hero-copy>
+              <p className={styles.heroKicker} data-slide-text>
+                Well Alive Hospital, Uyo
               </p>
-              <p>
-                Every service line operates in unity—bringing specialists together to map your care seamlessly from evaluation to full recovery.
+              <h1 data-slide-text>{heroSlides[activeSlide].title}</h1>
+              <p className={styles.heroLead} data-slide-text>
+                {heroSlides[activeSlide].subtitle}
               </p>
 
-              <div className={styles.aboutStats}>
-                <div>
-                  <strong>24/7</strong>
-                  <span>Emergency Care</span>
-                </div>
-                <div>
-                  <strong>35+</strong>
-                  <span>Specialists</span>
-                </div>
-                <div>
-                  <strong>15k+</strong>
-                  <span>Lives Impacted</span>
-                </div>
+              <div className={styles.heroActions} data-slide-text>
+                <a href="#contact" className={styles.primaryCta} data-cursor="grow">
+                  Book Consultation
+                </a>
+                <a href="#services" className={styles.secondaryCta} data-cursor="grow">
+                  Explore Services
+                </a>
               </div>
-            </article>
-          </div>
-        </section>
 
-        <section id="services" className={styles.servicesViewport}>
-          <div className={styles.sectionHead} style={{ marginLeft: "clamp(1rem, 5vw, 2rem)", paddingBottom: "2rem" }} data-reveal>
-            <p>Clinical Services</p>
-            <h2 style={{ maxWidth: '600px' }}>Specialized care domains, unified by speed and quality.</h2>
-          </div>
+              <div className={styles.heroPager} data-slide-text>
+                {heroSlides.map((slide, index) => (
+                  <button
+                    key={slide.title}
+                    type="button"
+                    className={`${styles.heroDot} ${activeSlide === index ? styles.heroDotActive : ""}`}
+                    onClick={() => setActiveSlide(index)}
+                    aria-label={`Show slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
 
-          <div id="services-track" className={styles.servicesTrack}>
-            {serviceCards.map((service) => (
-              <article
-                key={service.title}
-                className={styles.serviceCard}
-                data-cursor="grow"
-                style={{
-                  backgroundImage: `url('${service.image}')`,
-                }}
-              >
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+          <section id="about" className={styles.about}>
+            <div className={styles.sectionHead} data-reveal>
+              <p>About Well Alive</p>
+              <h2>Precision medicine with a calm, human experience.</h2>
+            </div>
 
-        <section id="doctors" className={styles.doctors}>
-          <div className={styles.sectionHead} style={{ marginLeft: "clamp(1rem, 3vw, 2rem)" }} data-reveal>
-            <p>Meet Our Doctors</p>
-            <h2>Experienced specialists, one coordinated team.</h2>
-          </div>
+            <div className={styles.aboutLayout}>
+              <figure className={styles.aboutVisual} data-reveal data-cursor="grow">
+                <img
+                  src="https://images.unsplash.com/photo-1516549655669-df83a0774514?auto=format&fit=crop&q=80&w=1600"
+                  alt="Well Alive Hospital care corridor"
+                  loading="lazy"
+                />
+              </figure>
 
-          <div className={styles.doctorsGrid}>
-            {doctors.map((doctor) => (
-              <article key={doctor.name} className={styles.doctorCard} data-doctor-card data-cursor="grow">
-                <img src={doctor.image} alt={doctor.name} loading="lazy" />
-                <div className={styles.doctorInfo}>
-                  <h3>{doctor.name}</h3>
-                  <p>{doctor.specialty}</p>
-                  <span>{doctor.credentials}</span>
+              <article className={styles.aboutBody} data-reveal>
+                <p>
+                  We combine advanced clinical systems with a patient-first culture. Every service line
+                  is designed to reduce delay, strengthen decision quality, and preserve dignity.
+                </p>
+
+                <ul className={styles.aboutList}>
+                  <li>Integrated emergency-to-specialist pathways</li>
+                  <li>High-precision diagnostics with rapid reporting</li>
+                  <li>Compassion-led care coordination for families</li>
+                </ul>
+
+                <div className={styles.aboutStats}>
+                  <div>
+                    <strong>24/7</strong>
+                    <span>Emergency readiness</span>
+                  </div>
+                  <div>
+                    <strong>35+</strong>
+                    <span>Clinical specialists</span>
+                  </div>
+                  <div>
+                    <strong>15k+</strong>
+                    <span>Patients supported</span>
+                  </div>
                 </div>
               </article>
-            ))}
+            </div>
+          </section>
+        </div>
+
+        <section id="services" className={styles.servicesFeatureSection}>
+          <div
+            className={styles.sectionHead}
+            style={{ marginLeft: "clamp(1rem, 5vw, 2rem)", paddingBottom: "2rem" }}
+            data-reveal
+          >
+            <p>Clinical Services</p>
+            <h2 style={{ maxWidth: "700px" }}>Specialized care domains, unified by speed and quality.</h2>
           </div>
+
+          <FeatureCarousel />
         </section>
+
+        <Team members={doctorTeam} />
 
         <section id="blogs" className={styles.blogs}>
           <div className={styles.sectionHead} style={{ marginLeft: "clamp(1rem, 3vw, 2rem)" }} data-reveal>
@@ -633,7 +541,7 @@ export default function HomePage() {
 
         <section id="testimonials" className={styles.testimonials}>
           <div className={styles.testimonialsInner} data-testimonial-panel>
-            <p className={styles.testimonialKicker}>Patient Voices</p>
+            <p className={styles.testimonialKicker}>Testimonials</p>
             <blockquote>{`“${testimonials[activeQuote].quote}”`}</blockquote>
             <h3>{testimonials[activeQuote].name}</h3>
             <span>{testimonials[activeQuote].role}</span>
