@@ -462,7 +462,7 @@ export default function HomePage() {
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">
                 Testimonials
               </p>
-              <h2 className="text-3xl font-bold tracking-tight text-emerald-950/90 md:text-5xl">
+              <h2 className="text-3xl font-semibold leading-snug text-neutral-900 md:text-4xl">
                 Stories From Well Alive Patients.
               </h2>
             </div>
@@ -484,7 +484,7 @@ export default function HomePage() {
                     "url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=80&w=2000')",
                 }}
               />
-              <div className="absolute inset-0 bg-[linear-gradient(122deg,rgba(10,57,34,0.84),rgba(25,110,72,0.62))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(122deg,rgba(45,124,55,0.9),rgba(90,172,78,0.72))]" />
 
               <div className="relative flex h-full min-h-[260px] flex-col items-center justify-center px-6 py-10 text-center sm:min-h-[290px] sm:px-10">
                 <p className="inline-flex rounded-full border border-white/35 bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-50">

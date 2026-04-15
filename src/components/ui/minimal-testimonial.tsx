@@ -30,12 +30,12 @@ export function TestimonialsMinimal() {
   return (
     <div className="mx-auto w-full max-w-4xl px-4 py-10 md:px-8 md:py-12">
       {/* Quote */}
-      <div className="relative mb-12 min-h-[190px] md:min-h-[120px]">
+      <div className="relative mb-10 min-h-[170px] md:min-h-[120px]">
         {testimonials.map((t, i) => (
           <p
             key={i}
             className={`
-              absolute inset-0 text-center text-xl font-light leading-relaxed text-emerald-950/90 md:text-3xl
+              absolute inset-0 text-center text-lg font-normal leading-relaxed text-neutral-700 md:text-2xl md:leading-relaxed
               transition-all duration-500 ease-out
               ${
                 active === i
@@ -74,8 +74,8 @@ export function TestimonialsMinimal() {
 
         {/* Active Author Info */}
         <div className="min-h-[44px] text-center">
-          <span className="block text-base font-semibold text-emerald-900">{testimonials[active].name}</span>
-          <span className="block text-sm text-emerald-800/70">{testimonials[active].role}</span>
+          <span className="block text-base font-semibold text-neutral-900">{testimonials[active].name}</span>
+          <span className="block text-sm text-neutral-600">{testimonials[active].role}</span>
         </div>
       </div>
     </div>
