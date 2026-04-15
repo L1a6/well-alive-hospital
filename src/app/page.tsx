@@ -11,6 +11,7 @@ import FeatureCarousel from "../components/ui/feature-carousel";
 import Team, { type TeamMember } from "../components/ui/team";
 import { Footer } from "../components/ui/footer-section";
 import { FocusRail, type FocusRailItem } from "../components/ui/focus-rail";
+import { CtaCard } from "../components/ui/call-to-action-cta";
 import styles from "./page.module.css";
 
 type HeroSlide = {
@@ -531,42 +532,24 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="contact" className={styles.contactSection}>
-          <article className={styles.contactPanel} data-reveal>
-            <p>Contact & Location</p>
-            <h2>Visit Well Alive Hospital, Shelter Afrique, Uyo.</h2>
+        <section id="contact" className="p-4 md:p-8 flex flex-col lg:flex-row gap-8 bg-neutral-950 items-center justify-center min-h-screen">
+          <div className="w-full lg:w-2/3" data-reveal>
+            <CtaCard
+              title="Get Advanced Medical Care Today."
+              description="Join thousands of thriving patients at Well Alive Hospital. Experience world-class healthcare, professional specialists, and compassionate support tailored to your unique needs."
+              buttonText="Book an Appointment"
+              inputPlaceholder="Your Email Address"
+              imageSrc="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2500&auto=format&fit=crop"
+            />
+          </div>
 
-            <div className={styles.contactRows}>
-              <div>
-                <h3>Front Desk</h3>
-                <a href="tel:+2349131193359">+234 913 119 3359</a>
-              </div>
-              <div>
-                <h3>Email</h3>
-                <a href="mailto:care@wellalivehospital.com">care@wellalivehospital.com</a>
-              </div>
-              <div>
-                <h3>Address</h3>
-                <p>Shelter Afrique, Uyo, Akwa Ibom</p>
-              </div>
-            </div>
-
-            <div className={styles.contactActions}>
-              <a href="tel:+2349131193359" className={styles.primaryCta} data-cursor="grow">
-                Call Front Desk
-              </a>
-              <a href="mailto:care@wellalivehospital.com" className={styles.secondaryCtaDark} data-cursor="grow">
-                Email Care Team
-              </a>
-            </div>
-          </article>
-
-          <div className={styles.mapFrame} data-reveal data-cursor="grow">
+          <div className="w-full lg:w-1/3 h-[400px] lg:h-[500px] rounded-xl overflow-hidden shadow-lg border border-neutral-800" data-reveal data-cursor="grow">
             <iframe
               title="Well Alive Hospital Uyo Map"
               src="https://www.google.com/maps?q=Shelter+Afrique,+Uyo,+Akwa+Ibom&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full border-0"
             />
           </div>
         </section>
