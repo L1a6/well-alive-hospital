@@ -11,7 +11,7 @@ import FeatureCarousel from "../components/ui/feature-carousel";
 import Team, { type TeamMember } from "../components/ui/team";
 import { Footer } from "../components/ui/footer-section";
 import { FocusRail, type FocusRailItem } from "../components/ui/focus-rail";
-import { CtaCard } from "../components/ui/call-to-action-cta";
+import { TestimonialsMinimal } from "../components/ui/minimal-testimonial";
 import styles from "./page.module.css";
 
 type HeroSlide = {
@@ -25,12 +25,6 @@ type DoctorProfile = {
   specialty: string;
   credentials: string;
   image: string;
-};
-
-type Testimonial = {
-  quote: string;
-  name: string;
-  role: string;
 };
 
 const heroSlides: HeroSlide[] = [
@@ -102,27 +96,6 @@ const doctors: DoctorProfile[] = [
   },
 ];
 
-const testimonials: Testimonial[] = [
-  {
-    quote:
-      "From emergency admission to discharge, the process felt fast, organized, and deeply human. Every clinician communicated with clarity.",
-    name: "Mfon Udofia",
-    role: "Patient Family Representative",
-  },
-  {
-    quote:
-      "Well Alive combines clinical confidence with empathy. The doctors explained each decision and gave us peace of mind.",
-    name: "Iniobong Etim",
-    role: "Cardiac Follow-up Patient",
-  },
-  {
-    quote:
-      "The environment is premium, the team is responsive, and the care pathway is seamless. It truly feels world-class.",
-    name: "Grace Bassey",
-    role: "Maternity Care Patient",
-  },
-];
-
 const blogFocusItems: FocusRailItem[] = [
   {
     id: 1,
@@ -179,7 +152,6 @@ export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navSolid, setNavSolid] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [activeQuote, setActiveQuote] = useState(0);
 
   const doctorTeam: TeamMember[] = doctors.map((doctor) => ({
     image: doctor.image,
@@ -193,14 +165,6 @@ export default function HomePage() {
     }, 6200);
 
     return () => window.clearInterval(slideTimer);
-  }, []);
-
-  useEffect(() => {
-    const quoteTimer = window.setInterval(() => {
-      setActiveQuote((current) => (current + 1) % testimonials.length);
-    }, 7400);
-
-    return () => window.clearInterval(quoteTimer);
   }, []);
 
   useEffect(() => {
@@ -341,24 +305,6 @@ export default function HomePage() {
           scrollTrigger: {
             trigger: "#doctors",
             start: "top 72%",
-          },
-        },
-      );
-
-      gsap.fromTo(
-        "[data-testimonial-panel]",
-        {
-          y: 36,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.9,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#testimonials",
-            start: "top 75%",
           },
         },
       );
@@ -506,52 +452,69 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="testimonials" className={styles.testimonials}>
-          <div className={styles.testimonialsInner} data-testimonial-panel>
-            <p className={styles.testimonialKicker}>Testimonials</p>
-            <blockquote>{`“${testimonials[activeQuote].quote}”`}</blockquote>
-            <h3>{testimonials[activeQuote].name}</h3>
-            <span>{testimonials[activeQuote].role}</span>
-
-            <div className={styles.testimonialDots}>
-              {testimonials.map((testimonial, index) => (
-                <button
-                  key={testimonial.name}
-                  type="button"
-                  className={`${styles.testimonialDot} ${activeQuote === index ? styles.testimonialDotActive : ""}`}
-                  onClick={() => setActiveQuote(index)}
-                  aria-label={`Show testimonial ${index + 1}`}
-                />
-              ))}
+        <section
+          id="testimonials"
+          className="bg-white px-4 py-20"
+          data-reveal
+        >
+          <div className="mx-auto w-full max-w-6xl">
+            <div className="mb-1 text-center">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">
+                Testimonials
+              </p>
+              <h2 className="text-3xl font-bold tracking-tight text-emerald-950/90 md:text-5xl">
+                Stories From Well Alive Patients.
+              </h2>
             </div>
+            <TestimonialsMinimal />
           </div>
         </section>
 
-        <section id="contact" className="px-4 pb-28 pt-8 md:px-8">
-          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 rounded-[2.25rem] border border-[#5AAC4E]/30 bg-[linear-gradient(140deg,#edf9e8_0%,#f9fff5_48%,#ecf7e3_100%)] p-4 shadow-[0_30px_95px_rgba(39,98,53,0.16)] md:p-6 lg:grid-cols-[1.4fr_0.72fr] lg:items-stretch">
-            <div data-reveal>
-              <CtaCard
-                className="h-full min-h-[360px]"
-                title="Get Advanced Medical Care Today."
-                description="Join thousands of thriving patients at Well Alive Hospital. Experience world-class healthcare, professional specialists, and compassionate support tailored to your unique needs."
-                buttonText="Book an Appointment"
-                inputPlaceholder="Your Email Address"
-                imageSrc="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2500&auto=format&fit=crop"
+        <section
+          id="contact"
+          className="bg-white px-4 pb-20 pt-8 md:px-8"
+          data-reveal
+        >
+          <div className="mx-auto w-full max-w-4xl">
+            <div className="relative min-h-[260px] overflow-hidden rounded-[1.6rem] sm:min-h-[290px]">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=80&w=2000')",
+                }}
               />
-            </div>
+              <div className="absolute inset-0 bg-[linear-gradient(122deg,rgba(10,57,34,0.84),rgba(25,110,72,0.62))]" />
 
-            <div
-              className="h-[280px] overflow-hidden rounded-[1.5rem] border border-[#5AAC4E]/35 bg-white shadow-[0_20px_50px_rgba(37,96,50,0.2)] lg:h-auto lg:min-h-[320px]"
-              data-reveal
-              data-cursor="grow"
-            >
-              <iframe
-                title="Well Alive Hospital Uyo Map"
-                src="https://www.google.com/maps?q=Shelter+Afrique,+Uyo,+Akwa+Ibom&output=embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-full w-full border-0"
-              />
+              <div className="relative flex h-full min-h-[260px] flex-col items-center justify-center px-6 py-10 text-center sm:min-h-[290px] sm:px-10">
+                <p className="inline-flex rounded-full border border-white/35 bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-50">
+                  Premium Care Access
+                </p>
+                <h3 className="mt-4 text-2xl font-bold leading-tight text-white sm:text-4xl">
+                  Book A Specialist Consultation In Minutes.
+                </h3>
+                <p className="mx-auto mt-3 max-w-2xl text-sm text-emerald-50/90 sm:text-base">
+                  Priority scheduling, private diagnostics, and a coordinated care plan from the
+                  Well Alive clinical team.
+                </p>
+
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                  <a
+                    href="mailto:info@wellalivehospital.com"
+                    className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-50"
+                    data-cursor="grow"
+                  >
+                    Send Email
+                  </a>
+                  <a
+                    href="tel:+2340000000000"
+                    className="rounded-full border border-white/55 bg-white/10 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-white/20"
+                    data-cursor="grow"
+                  >
+                    Call Front Desk
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
