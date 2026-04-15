@@ -17,68 +17,67 @@ interface FooterSection {
 
 const footerLinks: FooterSection[] = [
 	{
-		label: 'Patients & Visitors',
+		label: 'Patient Care',
 		links: [
 			{ title: 'Find a Doctor', href: '#find-doctor' },
-			{ title: 'Patient Portal', href: '#patient-portal' },
 			{ title: 'Appointments', href: '#appointments' },
-			{ title: 'Billing & Insurance', href: '#billing' },
 		],
 	},
 	{
-		label: 'Our Services',
+		label: 'Clinical Units',
 		links: [
 			{ title: 'Emergency Care', href: '/services/emergency' },
 			{ title: 'Heart Center', href: '/services/cardiology' },
-			{ title: 'Surgery', href: '/services/surgery' },
-			{ title: 'Maternity', href: '/services/maternity' },
 		],
 	},
 	{
-		label: 'About Well Alive',
+		label: 'Hospital',
 		links: [
-			{ title: 'Careers', href: '/careers' },
-			{ title: 'News & Media', href: '/news' },
 			{ title: 'Contact Us', href: '/contact' },
 			{ title: 'Locations', href: '/locations' },
-		],
-	},
-	{
-		label: 'Connect With Us',
-		links: [
-			{ title: 'Facebook', href: '#', icon: FacebookIcon },
-			{ title: 'Instagram', href: '#', icon: InstagramIcon },
-			{ title: 'Youtube', href: '#', icon: YoutubeIcon },
-			{ title: 'LinkedIn', href: '#', icon: LinkedinIcon },
 		],
 	},
 ];
 
 export function Footer() {
 	return (
-		<footer className="md:rounded-t-6xl relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center rounded-t-4xl border-t border-[#5AAC4E]/35 bg-[radial-gradient(35%_128px_at_50%_0%,rgb(90_172_78_/_0.16),transparent)] px-6 py-12 lg:py-16">
-			<div className="bg-[#5AAC4E]/35 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
+		<footer className="md:rounded-t-6xl relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center rounded-t-4xl border-t border-[#5AAC4E]/45 bg-[linear-gradient(160deg,#153921_0%,#1a4527_52%,#245b33_100%)] px-6 py-12 text-white lg:py-16">
+			<div className="bg-[#9ad888]/35 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
 
 			<div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
 				<AnimatedContainer className="space-y-4">
 					<HeartPulseIcon className="size-8 text-[#5AAC4E]" />
-					<h3 className="text-xl font-bold text-[#5AAC4E]">Well Alive Hospital</h3>
-					<p className="text-muted-foreground mt-8 text-sm md:mt-0">
+					<h3 className="text-xl font-bold text-[#d8f3c8]">Well Alive Hospital</h3>
+					<p className="mt-8 text-sm text-white/75 md:mt-0">
 						© {new Date().getFullYear()} Well Alive Hospital. All rights reserved.
 					</p>
+					<div className="flex items-center gap-3 pt-2 text-white/80">
+						<a href="#" className="transition-colors hover:text-white" aria-label="Facebook">
+							<FacebookIcon className="size-4" />
+						</a>
+						<a href="#" className="transition-colors hover:text-white" aria-label="Instagram">
+							<InstagramIcon className="size-4" />
+						</a>
+						<a href="#" className="transition-colors hover:text-white" aria-label="YouTube">
+							<YoutubeIcon className="size-4" />
+						</a>
+						<a href="#" className="transition-colors hover:text-white" aria-label="LinkedIn">
+							<LinkedinIcon className="size-4" />
+						</a>
+					</div>
 				</AnimatedContainer>
 
-				<div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
+				<div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-3 xl:col-span-2 xl:mt-0">
 					{footerLinks.map((section, index) => (
 						<AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
 							<div className="mb-10 md:mb-0">
-								<h3 className="text-xs">{section.label}</h3>
-								<ul className="text-muted-foreground mt-4 space-y-2 text-sm">
+								<h3 className="text-xs text-[#d8f3c8]">{section.label}</h3>
+								<ul className="mt-4 space-y-2 text-sm text-white/75">
 									{section.links.map((link) => (
 										<li key={link.title}>
 											<a
 												href={link.href}
-												className="hover:text-foreground inline-flex items-center transition-all duration-300"
+												className="inline-flex items-center transition-all duration-300 hover:text-white"
 											>
 												{link.icon && <link.icon className="me-1 size-4" />}
 												{link.title}

@@ -126,47 +126,47 @@ const testimonials: Testimonial[] = [
 const blogFocusItems: FocusRailItem[] = [
   {
     id: 1,
-    title: "Understanding Cardiology Innovations in 2024",
-    description: "Discover the latest advancements in heart care and what they mean for patients.",
-    meta: "Insights • April 10, 2024",
+    title: "Stroke First Aid: What to Do in the First 10 Minutes",
+    description: "A practical FAST-based response guide from our emergency and neurology team.",
+    meta: "Emergency • April 10, 2024",
     imageSrc:
-      "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=800",
     href: "/blog-details",
   },
   {
     id: 2,
-    title: "Mental Health Strategies for Fast-paced Lives",
-    description: "Practical approaches to maintaining mental wellness in today's high-stress environments.",
-    meta: "Wellness • March 22, 2024",
-    imageSrc:
-      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
-    href: "/blog-details",
-  },
-  {
-    id: 3,
-    title: "Pediatric Nutrition: What Parents Must Know",
-    description: "Essential dietary guidelines for growing children from our pediatric specialists.",
-    meta: "Pediatrics • March 05, 2024",
-    imageSrc:
-      "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=800",
-    href: "/blog-details",
-  },
-  {
-    id: 4,
-    title: "The Importance of Preventive Screenings",
-    description: "Why early detection through routine check-ups is your best defense.",
-    meta: "Prevention • February 18, 2024",
+    title: "Blood Pressure Myths That Delay Early Treatment",
+    description: "Understand common misconceptions and when to seek medical review.",
+    meta: "Cardiology • March 22, 2024",
     imageSrc:
       "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
     href: "/blog-details",
   },
   {
-    id: 5,
-    title: "Modern Rehabilitation Techniques",
-    description: "How physical therapy paths have evolved to get you moving faster.",
-    meta: "Therapy • January 30, 2024",
+    id: 3,
+    title: "Childhood Fever: Home Monitoring vs Hospital Visit",
+    description: "Clear pediatric advice on warning signs that should never be ignored.",
+    meta: "Pediatrics • March 05, 2024",
     imageSrc:
-      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&q=80&w=800",
+    href: "/blog-details",
+  },
+  {
+    id: 4,
+    title: "Post-Surgery Recovery Checklist for Families",
+    description: "Daily milestones, red flags, and follow-up timing after common procedures.",
+    meta: "Surgery • February 18, 2024",
+    imageSrc:
+      "https://images.unsplash.com/photo-1581594549595-35f6edc7b762?auto=format&fit=crop&q=80&w=800",
+    href: "/blog-details",
+  },
+  {
+    id: 5,
+    title: "Women’s Annual Preventive Tests by Age Group",
+    description: "A concise screening map for long-term health protection and early detection.",
+    meta: "Women’s Health • January 30, 2024",
+    imageSrc:
+      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
     href: "/blog-details",
   },
 ];
@@ -495,17 +495,14 @@ export default function HomePage() {
 
         <Team members={doctorTeam} />
 
-        <section id="blogs" className="px-4 pb-24 pt-16 md:px-8">
-          <div className="mx-auto max-w-7xl rounded-[2.25rem] border border-[#5AAC4E]/25 bg-[radial-gradient(circle_at_8%_0%,rgba(122,198,114,0.18),transparent_38%),linear-gradient(120deg,#f4fceb_0%,#fbfff8_52%,#edf9e7_100%)] p-6 shadow-[0_28px_85px_rgba(41,106,57,0.14)] md:p-10">
-            <div className="mb-12 text-center" data-reveal>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-[#3f9348]">Medical Insights</p>
-              <h2 className="mb-4 text-4xl font-bold tracking-tight text-[#143120] md:text-5xl">Health intelligence, simplified for you.</h2>
-              <p className="mx-auto max-w-2xl text-[#42624d]">Explore our latest publications from specialists across various medical fields.</p>
-            </div>
+        <section id="blogs" className="w-full bg-neutral-950 px-4 py-20 overflow-x-hidden">
+          <div className="mb-12 text-center" data-reveal>
+            <h2 className="text-4xl font-bold text-white mb-2">Featured Medical Stories</h2>
+            <p className="text-neutral-400">Navigate the rail to explore specialist insights.</p>
+          </div>
 
-            <div data-reveal>
-              <FocusRail items={blogFocusItems} autoPlay={false} loop={true} />
-            </div>
+          <div data-reveal>
+            <FocusRail items={blogFocusItems} autoPlay={false} loop={true} />
           </div>
         </section>
 

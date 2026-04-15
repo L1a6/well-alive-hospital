@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence, type PanInfo } from "framer-motion";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -124,7 +124,7 @@ export function FocusRail({
     return Math.abs(offset) * velocity;
   };
 
-  const onDragEnd = (_e: MouseEvent | TouchEvent | PointerEvent, { offset, velocity }: PanInfo) => {
+  const onDragEnd = (e: MouseEvent | TouchEvent | PointerEvent, { offset, velocity }: PanInfo) => {
     const swipe = swipePower(offset.x, velocity.x);
 
     if (swipe < -swipeConfidenceThreshold) {
@@ -139,7 +139,7 @@ export function FocusRail({
   return (
     <div
       className={cn(
-        "group relative flex h-[600px] w-full flex-col overflow-hidden rounded-[2rem] border border-[#5AAC4E]/25 bg-[linear-gradient(145deg,#eefbe7_0%,#f9fff5_55%,#e8f6df_100%)] text-[#11311f] shadow-[0_24px_70px_rgba(41,106,57,0.2)] outline-none select-none overflow-x-hidden",
+        "group relative flex h-[600px] w-full flex-col overflow-hidden bg-neutral-950 text-white outline-none select-none overflow-x-hidden",
         className
       )}
       onMouseEnter={() => setIsHovering(true)}
@@ -164,7 +164,7 @@ export function FocusRail({
               alt=""
               className="h-full w-full object-cover blur-3xl saturate-200"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#f6fff2] via-[#ecf9e6]/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/50 to-transparent" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -203,8 +203,8 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[3/4] w-[260px] md:w-[300px] rounded-2xl border border-[#5AAC4E]/35 bg-white/80 shadow-2xl shadow-[#4f9a51]/25 transition-shadow duration-300 backdrop-blur-sm",
-                  isCenter ? "z-20" : "z-10"
+                  "absolute aspect-[3/4] w-[260px] md:w-[300px] rounded-2xl border-t border-white/20 bg-neutral-900 shadow-2xl transition-shadow duration-300",
+                  isCenter ? "z-20 shadow-white/10" : "z-10"
                 )}
                 initial={false}
                 animate={{
@@ -233,8 +233,8 @@ export function FocusRail({
                 />
 
                 {/* Lighting layers */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/16 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 rounded-2xl bg-emerald-900/15 pointer-events-none mix-blend-multiply" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 rounded-2xl bg-black/10 pointer-events-none mix-blend-multiply" />
               </motion.div>
             );
           })}
@@ -253,15 +253,15 @@ export function FocusRail({
                 className="space-y-2"
               >
                 {activeItem.meta && (
-                  <span className="text-xs font-medium uppercase tracking-wider text-[#3f9348]">
+                  <span className="text-xs font-medium uppercase tracking-wider text-emerald-400">
                     {activeItem.meta}
                   </span>
                 )}
-                <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-[#163421]">
+                <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-white">
                   {activeItem.title}
                 </h2>
                 {activeItem.description && (
-                  <p className="max-w-md text-[#355742]">
+                  <p className="max-w-md text-neutral-400">
                     {activeItem.description}
                   </p>
                 )}
@@ -270,20 +270,20 @@ export function FocusRail({
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1 rounded-full bg-white/80 p-1 ring-1 ring-[#5AAC4E]/25 backdrop-blur-md">
+            <div className="flex items-center gap-1 rounded-full bg-neutral-900/80 p-1 ring-1 ring-white/10 backdrop-blur-md">
               <button
                 onClick={handlePrev}
-                className="rounded-full p-3 text-[#4b6f57] transition hover:bg-[#5AAC4E]/15 hover:text-[#214b2f] active:scale-95"
+                className="rounded-full p-3 text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
                 aria-label="Previous"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
-              <span className="min-w-[40px] text-center text-xs font-mono text-[#53715f]">
+              <span className="min-w-[40px] text-center text-xs font-mono text-neutral-500">
                 {activeIndex + 1} / {count}
               </span>
               <button
                 onClick={handleNext}
-                className="rounded-full p-3 text-[#4b6f57] transition hover:bg-[#5AAC4E]/15 hover:text-[#214b2f] active:scale-95"
+                className="rounded-full p-3 text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
                 aria-label="Next"
               >
                 <ChevronRight className="h-5 w-5" />
@@ -293,7 +293,7 @@ export function FocusRail({
             {activeItem.href && (
               <Link
                 href={activeItem.href}
-                className="group flex items-center gap-2 rounded-full bg-[#2d7c37] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(45,124,55,0.32)] transition-transform hover:scale-105 hover:bg-[#23692d] active:scale-95"
+                className="group flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:scale-105 active:scale-95"
               >
                 Explore
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
