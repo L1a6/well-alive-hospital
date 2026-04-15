@@ -2,9 +2,9 @@
   position: relative;
   background: #fbfbfb;
   color: #111111;
-  --brand: #14b8a6;
-  --brand-deep: #0f766e;
-  --brand-soft: #ccfbf1;
+  --brand: #5aac4e;
+  --brand-deep: #2d7c37;
+  --brand-soft: #ecf7e3;
 }
 
 .cursor {

@@ -495,19 +495,17 @@ export default function HomePage() {
 
         <Team members={doctorTeam} />
 
-        <section id="blogs" className="py-24 bg-neutral-950 pb-32">
-          <div className="text-center mb-16" data-reveal>
-            <p className="text-emerald-400 font-medium tracking-wide uppercase text-sm mb-3">Medical Insights</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">Health intelligence, simplified for you.</h2>
-            <p className="text-neutral-400 max-w-2xl mx-auto">Explore our latest publications from specialists across various medical fields.</p>
-          </div>
+        <section id="blogs" className="px-4 pb-24 pt-16 md:px-8">
+          <div className="mx-auto max-w-7xl rounded-[2.25rem] border border-[#5AAC4E]/25 bg-[radial-gradient(circle_at_8%_0%,rgba(122,198,114,0.18),transparent_38%),linear-gradient(120deg,#f4fceb_0%,#fbfff8_52%,#edf9e7_100%)] p-6 shadow-[0_28px_85px_rgba(41,106,57,0.14)] md:p-10">
+            <div className="mb-12 text-center" data-reveal>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-[#3f9348]">Medical Insights</p>
+              <h2 className="mb-4 text-4xl font-bold tracking-tight text-[#143120] md:text-5xl">Health intelligence, simplified for you.</h2>
+              <p className="mx-auto max-w-2xl text-[#42624d]">Explore our latest publications from specialists across various medical fields.</p>
+            </div>
 
-          <div data-reveal>
-            <FocusRail 
-              items={blogFocusItems} 
-              autoPlay={false} 
-              loop={true} 
-            />
+            <div data-reveal>
+              <FocusRail items={blogFocusItems} autoPlay={false} loop={true} />
+            </div>
           </div>
         </section>
 
@@ -532,25 +530,32 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="contact" className="p-4 md:p-8 flex flex-col lg:flex-row gap-8 bg-neutral-950 items-center justify-center min-h-screen">
-          <div className="w-full lg:w-2/3" data-reveal>
-            <CtaCard
-              title="Get Advanced Medical Care Today."
-              description="Join thousands of thriving patients at Well Alive Hospital. Experience world-class healthcare, professional specialists, and compassionate support tailored to your unique needs."
-              buttonText="Book an Appointment"
-              inputPlaceholder="Your Email Address"
-              imageSrc="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2500&auto=format&fit=crop"
-            />
-          </div>
+        <section id="contact" className="px-4 pb-28 pt-8 md:px-8">
+          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 rounded-[2.25rem] border border-[#5AAC4E]/30 bg-[linear-gradient(140deg,#edf9e8_0%,#f9fff5_48%,#ecf7e3_100%)] p-4 shadow-[0_30px_95px_rgba(39,98,53,0.16)] md:p-6 lg:grid-cols-[1.4fr_0.72fr] lg:items-stretch">
+            <div data-reveal>
+              <CtaCard
+                className="h-full min-h-[360px]"
+                title="Get Advanced Medical Care Today."
+                description="Join thousands of thriving patients at Well Alive Hospital. Experience world-class healthcare, professional specialists, and compassionate support tailored to your unique needs."
+                buttonText="Book an Appointment"
+                inputPlaceholder="Your Email Address"
+                imageSrc="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2500&auto=format&fit=crop"
+              />
+            </div>
 
-          <div className="w-full lg:w-1/3 h-[400px] lg:h-[500px] rounded-xl overflow-hidden shadow-lg border border-neutral-800" data-reveal data-cursor="grow">
-            <iframe
-              title="Well Alive Hospital Uyo Map"
-              src="https://www.google.com/maps?q=Shelter+Afrique,+Uyo,+Akwa+Ibom&output=embed"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full border-0"
-            />
+            <div
+              className="h-[280px] overflow-hidden rounded-[1.5rem] border border-[#5AAC4E]/35 bg-white shadow-[0_20px_50px_rgba(37,96,50,0.2)] lg:h-auto lg:min-h-[320px]"
+              data-reveal
+              data-cursor="grow"
+            >
+              <iframe
+                title="Well Alive Hospital Uyo Map"
+                src="https://www.google.com/maps?q=Shelter+Afrique,+Uyo,+Akwa+Ibom&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-full w-full border-0"
+              />
+            </div>
           </div>
         </section>
       </main>

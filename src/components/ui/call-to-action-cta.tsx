@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
-import { cn } from "../../lib/utils";
-import { Button } from "./button";
-import { Input } from "./input";
+import { motion, type Transition, type Variants } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 
 // Define the props for the CtaCard component
@@ -16,6 +16,32 @@ interface CtaCardProps extends React.HTMLAttributes<HTMLDivElement> {
   buttonText: string;
   onButtonClick?: (email: string) => void;
 }
+
+const springInTransition: Transition = {
+  type: "spring",
+  stiffness: 100,
+  damping: 12,
+};
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: springInTransition,
+  },
+};
 
 const CtaCard = React.forwardRef<HTMLDivElement, CtaCardProps>(
   (
@@ -41,36 +67,11 @@ const CtaCard = React.forwardRef<HTMLDivElement, CtaCardProps>(
       console.log("Email submitted:", email);
     };
 
-    // Animation variants for Framer Motion
-    const containerVariants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.2,
-          delayChildren: 0.1,
-        },
-      },
-    };
-
-    const itemVariants = {
-      hidden: { y: 20, opacity: 0 },
-      visible: {
-        y: 0,
-        opacity: 1,
-        transition: {
-          type: "spring",
-          stiffness: 100,
-          damping: 12,
-        },
-      },
-    };
-
     return (
       <div
         ref={ref}
         className={cn(
-          "relative w-full overflow-hidden rounded-xl border bg-card text-card-foreground shadow",
+          "relative w-full overflow-hidden rounded-[1.75rem] border border-[#5AAC4E]/35 bg-white/10 text-white shadow-[0_24px_80px_rgba(24,85,43,0.35)]",
           className
         )}
         {...props}
@@ -79,11 +80,12 @@ const CtaCard = React.forwardRef<HTMLDivElement, CtaCardProps>(
         <img
           src={imageSrc}
           alt="Background"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-center"
           aria-hidden="true"
         />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40" />
+        {/* Brand Overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,rgba(220,247,200,0.38),transparent_36%),linear-gradient(120deg,rgba(26,85,45,0.88),rgba(53,132,67,0.74),rgba(90,172,78,0.68))]" />
+        <div className="absolute inset-0 bg-black/10" />
 
         {/* Content */}
         <motion.div
@@ -100,14 +102,17 @@ const CtaCard = React.forwardRef<HTMLDivElement, CtaCardProps>(
               {title}
             </motion.h2>
             <motion.p
-              className="mt-4 max-w-xl text-lg text-neutral-200"
+              className="mt-4 max-w-xl text-lg text-emerald-50/90"
               variants={itemVariants}
             >
               {description}
             </motion.p>
           </div>
 
-          <motion.div className="flex w-full max-w-md flex-col items-center justify-center lg:ml-auto" variants={itemVariants}>
+          <motion.div
+            className="flex w-full max-w-md flex-col items-center justify-center lg:ml-auto"
+            variants={itemVariants}
+          >
             <form
               onSubmit={handleSubmit}
               className="flex w-full flex-col gap-3 sm:flex-row"
@@ -117,14 +122,14 @@ const CtaCard = React.forwardRef<HTMLDivElement, CtaCardProps>(
                 placeholder={inputPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-12 flex-grow border-neutral-700 bg-neutral-800/50 text-white placeholder:text-neutral-400 focus:ring-offset-background"
+                className="h-12 flex-grow border-white/45 bg-white/20 text-white placeholder:text-emerald-50/80 backdrop-blur-md focus-visible:border-white focus-visible:ring-2 focus-visible:ring-emerald-100/90"
                 aria-label={inputPlaceholder}
                 required
               />
               <Button
                 type="submit"
                 size="lg"
-                className="h-12 bg-white text-black hover:bg-neutral-200"
+                className="h-12 bg-[#f2ffe8] text-[#1d5c2f] hover:bg-white"
               >
                 {buttonText}
                 <ArrowRight className="ml-2 h-4 w-4" />
