@@ -361,9 +361,6 @@ export default function HomePage() {
       <header className={`${styles.nav} ${navSolid ? styles.navSolid : ""}`}>
         <div className={styles.navInner}>
           <a href="#hero" className={styles.logo} data-cursor="grow">
-            <span className={styles.logoMark} aria-hidden="true">
-              <span className={styles.logoPulse} />
-            </span>
             <p>Well Alive</p>
           </a>
 
@@ -374,7 +371,7 @@ export default function HomePage() {
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            <span>{menuOpen ? "Close" : "Menu"}</span>
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
           <nav className={`${styles.navLinks} ${menuOpen ? styles.navLinksOpen : ""}`}>
@@ -417,7 +414,7 @@ export default function HomePage() {
                   key={slide.title}
                   className={`${styles.heroSlide} ${activeSlide === index ? styles.heroSlideActive : ""}`}
                   style={{
-                    backgroundImage: `linear-gradient(130deg, rgba(7, 28, 21, 0.84), rgba(38, 169, 122, 0.34)), url('${slide.image}')`,
+                    backgroundImage: `linear-gradient(130deg, rgba(10, 10, 10, 0.85), rgba(40, 40, 40, 0.4)), url('${slide.image}')`,
                   }}
                 />
               ))}

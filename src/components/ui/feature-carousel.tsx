@@ -137,9 +137,9 @@ export function FeatureCarousel() {
   return (
     <div className="mx-auto w-full max-w-[min(1400px,96vw)] px-2 sm:px-4">
       <div className="relative overflow-hidden rounded-[2rem] border border-emerald-950/10 bg-white shadow-[0_24px_70px_rgba(14,50,39,0.12)] lg:rounded-[2.6rem]">
-        <div className="grid min-h-[440px] lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="flex flex-col lg:grid lg:grid-cols-[0.95fr_1.05fr] min-h-[250px] lg:min-h-[440px]">
           <div
-            className="relative overflow-hidden px-5 py-9 sm:px-8 lg:px-10"
+            className="relative overflow-hidden px-4 md:px-6 py-6 sm:px-8 lg:px-10 lg:py-9"
             style={{
               background: `linear-gradient(170deg, ${BRAND} 0%, ${BRAND_DEEP} 68%, #15543f 100%)`,
             }}
@@ -147,7 +147,7 @@ export function FeatureCarousel() {
             <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/16 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/18 to-transparent" />
 
-            <div className="relative flex h-full min-h-[330px] items-center justify-center lg:justify-start">
+            <div className="relative flex h-full min-h-[250px] lg:min-h-[330px] items-center justify-center lg:justify-start">
               {FEATURES.map((feature, index) => {
                 const FeatureIcon = feature.icon;
                 const isActive = index === currentIndex;
@@ -199,8 +199,8 @@ export function FeatureCarousel() {
             </div>
           </div>
 
-          <div className="relative flex min-h-[360px] flex-col justify-center overflow-hidden bg-[#f4fbf7] px-5 py-6 sm:px-8 lg:px-10 lg:py-8">
-            <div className="relative h-[300px] w-full sm:h-[330px] lg:h-[360px]">
+          <div className="relative flex min-h-[250px] lg:min-h-[360px] flex-col justify-center overflow-hidden bg-[#f4fbf7] px-4 py-4 md:py-6 sm:px-8 lg:px-10 lg:py-8">
+            <div className="relative h-[250px] sm:h-[300px] lg:h-[360px] w-full">
               {FEATURES.map((feature, index) => {
                 const status = getCardStatus(index);
                 const isActive = status === "active";

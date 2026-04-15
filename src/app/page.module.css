@@ -2,9 +2,9 @@
   position: relative;
   background: #fbfbfb;
   color: #111111;
-  --brand: #0B6E4F;
-  --brand-deep: #074D36;
-  --brand-soft: #E3F5EE;
+  --brand: #14b8a6;
+  --brand-deep: #0f766e;
+  --brand-soft: #ccfbf1;
 }
 
 .cursor {
@@ -362,13 +362,13 @@
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: var(--brand);
-  box-shadow: 0 10px 24px rgba(18, 94, 69, 0.34);
+  box-shadow: 0 10px 24px rgba(13, 148, 136, 0.34);
 }
 
 .secondaryCta {
   color: #fff;
-  border: 1px solid rgba(38, 169, 122, 0.52);
-  background: rgba(38, 169, 122, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }

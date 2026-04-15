@@ -32,34 +32,37 @@ export default function AboutPage() {
                 height={600}
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#074D36]/95 via-[#0B6E4F]/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
-              <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                <p className="text-[10px] uppercase tracking-[0.24em] text-white/80">Critical Care</p>
-                <h3 className="mt-1.5 text-xl font-semibold">24/7 Emergency Command</h3>
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <p className="text-[10px] uppercase tracking-[0.24em] text-teal-100 font-semibold drop-shadow-lg shadow-black">Critical Care</p>
+                <h3 className="mt-1.5 text-2xl font-bold text-white drop-shadow-xl shadow-black">24/7 Emergency Command</h3>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 md:flex-1">
+          <div className="flex flex-col gap-4 md:flex-1 h-full md:h-[420px]">
             <motion.article
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="rounded-3xl bg-[#0f1f1a] p-5 text-white shadow-xl"
+              className="rounded-3xl bg-[#0f766e] p-6 text-white shadow-xl flex flex-col justify-center min-h-[200px] relative overflow-hidden"
             >
-              <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#0B6E4F]/30 text-[#7df1c5]">
+              <div className="absolute top-0 right-0 -mr-8 -mt-8 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
+              <div className="absolute bottom-0 left-0 -ml-8 -mb-8 h-24 w-24 rounded-full bg-[#14b8a6]/40 blur-xl" />
+              
+              <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/20 text-white relative z-10 backdrop-blur-md">
                 <ShieldCheck className="h-4 w-4" />
               </div>
 
-              <h3 className="text-lg font-semibold">Clinical Systems</h3>
-              <p className="mt-1.5 text-xs leading-5 text-white/80">
+              <h3 className="text-lg font-semibold text-white relative z-10">Clinical Systems</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-teal-50 relative z-10">
                 Protocol-driven handoffs reduce errors and protect outcomes.
               </p>
 
               <Button
                 asChild
                 size="sm"
-                className="mt-4 gap-1.5 bg-[#0B6E4F] text-white hover:bg-[#074D36]"
+                className="mt-5 w-max gap-1.5 bg-white text-[#0f766e] hover:bg-neutral-100 shadow-md relative z-10 font-semibold"
               >
                 <Link href="#contact">
                   Book Consultation
@@ -71,24 +74,24 @@ export default function AboutPage() {
             <motion.article
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="relative overflow-hidden rounded-3xl shadow-lg"
+              className="relative overflow-hidden rounded-3xl shadow-lg flex-1 min-h-[200px] flex"
             >
               <Image
                 src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800"
                 alt="Diagnostic imaging"
-                className="h-[180px] w-full object-cover"
+                className="h-full w-full object-cover"
                 width={600}
                 height={300}
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                 <div className="mb-2 flex gap-2">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.2em]">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.2em] backdrop-blur-md text-white font-semibold">
                     <HeartPulse className="h-3 w-3" /> Intensive
                   </span>
                 </div>
-                <h3 className="text-lg font-semibold">Rapid Diagnostics</h3>
+                <h3 className="text-lg font-bold text-white drop-shadow-xl shadow-black">Rapid Diagnostics</h3>
               </div>
             </motion.article>
           </div>

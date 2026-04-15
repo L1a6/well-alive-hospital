@@ -94,7 +94,7 @@ export default function Team({ members }: TeamProps) {
           className="mx-auto mb-16 flex max-w-5xl flex-col items-center px-6 text-center lg:px-0"
           data-reveal
         >
-          <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-[#26a97a] text-white">
+          <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-[#0d9488] text-white">
             <Stethoscope className="h-5 w-5" />
           </div>
 
@@ -135,17 +135,17 @@ export default function Team({ members }: TeamProps) {
                 data-doctor-card
                 data-cursor="grow"
               >
-                <div className="relative h-[17.5rem] w-full overflow-hidden rounded-2xl bg-neutral-100 sm:h-[20rem] md:h-[23rem]">
+                <div className="relative h-[17.5rem] w-full overflow-hidden rounded-2xl bg-neutral-100 sm:h-[18rem] md:h-[20rem]">
                   <img
                     alt={member.name}
                     className="h-full w-full object-cover transition-all duration-500 group-hover:scale-[1.03]"
                     loading="lazy"
                     src={member.image}
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0e3227]/80 via-[#26a97a]/25 to-transparent opacity-65 transition-opacity duration-300 group-hover:opacity-95" />
-                  <div className="absolute bottom-0 w-full rounded-lg bg-white/82 p-2 backdrop-blur-sm">
-                    <h3 className="font-semibold text-neutral-900">{member.name}</h3>
-                    <p className="text-sm text-neutral-600">{member.specialty || member.role}</p>
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+                    <h3 className="text-base font-bold text-white drop-shadow-xl shadow-black z-10 relative">{member.name}</h3>
+                    <p className="text-[11px] font-semibold text-teal-300 drop-shadow-lg shadow-black z-10 relative mt-0.5">{member.specialty || member.role}</p>
                   </div>
                 </div>
               </article>
@@ -159,7 +159,7 @@ export default function Team({ members }: TeamProps) {
               Skilled hands, clear communication, and compassionate care.
             </p>
             <div className="flex flex-col items-center gap-3">
-              <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-[#26a97a]/30">
+              <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-[#0d9488]/30">
                 <img
                   alt={featuredMember.name}
                   className="h-full w-full object-cover"
