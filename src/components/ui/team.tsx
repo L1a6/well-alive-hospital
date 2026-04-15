@@ -94,7 +94,7 @@ export default function Team({ members }: TeamProps) {
           className="mx-auto mb-16 flex max-w-5xl flex-col items-center px-6 text-center lg:px-0"
           data-reveal
         >
-          <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-[#0d9488] text-white">
+          <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-[#5AAC4E] text-white">
             <Stethoscope className="h-5 w-5" />
           </div>
 
@@ -145,7 +145,7 @@ export default function Team({ members }: TeamProps) {
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
                     <h3 className="text-base font-bold text-white drop-shadow-xl shadow-black z-10 relative">{member.name}</h3>
-                    <p className="text-[11px] font-semibold text-teal-300 drop-shadow-lg shadow-black z-10 relative mt-0.5">{member.specialty || member.role}</p>
+                    <p className="text-[11px] font-semibold text-[#d6f1ce] drop-shadow-lg shadow-black z-10 relative mt-0.5">{member.specialty || member.role}</p>
                   </div>
                 </div>
               </article>
@@ -159,7 +159,7 @@ export default function Team({ members }: TeamProps) {
               Skilled hands, clear communication, and compassionate care.
             </p>
             <div className="flex flex-col items-center gap-3">
-              <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-[#0d9488]/30">
+              <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-[#5AAC4E]/35">
                 <img
                   alt={featuredMember.name}
                   className="h-full w-full object-cover"

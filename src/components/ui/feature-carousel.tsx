@@ -22,8 +22,8 @@ type Feature = {
   description: string;
 };
 
-const BRAND = "#0B6E4F";
-const BRAND_DEEP = "#074D36";
+const BRAND = "#5AAC4E";
+const BRAND_DEEP = "#2D7C37";
 
 const FEATURES: Feature[] = [
   {
@@ -176,14 +176,14 @@ export function FeatureCarousel() {
                       className={cn(
                         "group relative flex items-center gap-3 rounded-full border px-5 py-3 text-left transition-all duration-500 sm:px-6",
                         isActive
-                          ? "z-10 border-white bg-white text-[#0B6E4F]"
+                          ? "z-10 border-white bg-white text-[#2D7C37]"
                           : "border-white/30 bg-transparent text-white/70 hover:border-white/55 hover:text-white",
                       )}
                     >
                       <span
                         className={cn(
                           "inline-flex items-center justify-center rounded-full transition-colors",
-                          isActive ? "text-[#0B6E4F]" : "text-white/50",
+                          isActive ? "text-[#2D7C37]" : "text-white/50",
                         )}
                       >
                         <FeatureIcon className="h-4 w-4" />
@@ -239,7 +239,7 @@ export function FeatureCarousel() {
                           exit={{ opacity: 0, y: 10 }}
                           className="absolute inset-x-0 bottom-0 flex flex-col justify-end bg-gradient-to-t from-[#0c2a20]/95 via-[#0c2a20]/50 to-transparent p-6"
                         >
-                          <div className="mb-2 w-fit rounded-full bg-white/90 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-[#16543f]">
+                          <div className="mb-2 w-fit rounded-full bg-white/90 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-[#2D7C37]">
                             {index + 1} / {FEATURES.length}
                           </div>
                           <h3 className="text-xl font-semibold text-white">{feature.label}</h3>
@@ -255,12 +255,12 @@ export function FeatureCarousel() {
             </div>
 
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#074D36] sm:text-[13px]">
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#2D7C37] sm:text-[13px]">
                 Faster decisions. Safer outcomes.
               </p>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-full bg-[#0B6E4F] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#074D36] sm:px-5 sm:text-[13px]"
+                className="inline-flex items-center justify-center rounded-full bg-[#5AAC4E] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#2D7C37] sm:px-5 sm:text-[13px]"
               >
                 Book Clinical Visit
               </a>

@@ -35,7 +35,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <p className="text-[10px] uppercase tracking-[0.24em] text-teal-100 font-semibold drop-shadow-lg shadow-black">Critical Care</p>
+                <p className="text-[10px] uppercase tracking-[0.24em] text-[#e2f5d9] font-semibold drop-shadow-lg shadow-black">Critical Care</p>
                 <h3 className="mt-1.5 text-2xl font-bold text-white drop-shadow-xl shadow-black">24/7 Emergency Command</h3>
               </div>
             </div>
@@ -45,24 +45,24 @@ export default function AboutPage() {
             <motion.article
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="rounded-3xl bg-[#0f766e] p-6 text-white shadow-xl flex flex-col justify-center min-h-[200px] relative overflow-hidden"
+              className="rounded-3xl bg-[#2d7c37] p-6 text-white shadow-xl flex flex-col justify-center min-h-[200px] relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 -mr-8 -mt-8 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
-              <div className="absolute bottom-0 left-0 -ml-8 -mb-8 h-24 w-24 rounded-full bg-[#14b8a6]/40 blur-xl" />
+              <div className="absolute bottom-0 left-0 -ml-8 -mb-8 h-24 w-24 rounded-full bg-[#5AAC4E]/45 blur-xl" />
               
               <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/20 text-white relative z-10 backdrop-blur-md">
                 <ShieldCheck className="h-4 w-4" />
               </div>
 
               <h3 className="text-lg font-semibold text-white relative z-10">Clinical Systems</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-teal-50 relative z-10">
+              <p className="mt-1.5 text-sm leading-relaxed text-[#e9f7e1] relative z-10">
                 Protocol-driven handoffs reduce errors and protect outcomes.
               </p>
 
               <Button
                 asChild
                 size="sm"
-                className="mt-5 w-max gap-1.5 bg-white text-[#0f766e] hover:bg-neutral-100 shadow-md relative z-10 font-semibold"
+                className="mt-5 w-max gap-1.5 bg-white text-[#2d7c37] hover:bg-neutral-100 shadow-md relative z-10 font-semibold"
               >
                 <Link href="#contact">
                   Book Consultation
