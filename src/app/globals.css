@@ -3,6 +3,29 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 156 30% 98%;
+    --foreground: 160 41% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 160 41% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 41% 11%;
+    --primary: 173 81% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 159 26% 94%;
+    --secondary-foreground: 160 41% 11%;
+    --muted: 159 23% 94%;
+    --muted-foreground: 160 18% 38%;
+    --accent: 168 32% 90%;
+    --accent-foreground: 160 41% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 166 24% 83%;
+    --input: 166 24% 83%;
+    --ring: 173 81% 40%;
+    --radius: 1rem;
+  }
+
   html, body {
     @apply bg-[#F6F7F6] text-[#0A110E] break-words;
     font-family: "Inter", "Segoe UI", sans-serif;

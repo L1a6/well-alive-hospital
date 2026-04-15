@@ -9,6 +9,8 @@ import { Menu, X } from "lucide-react";
 import AboutPage from "../components/ui/about-page";
 import FeatureCarousel from "../components/ui/feature-carousel";
 import Team, { type TeamMember } from "../components/ui/team";
+import { Footer } from "../components/ui/footer-section";
+import { FocusRail, type FocusRailItem } from "../components/ui/focus-rail";
 import styles from "./page.module.css";
 
 type HeroSlide = {
@@ -28,13 +30,6 @@ type Testimonial = {
   quote: string;
   name: string;
   role: string;
-};
-
-type BlogPost = {
-  title: string;
-  date: string;
-  category: string;
-  image: string;
 };
 
 const heroSlides: HeroSlide[] = [
@@ -127,27 +122,51 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const blogPosts: BlogPost[] = [
+const blogFocusItems: FocusRailItem[] = [
   {
+    id: 1,
     title: "Understanding Cardiology Innovations in 2024",
-    date: "April 10, 2024",
-    category: "Insights",
-    image:
+    description: "Discover the latest advancements in heart care and what they mean for patients.",
+    meta: "Insights • April 10, 2024",
+    imageSrc:
       "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800",
+    href: "/blog-details",
   },
   {
+    id: 2,
     title: "Mental Health Strategies for Fast-paced Lives",
-    date: "March 22, 2024",
-    category: "Wellness",
-    image:
+    description: "Practical approaches to maintaining mental wellness in today's high-stress environments.",
+    meta: "Wellness • March 22, 2024",
+    imageSrc:
       "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
+    href: "/blog-details",
   },
   {
+    id: 3,
     title: "Pediatric Nutrition: What Parents Must Know",
-    date: "March 05, 2024",
-    category: "Pediatrics",
-    image:
+    description: "Essential dietary guidelines for growing children from our pediatric specialists.",
+    meta: "Pediatrics • March 05, 2024",
+    imageSrc:
       "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=800",
+    href: "/blog-details",
+  },
+  {
+    id: 4,
+    title: "The Importance of Preventive Screenings",
+    description: "Why early detection through routine check-ups is your best defense.",
+    meta: "Prevention • February 18, 2024",
+    imageSrc:
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
+    href: "/blog-details",
+  },
+  {
+    id: 5,
+    title: "Modern Rehabilitation Techniques",
+    description: "How physical therapy paths have evolved to get you moving faster.",
+    meta: "Therapy • January 30, 2024",
+    imageSrc:
+      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800",
+    href: "/blog-details",
   },
 ];
 
@@ -475,27 +494,19 @@ export default function HomePage() {
 
         <Team members={doctorTeam} />
 
-        <section id="blogs" className={styles.blogs}>
-          <div className={styles.sectionHead} style={{ marginLeft: "clamp(1rem, 3vw, 2rem)" }} data-reveal>
-            <p>Medical Insights</p>
-            <h2>Health intelligence, simplified for you.</h2>
+        <section id="blogs" className="py-24 bg-neutral-950 pb-32">
+          <div className="text-center mb-16" data-reveal>
+            <p className="text-emerald-400 font-medium tracking-wide uppercase text-sm mb-3">Medical Insights</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">Health intelligence, simplified for you.</h2>
+            <p className="text-neutral-400 max-w-2xl mx-auto">Explore our latest publications from specialists across various medical fields.</p>
           </div>
 
-          <div className={styles.blogsGrid}>
-            {blogPosts.map((post) => (
-              <article key={post.title} className={styles.blogCard} data-reveal data-cursor="grow">
-                <div className={styles.blogCardImageWrapper}>
-                  <img src={post.image} alt={post.title} loading="lazy" />
-                </div>
-                <div className={styles.blogInfo}>
-                  <div className={styles.blogMeta}>
-                    <span>{post.category}</span>
-                    <span>{post.date}</span>
-                  </div>
-                  <h3>{post.title}</h3>
-                </div>
-              </article>
-            ))}
+          <div data-reveal>
+            <FocusRail 
+              items={blogFocusItems} 
+              autoPlay={false} 
+              loop={true} 
+            />
           </div>
         </section>
 
@@ -561,41 +572,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <footer className={styles.footer}>
-        <div className={styles.footerGrid}>
-          <article>
-            <h4>Well Alive Hospital</h4>
-            <p>
-              Enterprise-grade healthcare experiences powered by clinical precision, design clarity,
-              and compassionate teams.
-            </p>
-          </article>
-
-          <article>
-            <h4>Navigate</h4>
-            <a href="#hero">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#doctors">Doctors</a>
-          </article>
-
-          <article>
-            <h4>Contact</h4>
-            <a href="tel:+2349131193359">+234 913 119 3359</a>
-            <a href="mailto:care@wellalivehospital.com">care@wellalivehospital.com</a>
-            <p>Shelter Afrique, Uyo</p>
-          </article>
-
-          <article>
-            <h4>Hours</h4>
-            <p>Emergency: 24/7</p>
-            <p>Outpatient: 8:00 AM - 8:00 PM</p>
-            <p>Diagnostics: 7:00 AM - 9:00 PM</p>
-          </article>
-        </div>
-
-        <p className={styles.footerBottom}>© 2026 Well Alive Hospital. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

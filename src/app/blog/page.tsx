@@ -1,35 +1,71 @@
 import Link from "next/link";
-
 import { SiteShell } from "../../components/site-shell";
+import { FocusRail, type FocusRailItem } from "../../components/ui/focus-rail";
+
+const BLOG_ITEMS: FocusRailItem[] = [
+  {
+    id: 1,
+    title: "Understanding Preventive Screening",
+    description: "Learn which annual tests matter most in your 20s, 40s, and beyond, and when specialist referrals become important.",
+    meta: "Wellness • Guide",
+    imageSrc: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop",
+    href: "/blog-details",
+  },
+  {
+    id: 2,
+    title: "Future of Pediatric Surgery",
+    description: "Discover the latest innovations in minimally invasive procedures making recovery faster for children.",
+    meta: "Pediatrics • Innovation",
+    imageSrc: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1000&auto=format&fit=crop",
+    href: "/blog-details",
+  },
+  {
+    id: 3,
+    title: "Heart Disease Prevention",
+    description: "Cardiologists share vital lifestyle changes that can significantly lower your risk of cardiovascular problems.",
+    meta: "Cardiology • Health",
+    imageSrc: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1000&auto=format&fit=crop",
+    href: "/blog-details",
+  },
+  {
+    id: 4,
+    title: "Mental Wellness in 2024",
+    description: "Breaking the stigma: Why modern hospitals are integrating psychiatric support into primary care.",
+    meta: "Psychiatry • Wellness",
+    imageSrc: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1000&auto=format&fit=crop",
+    href: "/blog-details",
+  },
+  {
+    id: 5,
+    title: "Nutrition for Fast Recovery",
+    description: "How targeted dietetics and proper nourishment improve healing times post-operation.",
+    meta: "Dietetics • Recovery",
+    imageSrc: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1000&auto=format&fit=crop",
+    href: "/blog-details",
+  },
+];
 
 export default function BlogPage() {
   return (
     <SiteShell
-      title="Blog"
+      title="Blog & Insights"
       subtitle="Health education and patient guidance from Well Alive Hospital"
     >
-      <section className="pb-[200px] pt-[100px]">
-        <div className="page-container grid gap-6 md:grid-cols-3">
-          {[1, 2, 3].map((item) => (
-            <article key={item} className="group overflow-hidden bg-white">
-              <img src={`/assets/img/gallery/blog${item}.png`} alt="blog" className="h-[260px] w-full rounded-[50px] object-cover" />
-              <div className="pt-5">
-                <h3 className="text-[24px] font-[400]">
-                  <Link href="/blog-details" className="hover:text-primary">
-                    Understanding preventive screening by age group
-                  </Link>
-                </h3>
-                <p className="mt-3 text-[17px] font-[300] text-[#234821]">
-                  Learn which annual tests matter most in your 20s, 40s, and beyond,
-                  and when specialist referrals become important.
-                </p>
-              </div>
-            </article>
-          ))}
+      <section className="bg-neutral-950 pb-20 pt-20">
+        <div className="mb-12 text-center">
+          <h2 className="text-4xl font-bold text-white mb-4">Featured Medical Stories</h2>
+          <p className="text-neutral-400">Navigate the rail to explore our latest medical insights and health tips.</p>
         </div>
+
+        <FocusRail 
+          items={BLOG_ITEMS} 
+          autoPlay={false} 
+          loop={true} 
+          className="rounded-xl mx-auto max-w-[1400px]"
+        />
       </section>
 
-      <section className="pb-[120px]">
+      <section className="pb-[120px] pt-[80px]">
         <div className="page-container">
           <div className="legacy-about-cap about-cap-wrapper">
             <div className="grid gap-10 md:grid-cols-2 md:items-start">

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { type ReactNode } from "react";
 import { Clock3, Mail, Phone } from "lucide-react";
+import { Footer } from "./ui/footer-section";
 
 type SiteShellProps = {
   title?: string;
@@ -86,56 +87,7 @@ export function SiteShell({ title, subtitle, children }: SiteShellProps) {
 
       <main>{children}</main>
 
-      <footer className="relative mt-10">
-        <div className="absolute inset-0 -z-10">
-          <img src="/assets/img/gallery/footer-bg.png" alt="footer bg" className="h-full w-full object-cover" />
-        </div>
-        <div className="page-container grid gap-12 pb-[70px] pt-[220px] md:grid-cols-[2fr_1fr]">
-          <div className="max-w-2xl">
-            <Link href="/" className="inline-flex items-center gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#5AAC4E] text-[18px] font-[700] text-white">
-                WA
-              </span>
-              <div className="leading-tight">
-                <p className="text-[10px] font-[600] uppercase tracking-[2.8px] text-[#5AAC4E]">Well Alive</p>
-                <p className="text-[19px] font-[700] tracking-[-0.02em] text-[#0D210B]">Hospital</p>
-              </div>
-            </Link>
-            <p className="mt-5 max-w-lg text-[14px] font-[300] leading-7 text-[#234821]">
-              Well Alive Hospital delivers compassionate, evidence-based care across
-              emergency medicine, diagnostics, surgery, rehabilitation, and preventive
-              wellness services for every stage of life.
-            </p>
-            <div className="mt-6 flex gap-3">
-              <a href="#" className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(90,172,78,0.3)] px-2 text-[12px] text-[#5AAC4E] hover:bg-[#5AAC4E] hover:text-white">
-                Twitter
-              </a>
-              <a href="#" className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(90,172,78,0.3)] px-2 text-[12px] text-[#5AAC4E] hover:bg-[#5AAC4E] hover:text-white">
-                Facebook
-              </a>
-              <a href="#" className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(90,172,78,0.3)] px-2 text-[11px] text-[#5AAC4E] hover:bg-[#5AAC4E] hover:text-white">
-                Pinterest
-              </a>
-            </div>
-          </div>
-          <div>
-            <h4 className="text-[24px] font-[400] text-black">Subscribe Newsletter</h4>
-            <form className="mt-10">
-              <input
-                type="email"
-                placeholder="Email Address"
-                className="h-[50px] w-full rounded-bl-[20px] bg-white px-5 text-center text-[14px] text-[rgba(35,72,33,0.5)]"
-              />
-              <button type="submit" className="mt-[15px] block w-full rounded-bl-[20px] bg-[#5AAC4E] px-5 py-[17px] text-[16px] text-white">
-                Subscribe
-              </button>
-            </form>
-            <p className="mt-8 text-[18px] font-[300] leading-8 text-[#234821]">
-              Copyright {new Date().getFullYear()} Well Alive Hospital. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
