@@ -30,20 +30,20 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 1200;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid rgba(154, 209, 174, 0.2);
-  background: linear-gradient(92deg, rgba(7, 29, 18, 0.74), rgba(12, 48, 31, 0.52));
-  box-shadow: 0 12px 34px rgba(4, 15, 10, 0.28);
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid rgba(165, 219, 185, 0.22);
+  background: linear-gradient(90deg, rgba(10, 38, 28, 0.76), rgba(14, 52, 37, 0.56));
+  box-shadow: 0 8px 24px rgba(4, 15, 10, 0.22);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: padding 300ms ease, background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
 
 .navSolid {
-  padding: 0.8rem 1.5rem;
-  background: linear-gradient(92deg, rgba(6, 25, 16, 0.92), rgba(10, 39, 25, 0.86));
-  border-color: rgba(154, 209, 174, 0.3);
-  box-shadow: 0 10px 30px rgba(4, 15, 10, 0.32);
+  padding: 0.72rem 1.2rem;
+  background: linear-gradient(90deg, rgba(10, 36, 27, 0.94), rgba(11, 43, 31, 0.9));
+  border-color: rgba(165, 219, 185, 0.3);
+  box-shadow: 0 8px 26px rgba(4, 15, 10, 0.3);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -62,11 +62,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.62rem;
-  color: #effcf4;
+  color: #eefbf3;
 }
 
 .navSolid .logo {
-  color: #effcf4;
+  color: #eefbf3;
 }
 
 .logoMark {
@@ -92,32 +92,43 @@
 .logo p {
   margin: 0;
   font-size: 0.97rem;
-  font-weight: 760;
+  font-weight: 740;
   letter-spacing: 0.01em;
   color: inherit;
   transition: color 0.3s ease;
 }
 
 .navSolid .logo p {
-  color: #effcf4;
+  color: #eefbf3;
 }
 
 .menu {
-  width: 2.85rem;
-  height: 2.85rem;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(224, 244, 232, 0.28);
-  background: rgba(9, 35, 22, 0.86);
-  color: #f2fdf6;
+  width: auto;
+  height: auto;
+  padding: 0.15rem;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  color: #eefbf3;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: 0 10px 26px rgba(4, 15, 10, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   transition: all 260ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateZ(0);
+}
+
+.menu:hover {
+  color: #ffffff;
+}
+
+.menu:focus-visible {
+  outline: 2px solid rgba(211, 238, 221, 0.84);
+  outline-offset: 4px;
+  border-radius: 0.5rem;
 }
 
 .menu span {
@@ -126,9 +137,9 @@
 }
 
 .navSolid .menu {
-  color: #f2fdf6;
-  background: rgba(8, 31, 20, 0.9);
-  border: 1px solid rgba(159, 216, 178, 0.34);
+  color: #eefbf3;
+  background: transparent;
+  border: 0;
 }
 
 .menuIcon {
@@ -155,14 +166,14 @@
 }
 
 .menuOpen {
-  background: rgba(10, 43, 27, 0.96);
-  color: #f6fff9;
-  border-color: rgba(194, 233, 207, 0.45);
+  background: transparent;
+  color: #ffffff;
+  border-color: transparent;
 }
 
 .navSolid .menuOpen {
-  background: rgba(10, 43, 27, 0.96);
-  border-color: rgba(194, 233, 207, 0.45);
+  background: transparent;
+  border-color: transparent;
 }
 
 .navLinks {
@@ -172,9 +183,9 @@
   left: 0;
   right: 0;
   border-radius: 1rem;
-  border: 1px solid rgba(154, 209, 174, 0.28);
-  background: rgba(8, 31, 20, 0.97);
-  box-shadow: 0 20px 34px rgba(4, 15, 10, 0.36);
+  border: 1px solid rgba(165, 219, 185, 0.28);
+  background: rgba(9, 36, 25, 0.97);
+  box-shadow: 0 20px 34px rgba(4, 15, 10, 0.32);
   padding: 0.58rem;
   flex-direction: column;
   gap: 0.32rem;
@@ -223,7 +234,7 @@
 }
 
 .navLinks a:not(.navCta):hover {
-  background: rgba(118, 183, 138, 0.18);
+  background: rgba(118, 183, 138, 0.16);
   color: #f8fffb;
 }
 
@@ -244,7 +255,7 @@
 
 .main {
   display: block;
-  padding-top: 4.5rem;
+  padding-top: 0;
 }
 
 .heroAboutStack {
@@ -253,15 +264,15 @@
 
 .hero {
   /* Sleek container, rounded edges */
-  width: min(1440px, calc(100% - 1rem));
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   aspect-ratio: 16/9;
   min-height: 500px;
   max-height: 80vh;
-  border-radius: 40px; /* Stronger curve */
+  border-radius: 0 0 40px 40px;
   overflow: hidden;
   position: sticky;
-  top: 5rem;
+  top: 0;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
 }
 
@@ -1097,11 +1108,11 @@
   }
 
   .main {
-    padding-top: 6.25rem;
+    padding-top: 0;
   }
 
   .hero {
-    min-height: calc(100vh - 6.25rem);
+    min-height: 100vh;
   }
 
   .heroContent {
