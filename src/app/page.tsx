@@ -7,6 +7,7 @@ import Lenis from "lenis";
 import { Menu, X } from "lucide-react";
 
 import AboutPage from "../components/ui/about-page";
+import { Component as FaqSection } from "../components/ui/demo";
 import FeatureCarousel from "../components/ui/feature-carousel";
 import Team, { type TeamMember } from "../components/ui/team";
 import { Footer } from "../components/ui/footer-section";
@@ -467,6 +468,16 @@ export default function HomePage() {
               </h2>
             </div>
             <TestimonialsMinimal />
+          </div>
+        </section>
+
+        <section
+          id="faq"
+          className="bg-[linear-gradient(180deg,#f7fcf4_0%,#edf6e8_100%)] px-4 py-20 md:px-8"
+          data-reveal
+        >
+          <div className="mx-auto w-full max-w-6xl">
+            <FaqSection />
           </div>
         </section>
 

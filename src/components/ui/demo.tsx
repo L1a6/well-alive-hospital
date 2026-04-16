@@ -1,64 +1,110 @@
 "use client";
 
-import { FocusRail, type FocusRailItem } from "@/components/ui/focus-rail";
+import { Accordion, AccordionContent, AccordionItem } from "@/components/ui/accordion";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import Image from "next/image";
 
-const DEMO_ITEMS: FocusRailItem[] = [
+import { AtSign, Clock3, Plus, ShieldCheck, Stethoscope } from "lucide-react";
+
+const items = [
   {
-    id: 1,
-    title: "Stroke First Aid: The First 10 Minutes",
-    description: "Recognize FAST signs and act early to improve recovery outcomes.",
-    meta: "Emergency • Neurology",
-    imageSrc:
-      "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=1000&auto=format&fit=crop",
-    href: "#stroke",
+    id: "1",
+    icon: Clock3,
+    title: "How quickly can I get an appointment?",
+    content:
+      "Most consultations are scheduled same-day or within 24 hours. Emergency cases are prioritized immediately by our triage team.",
   },
   {
-    id: 2,
-    title: "Heart Screening by Age Group",
-    description: "Know the right timeline for BP checks, ECG, and lipid profile tests.",
-    meta: "Cardiology • Prevention",
-    imageSrc:
-      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop",
-    href: "#cardio",
+    id: "2",
+    icon: Stethoscope,
+    title: "Do you provide specialist and emergency care in one place?",
+    content:
+      "Yes. Well Alive combines emergency response, diagnostics, surgery, and follow-up clinics in a coordinated care pathway.",
   },
   {
-    id: 3,
-    title: "Pediatric Fever: Home Care vs Hospital Visit",
-    description: "Clear red-flag symptoms every parent should watch for.",
-    meta: "Pediatrics • Family",
-    imageSrc:
-      "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=1000&auto=format&fit=crop",
-    href: "#pediatrics",
+    id: "3",
+    icon: ShieldCheck,
+    title: "Do you accept insurance and HMO plans?",
+    content:
+      "Our patient desk supports major plans and can confirm coverage before your visit. Bring your card or details for quick verification.",
   },
   {
-    id: 4,
-    title: "Safe Recovery After Surgery",
-    description: "Post-op milestones, warning signs, and follow-up routines.",
-    meta: "Surgery • Recovery",
-    imageSrc:
-      "https://images.unsplash.com/photo-1581594549595-35f6edc7b762?q=80&w=1000&auto=format&fit=crop",
-    href: "#recovery",
-  },
-  {
-    id: 5,
-    title: "Women’s Preventive Health Checklist",
-    description: "Annual screening priorities for stronger long-term health.",
-    meta: "Women’s Health • Wellness",
-    imageSrc:
-      "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1000&auto=format&fit=crop",
-    href: "#womens-health",
+    id: "4",
+    icon: AtSign,
+    title: "How can I reach support after office hours?",
+    content:
+      "Use our emergency phone line for urgent needs. For non-urgent requests, send an email and our team follows up promptly.",
   },
 ];
 
-export default function DemoOne() {
+function Component() {
   return (
-    <main className="min-h-screen overflow-x-hidden w-full bg-neutral-950 flex flex-col items-center justify-center py-20">
-      <div className="mb-12 text-center">
-        <h1 className="text-4xl font-bold text-white mb-2">Featured Medical Stories</h1>
-        <p className="text-neutral-400">Navigate the rail to explore specialist insights.</p>
+    <div className="grid w-full gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <div className="space-y-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">
+          Frequently Asked Questions
+        </p>
+        <h2 className="text-2xl font-semibold leading-snug text-neutral-900 md:text-3xl">
+          Everything You Need Before Your Visit.
+        </h2>
+        <p className="max-w-lg text-sm leading-6 text-neutral-600 md:text-base md:leading-7">
+          Quick answers on appointments, emergency response, insurance, and support so you can make
+          care decisions with confidence.
+        </p>
+
+        <div className="relative h-[250px] overflow-hidden rounded-[1.5rem] border border-emerald-200/70 sm:h-[280px]">
+          <Image
+            src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=1400"
+            alt="Well Alive support desk"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 40vw"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,95,58,0.12),rgba(10,44,27,0.7))]" />
+          <div className="absolute bottom-0 w-full p-5 text-white">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-100">
+              Need Fast Guidance?
+            </p>
+            <a
+              href="tel:+2349131193359"
+              className="mt-1 inline-block text-base font-semibold text-white transition hover:text-emerald-100"
+            >
+              Call +234 913 119 3359
+            </a>
+          </div>
+        </div>
       </div>
 
-      <FocusRail items={DEMO_ITEMS} autoPlay={false} loop={true} />
-    </main>
+      <div className="rounded-[1.6rem] border border-emerald-200/80 bg-white p-5 shadow-[0_24px_70px_rgba(45,124,55,0.12)] sm:p-7">
+        <Accordion type="single" collapsible className="w-full" defaultValue="2">
+          {items.map((item) => (
+            <AccordionItem value={item.id} key={item.id} className="py-2">
+              <AccordionPrimitive.Header className="flex">
+                <AccordionPrimitive.Trigger className="flex flex-1 items-center justify-between py-2 text-left text-[15px] font-semibold leading-6 text-neutral-900 transition-all [&>svg>path:last-child]:origin-center [&>svg>path:last-child]:transition-all [&>svg>path:last-child]:duration-200 [&[data-state=open]>svg>path:last-child]:rotate-90 [&[data-state=open]>svg>path:last-child]:opacity-0 [&[data-state=open]>svg]:rotate-180">
+                  <span className="flex items-center gap-3">
+                    <item.icon
+                      size={16}
+                      strokeWidth={2}
+                      className="shrink-0 text-emerald-700/80"
+                      aria-hidden="true"
+                    />
+                    <span>{item.title}</span>
+                  </span>
+                  <Plus
+                    size={16}
+                    strokeWidth={2}
+                    className="shrink-0 text-neutral-500 transition-transform duration-200"
+                    aria-hidden="true"
+                  />
+                </AccordionPrimitive.Trigger>
+              </AccordionPrimitive.Header>
+              <AccordionContent className="pb-2 ps-7 text-neutral-600">{item.content}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </div>
   );
 }
+
+export { Component };
