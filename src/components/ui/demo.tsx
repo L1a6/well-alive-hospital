@@ -54,7 +54,7 @@ function Component() {
 
         <div className="relative h-[250px] overflow-hidden rounded-[1.5rem] border border-emerald-200/70 sm:h-[280px]">
           <Image
-            src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=1400"
+            src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=1400"
             alt="Well Alive support desk"
             fill
             className="object-cover"
@@ -75,7 +75,7 @@ function Component() {
         </div>
       </div>
 
-      <div className="rounded-[1.6rem] border border-emerald-200/80 bg-white p-5 shadow-[0_24px_70px_rgba(45,124,55,0.12)] sm:p-7">
+      <div className="px-1 sm:px-2">
         <Accordion type="single" collapsible className="w-full" defaultValue="2">
           {items.map((item) => (
             <AccordionItem value={item.id} key={item.id} className="py-2">

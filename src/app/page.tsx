@@ -472,16 +472,6 @@ export default function HomePage() {
         </section>
 
         <section
-          id="faq"
-          className="bg-[linear-gradient(180deg,#f7fcf4_0%,#edf6e8_100%)] px-4 py-20 md:px-8"
-          data-reveal
-        >
-          <div className="mx-auto w-full max-w-6xl">
-            <FaqSection />
-          </div>
-        </section>
-
-        <section
           id="contact"
           className="bg-white px-4 pb-20 pt-8 md:px-8"
           data-reveal
@@ -495,7 +485,7 @@ export default function HomePage() {
                     "url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=80&w=2000')",
                 }}
               />
-              <div className="absolute inset-0 bg-[linear-gradient(122deg,rgba(45,124,55,0.9),rgba(90,172,78,0.72))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(122deg,rgba(45,124,55,0.72),rgba(90,172,78,0.5))]" />
 
               <div className="relative flex h-full min-h-[260px] flex-col items-center justify-center px-6 py-10 text-center sm:min-h-[290px] sm:px-10">
                 <p className="inline-flex rounded-full border border-white/35 bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-50">
@@ -527,6 +517,16 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section
+          id="faq"
+          className="bg-[linear-gradient(180deg,#f7fcf4_0%,#edf6e8_100%)] px-4 py-20 md:px-8"
+          data-reveal
+        >
+          <div className="mx-auto w-full max-w-6xl">
+            <FaqSection />
           </div>
         </section>
       </main>
