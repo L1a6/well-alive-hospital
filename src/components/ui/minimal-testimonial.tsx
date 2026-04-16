@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 
 const testimonials = [
@@ -8,27 +8,35 @@ const testimonials = [
     quote: "The emergency response was incredibly fast. Dr. Udo and his team saved my husband's life with their quick action and expertise.",
     name: "Sarah Chen",
     role: "Patient Family Member",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=900&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=900&auto=format&fit=crop&q=60",
   },
   {
     quote: "A rare hospital that combines leading medical technology with genuine human compassion. My recovery was flawless.",
     name: "Marcus Johnson",
     role: "Surgical Patient",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=900&auto=format&fit=crop&q=60",
   },
   {
     quote: "From pediatrics to general care, the staff at Well Alive always ensure we feel heard and deeply cared for.",
     name: "Elena Voss",
     role: "Mother of Two",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=900&auto=format&fit=crop&q=60",
   },
 ]
 
 export function TestimonialsMinimal() {
   const [active, setActive] = useState(0)
 
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActive((current) => (current + 1) % testimonials.length)
+    }, 4200)
+
+    return () => window.clearInterval(timer)
+  }, [])
+
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-10 md:px-8 md:py-12">
+    <div className="mx-auto w-full max-w-4xl px-4 py-6 md:px-8 md:py-8">
       {/* Quote */}
       <div className="relative mb-10 min-h-[170px] md:min-h-[120px]">
         {testimonials.map((t, i) => (

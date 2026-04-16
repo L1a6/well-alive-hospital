@@ -31,15 +31,19 @@
   inset: 0 0 auto;
   z-index: 1200;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(154, 209, 174, 0.2);
+  background: linear-gradient(92deg, rgba(7, 29, 18, 0.74), rgba(12, 48, 31, 0.52));
+  box-shadow: 0 12px 34px rgba(4, 15, 10, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transition: padding 300ms ease, background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
 
 .navSolid {
   padding: 0.8rem 1.5rem;
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  background: linear-gradient(92deg, rgba(6, 25, 16, 0.92), rgba(10, 39, 25, 0.86));
+  border-color: rgba(154, 209, 174, 0.3);
+  box-shadow: 0 10px 30px rgba(4, 15, 10, 0.32);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -58,11 +62,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.62rem;
-  color: #fff;
+  color: #effcf4;
 }
 
 .navSolid .logo {
-  color: #111;
+  color: #effcf4;
 }
 
 .logoMark {
@@ -89,34 +93,31 @@
   margin: 0;
   font-size: 0.97rem;
   font-weight: 760;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
   color: inherit;
   transition: color 0.3s ease;
 }
 
 .navSolid .logo p {
-  color: #111;
+  color: #effcf4;
 }
 
 .menu {
-  width: 5rem; /* Pill shape */
-  height: 2.8rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background: rgba(0, 0, 0, 0.2);
-  color: #ffffff;
+  width: 2.85rem;
+  height: 2.85rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(224, 244, 232, 0.28);
+  background: rgba(9, 35, 22, 0.86);
+  color: #f2fdf6;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
   position: relative;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 26px rgba(4, 15, 10, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: all 260ms cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
+  transform: translateZ(0);
 }
 
 .menu span {
@@ -125,9 +126,9 @@
 }
 
 .navSolid .menu {
-  color: #111;
-  background: #f4fbf7;
-  border: 1px solid rgba(90, 172, 78, 0.25);
+  color: #f2fdf6;
+  background: rgba(8, 31, 20, 0.9);
+  border: 1px solid rgba(159, 216, 178, 0.34);
 }
 
 .menuIcon {
@@ -154,14 +155,14 @@
 }
 
 .menuOpen {
-  background: var(--brand-deep);
-  color: #fff;
-  border-color: rgba(255,255,255,0.4);
+  background: rgba(10, 43, 27, 0.96);
+  color: #f6fff9;
+  border-color: rgba(194, 233, 207, 0.45);
 }
 
 .navSolid .menuOpen {
-  background: rgba(90, 172, 78, 0.14);
-  border-color: rgba(32, 90, 68, 0.3);
+  background: rgba(10, 43, 27, 0.96);
+  border-color: rgba(194, 233, 207, 0.45);
 }
 
 .navLinks {
@@ -171,9 +172,9 @@
   left: 0;
   right: 0;
   border-radius: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(154, 209, 174, 0.28);
+  background: rgba(8, 31, 20, 0.97);
+  box-shadow: 0 20px 34px rgba(4, 15, 10, 0.36);
   padding: 0.58rem;
   flex-direction: column;
   gap: 0.32rem;
@@ -197,33 +198,33 @@
     align-items: center;
   }
   .navLinks a {
-    color: rgba(255,255,255,0.85);
+    color: rgba(238, 252, 244, 0.85);
     padding: 0.4rem 0;
   }
   .navLinks a:not(.navCta):hover {
-    color: #fff;
+    color: #ffffff;
     background: none;
   }
   .navSolid .navLinks a {
-    color: rgba(17,17,17,0.75);
+    color: rgba(238, 252, 244, 0.85);
   }
   .navSolid .navLinks a:not(.navCta):hover {
-    color: #111;
+    color: #ffffff;
   }
 }
 
 .navLinks a {
   border-radius: 0.68rem;
   padding: 0.68rem 0.75rem;
-  color: #333;
+  color: #e5f6eb;
   font-size: 0.85rem;
   font-weight: 500;
-  transition: color 260ms ease;
+  transition: color 260ms ease, background-color 260ms ease;
 }
 
 .navLinks a:not(.navCta):hover {
-  background: rgba(0, 0, 0, 0.04);
-  color: #111;
+  background: rgba(118, 183, 138, 0.18);
+  color: #f8fffb;
 }
 
 .navCta {
@@ -1080,14 +1081,14 @@
   }
 
   .navLinks a {
-    color: #effcf6;
+    color: rgba(238, 252, 244, 0.87);
     padding: 0.5rem 0.75rem;
     font-size: 0.8rem;
   }
 
-  .navLinks a:hover {
-    background: rgba(255, 255, 255, 0.09);
-    color: #ffffff;
+  .navLinks a:not(.navCta):hover {
+    background: rgba(118, 183, 138, 0.14);
+    color: #f8fffb;
   }
 
   .navCta {

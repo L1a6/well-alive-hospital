@@ -31,9 +31,9 @@ const items = [
   {
     id: "4",
     icon: AtSign,
-    title: "How can I reach support after office hours?",
+    title: "Where is Well Alive Hospital located?",
     content:
-      "Use our emergency phone line for urgent needs. For non-urgent requests, send an email and our team follows up promptly.",
+      "You can find us at Shelter Afrique, Plot 2 Prof. Nse Essien Street, Uyo. For fast guidance before arrival, call our front desk and emergency team.",
   },
 ];
 
@@ -54,8 +54,8 @@ function Component() {
 
         <div className="relative h-[250px] overflow-hidden rounded-[1.5rem] border border-emerald-200/70 sm:h-[280px]">
           <Image
-            src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=1400"
-            alt="Well Alive support desk"
+            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1400"
+            alt="Well Alive patient care and support"
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 40vw"

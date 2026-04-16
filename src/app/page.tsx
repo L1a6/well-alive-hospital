@@ -4,7 +4,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { Menu, X } from "lucide-react";
 
 import AboutPage from "../components/ui/about-page";
 import { Component as FaqSection } from "../components/ui/demo";
@@ -12,6 +11,7 @@ import FeatureCarousel from "../components/ui/feature-carousel";
 import Team, { type TeamMember } from "../components/ui/team";
 import { Footer } from "../components/ui/footer-section";
 import { FocusRail, type FocusRailItem } from "../components/ui/focus-rail";
+import { MenuToggleIcon } from "../components/ui/menu-toggle-icon";
 import { TestimonialsMinimal } from "../components/ui/minimal-testimonial";
 import styles from "./page.module.css";
 
@@ -57,22 +57,21 @@ const doctors: DoctorProfile[] = [
     name: "Dr. Israel Ben",
     specialty: "Consultant General Surgeon",
     credentials: "MD, Well Alive Hospital",
-    image:
-      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1000",
+    image: "/israelben.jpg",
   },
   {
     name: "Dr. Victor Essien",
     specialty: "General Surgery",
     credentials: "MBBS, FICS",
     image:
-      "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=1000",
   },
   {
     name: "Dr. Nseabasi Udo",
     specialty: "Emergency Medicine",
     credentials: "MBChB, FMCP",
     image:
-      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&q=80&w=1000",
   },
   {
     name: "Dr. Emem James",
@@ -86,14 +85,14 @@ const doctors: DoctorProfile[] = [
     specialty: "Pediatrics",
     credentials: "MBBS, FWACP",
     image:
-      "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=1000",
   },
   {
     name: "Dr. Anietie Brown",
     specialty: "Internal Medicine",
     credentials: "MBBS, FMCP",
     image:
-      "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&q=80&w=1000",
   },
 ];
 
@@ -338,7 +337,7 @@ export default function HomePage() {
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            <MenuToggleIcon open={menuOpen} className="h-6 w-6" duration={420} />
           </button>
 
           <nav className={`${styles.navLinks} ${menuOpen ? styles.navLinksOpen : ""}`}>
@@ -381,7 +380,7 @@ export default function HomePage() {
                   key={slide.title}
                   className={`${styles.heroSlide} ${activeSlide === index ? styles.heroSlideActive : ""}`}
                   style={{
-                    backgroundImage: `linear-gradient(130deg, rgba(10, 10, 10, 0.85), rgba(40, 40, 40, 0.4)), url('${slide.image}')`,
+                    backgroundImage: `linear-gradient(130deg, rgba(11, 38, 24, 0.82), rgba(19, 92, 60, 0.4)), url('${slide.image}')`,
                   }}
                 />
               ))}
@@ -449,13 +448,13 @@ export default function HomePage() {
           </div>
 
           <div data-reveal>
-            <FocusRail items={blogFocusItems} autoPlay={false} loop={true} />
+            <FocusRail items={blogFocusItems} autoPlay={true} interval={4300} loop={true} />
           </div>
         </section>
 
         <section
           id="testimonials"
-          className="bg-white px-4 py-20"
+          className="bg-white px-4 pb-8 pt-12"
           data-reveal
         >
           <div className="mx-auto w-full max-w-6xl">
@@ -473,7 +472,7 @@ export default function HomePage() {
 
         <section
           id="contact"
-          className="bg-white px-4 pb-20 pt-8 md:px-8"
+          className="bg-white px-4 pb-10 pt-0 md:px-8"
           data-reveal
         >
           <div className="mx-auto w-full max-w-4xl">
@@ -522,7 +521,7 @@ export default function HomePage() {
 
         <section
           id="faq"
-          className="bg-[linear-gradient(180deg,#f7fcf4_0%,#edf6e8_100%)] px-4 py-20 md:px-8"
+          className="bg-[linear-gradient(180deg,#f7fcf4_0%,#edf6e8_100%)] px-4 py-12 md:px-8"
           data-reveal
         >
           <div className="mx-auto w-full max-w-6xl">
