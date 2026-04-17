@@ -4,10 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   Activity,
-  Ambulance,
-  Brain,
+  Baby,
+  FlaskConical,
   HeartPulse,
   Microscope,
+  ScanLine,
+  Stethoscope,
   ShieldPlus,
   type LucideIcon,
 } from "lucide-react";
@@ -27,52 +29,68 @@ const BRAND_DEEP = "#2D7C37";
 
 const FEATURES: Feature[] = [
   {
-    id: "emergency",
-    label: "Emergency Response",
-    icon: Ambulance,
+    id: "general-medical-services",
+    label: "General Medical Services",
+    icon: Stethoscope,
     image:
-      "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=1400",
-    description: "Rapid triage, bedside stabilization, and specialist escalation within minutes.",
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1400",
+    description: "Consultation, diagnosis, and coordinated follow-up for everyday and complex health needs.",
   },
   {
-    id: "cardiology",
-    label: "Cardiac Medicine",
-    icon: HeartPulse,
-    image:
-      "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=1400",
-    description: "Advanced cardiac imaging, rhythm monitoring, and personalized treatment plans.",
-  },
-  {
-    id: "diagnostics",
-    label: "Precision Diagnostics",
-    icon: Microscope,
-    image:
-      "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1400",
-    description: "High-accuracy lab and imaging workflows that cut wait time for critical results.",
-  },
-  {
-    id: "neuro",
-    label: "Neuro Care",
-    icon: Brain,
-    image:
-      "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=1400",
-    description: "Neurology and stroke pathways focused on fast intervention and recovery quality.",
-  },
-  {
-    id: "critical",
-    label: "Critical Care",
+    id: "expert-surgeries",
+    label: "Expert Surgeries",
     icon: Activity,
     image:
-      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1400",
-    description: "24/7 monitoring with multidisciplinary teams managing high-acuity conditions.",
+      "https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?auto=format&fit=crop&q=80&w=1400",
+    description: "Consultant-led procedures with theatre safety protocols and recovery monitoring.",
   },
   {
-    id: "infection",
-    label: "Infection Control",
+    id: "breast-diseases",
+    label: "Breast Diseases",
+    icon: HeartPulse,
+    image:
+      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1400",
+    description: "Early screening, breast health evaluation, and personalized treatment planning.",
+  },
+  {
+    id: "cancer-care-centre",
+    label: "Cancer Care Centre",
     icon: ShieldPlus,
     image:
-      "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&q=80&w=1400",
-    description: "Strict safety protocols and sterile environments that protect patients and staff.",
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1400",
+    description: "Oncology support pathways for diagnosis guidance, treatment coordination, and aftercare.",
+  },
+  {
+    id: "gastroenterology",
+    label: "Gastroenterology",
+    icon: ScanLine,
+    image:
+      "https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&q=80&w=1400",
+    description: "Digestive health reviews, procedure referrals, and long-term gastrointestinal care.",
+  },
+  {
+    id: "maternity-services",
+    label: "Maternity Services",
+    icon: Baby,
+    image:
+      "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&q=80&w=1400",
+    description: "Antenatal, delivery, and postnatal support for safe motherhood and newborn wellness.",
+  },
+  {
+    id: "laboratory-services",
+    label: "Laboratory Services",
+    icon: Microscope,
+    image:
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=1400",
+    description: "Reliable sample testing and rapid laboratory reporting for confident clinical decisions.",
+  },
+  {
+    id: "ultrasound-scan-services",
+    label: "Ultrasound Scan Services",
+    icon: FlaskConical,
+    image:
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1400",
+    description: "Soft-tissue and obstetric imaging with clinician-reviewed interpretation.",
   },
 ];
 
@@ -254,17 +272,7 @@ export function FeatureCarousel() {
               })}
             </div>
 
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#2D7C37] sm:text-[13px]">
-                Faster decisions. Safer outcomes.
-              </p>
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-full bg-[#5AAC4E] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#2D7C37] sm:px-5 sm:text-[13px]"
-              >
-                Book Clinical Visit
-              </a>
-            </div>
+            <div className="mt-4 h-2" aria-hidden="true" />
           </div>
         </div>
       </div>

@@ -5,27 +5,30 @@ import Image from "next/image"
 
 const testimonials = [
   {
-    quote: "The emergency response was incredibly fast. Dr. Udo and his team saved my husband's life with their quick action and expertise.",
-    name: "Sarah Chen",
-    role: "Patient Family Member",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=900&auto=format&fit=crop&q=60",
+    quote:
+      "From admission to discharge, the nurses and doctors explained every step clearly. I felt safe, respected, and genuinely cared for.",
+    name: "Mfor-Abasi Udoh",
+    role: "Maternity Patient",
+    image: "/mfor-abasi.jpg",
   },
   {
     quote: "A rare hospital that combines leading medical technology with genuine human compassion. My recovery was flawless.",
     name: "Marcus Johnson",
     role: "Surgical Patient",
-    image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=900&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&auto=format&fit=crop&q=60",
   },
   {
     quote: "From pediatrics to general care, the staff at Well Alive always ensure we feel heard and deeply cared for.",
     name: "Elena Voss",
     role: "Mother of Two",
-    image: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=900&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=900&auto=format&fit=crop&q=60",
   },
 ]
 
 export function TestimonialsMinimal() {
   const [active, setActive] = useState(0)
+  const activeIndex = testimonials.length > 0 ? active % testimonials.length : 0
+  const activeTestimonial = testimonials[activeIndex]
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -69,21 +72,27 @@ export function TestimonialsMinimal() {
                 relative h-12 w-12 overflow-hidden rounded-full ring-2 ring-emerald-100
                 transition-all duration-300 ease-out
                 ${
-                  active === i
+                  activeIndex === i
                     ? "z-10 scale-110 ring-emerald-600"
                     : "opacity-70 saturate-0 hover:opacity-100 hover:scale-105 hover:saturate-100"
                 }
               `}
             >
-              <Image src={t.image || "/placeholder.svg"} alt={t.name} fill className="object-cover" />
+              <Image
+                src={t.image || "/placeholder.svg"}
+                alt={t.name}
+                fill
+                sizes="48px"
+                className="object-cover"
+              />
             </button>
           ))}
         </div>
 
         {/* Active Author Info */}
         <div className="min-h-[44px] text-center">
-          <span className="block text-base font-semibold text-neutral-900">{testimonials[active].name}</span>
-          <span className="block text-sm text-neutral-600">{testimonials[active].role}</span>
+          <span className="block text-base font-semibold text-neutral-900">{activeTestimonial?.name ?? ""}</span>
+          <span className="block text-sm text-neutral-600">{activeTestimonial?.role ?? ""}</span>
         </div>
       </div>
     </div>

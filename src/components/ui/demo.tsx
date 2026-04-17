@@ -41,7 +41,7 @@ function Component() {
   return (
     <div className="grid w-full gap-8 lg:grid-cols-[0.95fr_1.05fr]">
       <div className="space-y-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">
+        <p className="inline-flex rounded-full border border-emerald-200/80 bg-white/35 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700 shadow-[0_10px_24px_rgba(31,120,84,0.14)] backdrop-blur-xl">
           Frequently Asked Questions
         </p>
         <h2 className="text-2xl font-semibold leading-snug text-neutral-900 md:text-3xl">
@@ -54,7 +54,7 @@ function Component() {
 
         <div className="relative h-[250px] overflow-hidden rounded-[1.5rem] border border-emerald-200/70 sm:h-[280px]">
           <Image
-            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1400"
+            src="/faq.jpg"
             alt="Well Alive patient care and support"
             fill
             className="object-cover"

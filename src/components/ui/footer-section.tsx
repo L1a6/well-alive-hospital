@@ -24,9 +24,10 @@ const footerLinks: FooterSection[] = [
   {
     label: 'Clinical Services',
     links: [
-      { title: 'Emergency', href: '#services' },
-      { title: 'Cardiology', href: '#services' },
-      { title: 'Surgery', href: '#services' },
+      { title: 'General Medical Services', href: '#services' },
+      { title: 'Expert Surgeries', href: '#services' },
+      { title: 'Cancer Care Centre', href: '#services' },
+      { title: 'Maternity Services', href: '#services' },
     ],
   },
   {
@@ -47,7 +48,7 @@ export function Footer() {
       <div className="relative mx-auto w-full max-w-6xl px-6 py-12 md:px-10 lg:py-14">
         <div className="grid w-full gap-9 md:grid-cols-[1.3fr_1fr] md:gap-12">
           <AnimatedContainer className="space-y-5">
-            <div className="inline-flex items-center gap-3 rounded-full border border-emerald-200/25 bg-emerald-200/10 px-4 py-2 text-sm text-emerald-100">
+            <div className="inline-flex items-center gap-3 rounded-full border border-emerald-100/50 bg-white/18 px-4 py-2 text-sm text-emerald-50 shadow-[0_12px_28px_rgba(7,34,24,0.28)] backdrop-blur-xl">
               <HeartPulseIcon className="h-4 w-4" />
               Trusted Care In Uyo
             </div>

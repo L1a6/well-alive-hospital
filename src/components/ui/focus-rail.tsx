@@ -139,7 +139,7 @@ export function FocusRail({
   return (
     <div
       className={cn(
-        "group relative flex h-[600px] w-full flex-col overflow-hidden bg-neutral-950 text-white outline-none select-none overflow-x-hidden",
+        "group relative flex h-[370px] w-full flex-col overflow-hidden bg-[#0f221d] text-white outline-none select-none overflow-x-hidden md:h-[560px]",
         className
       )}
       onMouseEnter={() => setIsHovering(true)}
@@ -154,7 +154,7 @@ export function FocusRail({
           <motion.div
             key={`bg-${activeItem.id}`}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
+            animate={{ opacity: 0.34 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="absolute inset-0"
@@ -164,7 +164,7 @@ export function FocusRail({
               alt=""
               className="h-full w-full object-cover blur-3xl saturate-200"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0f221d] via-[#0f221d]/55 to-transparent" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -173,7 +173,7 @@ export function FocusRail({
       <div className="relative z-10 flex flex-1 flex-col justify-center px-4 md:px-8">
         {/* DRAGGABLE RAIL CONTAINER */}
         <motion.div
-          className="relative mx-auto flex h-[360px] w-full max-w-6xl items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing"
+          className="relative mx-auto flex h-[220px] w-full max-w-6xl items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing md:h-[340px]"
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.2}
@@ -203,7 +203,7 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[3/4] w-[260px] md:w-[300px] rounded-2xl border-t border-white/20 bg-neutral-900 shadow-2xl transition-shadow duration-300",
+                  "absolute aspect-[4/5] w-[190px] rounded-2xl border-t border-white/20 bg-neutral-900 shadow-2xl transition-shadow duration-300 sm:w-[220px] md:aspect-[3/4] md:w-[290px]",
                   isCenter ? "z-20 shadow-white/10" : "z-10"
                 )}
                 initial={false}
@@ -241,8 +241,8 @@ export function FocusRail({
         </motion.div>
 
         {/* Info & Controls */}
-        <div className="mx-auto mt-12 flex w-full max-w-4xl flex-col items-center justify-between gap-6 md:flex-row pointer-events-auto">
-          <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left h-32 justify-center">
+        <div className="mx-auto mt-6 flex w-full max-w-4xl flex-col items-center justify-between gap-3 md:mt-10 md:flex-row md:gap-6 pointer-events-auto">
+          <div className="flex h-20 flex-1 flex-col items-center justify-center text-center md:h-28 md:items-start md:text-left">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeItem.id}
@@ -250,18 +250,18 @@ export function FocusRail({
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
                 transition={{ duration: 0.3 }}
-                className="space-y-2"
+                className="space-y-1.5 md:space-y-2"
               >
                 {activeItem.meta && (
                   <span className="text-xs font-medium uppercase tracking-wider text-emerald-400">
                     {activeItem.meta}
                   </span>
                 )}
-                <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-white">
+                <h2 className="text-xl font-bold tracking-tight text-white md:text-3xl">
                   {activeItem.title}
                 </h2>
                 {activeItem.description && (
-                  <p className="max-w-md text-neutral-400">
+                  <p className="max-w-md text-sm text-neutral-300 md:text-base">
                     {activeItem.description}
                   </p>
                 )}

@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+import Image from "next/image";
 
 import AboutPage from "../components/ui/about-page";
 import { Component as FaqSection } from "../components/ui/demo";
@@ -21,78 +22,77 @@ type HeroSlide = {
   image: string;
 };
 
-type DoctorProfile = {
+type TeamProfile = {
   name: string;
-  specialty: string;
-  credentials: string;
+  role: string;
   image: string;
 };
 
 const heroSlides: HeroSlide[] = [
   {
-    title: "Precision Care. Human Presence.",
+    title: "Modern Diagnostics. Human Support.",
     subtitle:
-      "A premium medical destination in Uyo where emergency response, diagnostics, and specialist medicine work in one coordinated flow.",
+      "Clinical decision-making powered by laboratory precision, imaging depth, and transparent communication.",
     image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2200",
+      "https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&q=80&w=2200",
   },
   {
-    title: "Healing Spaces, Built For Calm.",
+    title: "Trusted Surgical Care In Uyo.",
     subtitle:
-      "Thoughtful architecture, intelligent workflows, and compassionate teams designed to reduce anxiety and improve outcomes.",
+      "From consultation to recovery, your care pathway is clear, private, and handled by one coordinated team.",
     image:
-      "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=2200",
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2200",
   },
   {
-    title: "Specialists You Can Trust.",
+    title: "Expert Surgical Response, Day and Night.",
     subtitle:
-      "From urgent intervention to long-term management, every stage is guided by experienced clinicians and transparent communication.",
+      "Our consultants, theatre nurses, and emergency clinicians move in sync for safer, faster interventions.",
     image:
-      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=2200",
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2200",
   },
 ];
 
-const doctors: DoctorProfile[] = [
+const careTeam: TeamProfile[] = [
   {
     name: "Dr. Israel Ben",
-    specialty: "Consultant General Surgeon",
-    credentials: "MD, Well Alive Hospital",
+    role: "Consultant General Surgeon",
     image: "/israelben.jpg",
   },
   {
-    name: "Dr. Victor Essien",
-    specialty: "General Surgery",
-    credentials: "MBBS, FICS",
+    name: "Nurse Mfon-Abasi Edet",
+    role: "Senior Theatre Nurse",
     image:
-      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000",
   },
   {
     name: "Dr. Nseabasi Udo",
-    specialty: "Emergency Medicine",
-    credentials: "MBChB, FMCP",
+    role: "Emergency Medicine Specialist",
     image:
-      "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=1000",
   },
   {
-    name: "Dr. Emem James",
-    specialty: "Obstetrics & Gynecology",
-    credentials: "MBBS, FWACS",
+    name: "Nurse Eno Bassey",
+    role: "Maternity and Neonatal Nurse",
     image:
-      "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?auto=format&fit=crop&q=80&w=1000",
   },
   {
     name: "Dr. Mfon Uwah",
-    specialty: "Pediatrics",
-    credentials: "MBBS, FWACP",
+    role: "Consultant Gastroenterologist",
     image:
-      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=1000",
   },
   {
-    name: "Dr. Anietie Brown",
-    specialty: "Internal Medicine",
-    credentials: "MBBS, FMCP",
+    name: "Nurse Imaobong Etim",
+    role: "Women’s Health Nurse",
     image:
-      "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000",
+  },
+  {
+    name: "Dr. Iniobong Essien",
+    role: "Breast and Women’s Health Consultant",
+    image:
+      "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=1000",
   },
 ];
 
@@ -153,10 +153,10 @@ export default function HomePage() {
   const [navSolid, setNavSolid] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const doctorTeam: TeamMember[] = doctors.map((doctor) => ({
-    image: doctor.image,
-    name: doctor.name,
-    role: `${doctor.specialty} - ${doctor.credentials}`,
+  const doctorTeam: TeamMember[] = careTeam.map((member) => ({
+    image: member.image,
+    name: member.name,
+    role: member.role,
   }));
 
   useEffect(() => {
@@ -327,7 +327,16 @@ export default function HomePage() {
       <header className={`${styles.nav} ${navSolid ? styles.navSolid : ""}`}>
         <div className={styles.navInner}>
           <a href="#hero" className={styles.logo} data-cursor="grow">
-            <p>Well Alive</p>
+            <span className={styles.logoImageWrap} aria-hidden="true">
+              <Image
+                src="/logo.png"
+                alt="Well Alive Hospital"
+                fill
+                sizes="112px"
+                className={styles.logoImage}
+                priority
+              />
+            </span>
           </a>
 
           <button
@@ -432,7 +441,7 @@ export default function HomePage() {
             style={{ marginLeft: "clamp(1rem, 5vw, 2rem)", paddingBottom: "2rem" }}
             data-reveal
           >
-            <p>Clinical Services</p>
+            <p className={styles.frostPill}>Clinical Services</p>
             <h2 style={{ maxWidth: "560px" }}>Advanced Care Units.</h2>
           </div>
 
@@ -441,14 +450,26 @@ export default function HomePage() {
 
         <Team members={doctorTeam} />
 
-        <section id="blogs" className="w-full bg-neutral-950 px-4 py-20 overflow-x-hidden">
-          <div className="mb-12 text-center" data-reveal>
-            <h2 className="text-4xl font-bold text-white mb-2">Featured Medical Stories</h2>
+        <section
+          id="blogs"
+          className="w-full overflow-x-hidden bg-[linear-gradient(180deg,#10251e_0%,#0f221d_38%,#122a22_100%)] px-4 py-10 md:py-16"
+        >
+          <div className="mb-6 text-center md:mb-10" data-reveal>
+            <p className="mx-auto mb-3 inline-flex rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white shadow-[0_12px_28px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+              Blog Highlights
+            </p>
+            <h2 className="mb-2 text-3xl font-bold text-white md:text-4xl">Featured Medical Stories</h2>
             <p className="text-neutral-400">Navigate the rail to explore specialist insights.</p>
           </div>
 
           <div data-reveal>
-            <FocusRail items={blogFocusItems} autoPlay={true} interval={4300} loop={true} />
+            <FocusRail
+              items={blogFocusItems}
+              autoPlay={true}
+              interval={4300}
+              loop={true}
+              className="h-[370px] md:h-[560px]"
+            />
           </div>
         </section>
 
@@ -459,7 +480,7 @@ export default function HomePage() {
         >
           <div className="mx-auto w-full max-w-6xl">
             <div className="mb-1 text-center">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">
+              <p className="mb-3 inline-flex rounded-full border border-emerald-200/80 bg-white/35 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700 shadow-[0_10px_24px_rgba(31,120,84,0.14)] backdrop-blur-xl">
                 Testimonials
               </p>
               <h2 className="text-3xl font-semibold leading-snug text-neutral-900 md:text-4xl">
@@ -480,11 +501,11 @@ export default function HomePage() {
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=80&w=2000')",
+                  backgroundImage: "url('/cta.jpg')",
                 }}
               />
-              <div className="absolute inset-0 bg-[linear-gradient(122deg,rgba(45,124,55,0.72),rgba(90,172,78,0.5))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(122deg,rgba(45,124,55,0.58),rgba(90,172,78,0.36))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(122deg,rgba(12,32,20,0.66),rgba(11,41,26,0.52))]" />
 
               <div className="relative flex h-full min-h-[260px] flex-col items-center justify-center px-6 py-10 text-center sm:min-h-[290px] sm:px-10">
                 <p className="inline-flex rounded-full border border-white/35 bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-50">
