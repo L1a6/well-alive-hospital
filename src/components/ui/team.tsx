@@ -232,13 +232,13 @@ export default function Team({ members }: TeamProps) {
 
               return (
                 <article
-                  className="group flex w-48 shrink-0 flex-col sm:w-52 md:w-64"
+                  className="group flex w-44 shrink-0 flex-col sm:w-52 md:w-64"
                   key={`${member.name}-${index}`}
                   data-doctor-card
                   data-cursor="grow"
                 >
                   <div
-                    className={`relative h-[16rem] overflow-hidden rounded-2xl border bg-neutral-900 shadow-[0_24px_44px_rgba(8,36,24,0.2)] transition-all duration-500 sm:h-[17rem] md:h-[19rem] ${
+                    className={`relative h-[14.5rem] overflow-hidden rounded-2xl border bg-neutral-900 shadow-[0_24px_44px_rgba(8,36,24,0.2)] transition-all duration-500 sm:h-[17rem] md:h-[19rem] ${
                       isActiveCard
                         ? "border-emerald-300/80 ring-2 ring-emerald-200/70"
                         : "border-emerald-100/70"
@@ -265,9 +265,20 @@ export default function Team({ members }: TeamProps) {
           </div>
         </div>
 
-        <p className="mt-7 text-center text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700/80">
-          Team Spotlight {activeIndex + 1} of {teamMembers.length}
-        </p>
+        <div className="mx-auto mt-7 flex max-w-3xl flex-col items-center px-6 text-center">
+          <img
+            src="/israelben.jpg"
+            alt="Dr. Israel Ben"
+            className="h-16 w-16 rounded-full object-cover ring-2 ring-emerald-200"
+            loading="lazy"
+          />
+          <p className="mt-4 text-sm font-medium leading-relaxed text-neutral-700 md:text-base">
+            Surgery is precision with compassion, from first consultation to full recovery.
+          </p>
+          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700/85">
+            Dr. Israel Ben, Chief Consultant General Surgery, MD Well Alive Hospital
+          </p>
+        </div>
       </div>
 
       <style jsx>{`

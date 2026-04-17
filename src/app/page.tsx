@@ -468,7 +468,7 @@ export default function HomePage() {
               autoPlay={true}
               interval={4300}
               loop={true}
-              className="h-[370px] md:h-[560px]"
+              className="md:h-[560px]"
             />
           </div>
         </section>
