@@ -1,50 +1,58 @@
+import { notFound } from "next/navigation";
 import { SiteShell } from "../../components/site-shell";
 
+const BLOG_DETAILS_PUBLISHED = false;
+
 export default function BlogDetailsPage() {
+  if (!BLOG_DETAILS_PUBLISHED) {
+    notFound();
+  }
+
   return (
     <SiteShell
-      title="Blog Details"
-      subtitle="Clinical insights and practical guidance for healthier living"
+      title="Clinical Insight"
+      subtitle="Structured guidance from our care teams"
     >
-      <section className="py-[120px]">
+      <section className="py-[96px] md:py-[120px]">
         <div className="page-container grid gap-8 lg:grid-cols-[2fr_1fr]">
-          <article className="overflow-hidden bg-white">
-            <img src="/assets/img/blog/single_blog_1.png" alt="post" className="h-80 w-full object-cover" />
-            <div className="px-2 py-8 md:px-8">
-              <h2 className="text-[36px] font-[500] text-[#0D210B]">Your daily meal plan and healthy routine</h2>
-              <p className="mt-4 text-[16px] font-[300] text-[#234821]">
-                A healthy routine starts with measurable goals: balanced meals,
-                hydration, movement, stress management, and regular checkups.
-                Our nutrition and internal medicine teams recommend practical
-                habits that patients can sustain long-term.
+          <article className="overflow-hidden rounded-3xl border border-emerald-100 bg-white shadow-[0_20px_44px_rgba(10,40,28,0.08)]">
+            <img src="/about.jpg" alt="Clinical team discussion" className="h-72 w-full object-cover md:h-80" />
+            <div className="px-5 py-8 md:px-8">
+              <h2 className="text-3xl font-semibold tracking-tight text-[#0D210B] md:text-4xl">
+                Building a Daily Health Routine That Lasts
+              </h2>
+              <p className="mt-4 text-base leading-7 text-[#234821]">
+                Strong health outcomes begin with repeatable habits: balanced meals, hydration,
+                movement, sleep discipline, and scheduled preventive checks.
               </p>
-              <p className="mt-3 text-[16px] font-[300] text-[#234821]">
-                If you have hypertension, diabetes, or cardiac risk factors,
-                personalized plans are even more important. At Well Alive Hospital,
-                specialists review your labs and lifestyle to create a safe,
-                realistic path toward better health.
+              <p className="mt-3 text-base leading-7 text-[#234821]">
+                For patients with hypertension, diabetes, cardiac risk, or chronic digestive
+                conditions, personalized plans are essential. Our specialists align diagnostics,
+                treatment, and follow-up into one practical care pathway.
               </p>
             </div>
           </article>
 
           <aside className="space-y-6">
-            <div className="bg-[#fbf9ff] p-8">
-              <h3 className="text-[20px] font-[500]">Categories</h3>
-              <ul className="mt-4 space-y-3 text-[14px] text-[#888888]">
+            <div className="rounded-3xl border border-emerald-100 bg-[#f5fbf6] p-7">
+              <h3 className="text-xl font-semibold text-[#133727]">Categories</h3>
+              <ul className="mt-4 space-y-3 text-sm text-[#3d6350]">
                 <li>Preventive Care</li>
                 <li>Heart Health</li>
                 <li>Nutrition</li>
                 <li>Mental Wellness</li>
               </ul>
             </div>
-            <div className="bg-[#fbf9ff] p-8">
-              <h3 className="text-[20px] font-[500]">Newsletter</h3>
+            <div className="rounded-3xl border border-emerald-100 bg-[#f5fbf6] p-7">
+              <h3 className="text-xl font-semibold text-[#133727]">Newsletter</h3>
               <input
                 type="email"
                 placeholder="Your email"
-                className="mt-4 h-[50px] w-full border border-[#f0e9ff] px-5 text-[13px]"
+                className="mt-4 h-[50px] w-full rounded-xl border border-emerald-200 px-5 text-[13px]"
               />
-              <button className="mt-4 w-full bg-[#5AAC4E] px-5 py-3 text-white">Subscribe</button>
+              <button className="mt-4 w-full rounded-full bg-[#5AAC4E] px-5 py-3 text-white transition hover:bg-[#2D7C37]">
+                Subscribe
+              </button>
             </div>
           </aside>
         </div>

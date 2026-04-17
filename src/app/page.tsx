@@ -104,7 +104,6 @@ const blogFocusItems: FocusRailItem[] = [
     meta: "Emergency • April 10, 2024",
     imageSrc:
       "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=800",
-    href: "/blog-details",
   },
   {
     id: 2,
@@ -113,7 +112,6 @@ const blogFocusItems: FocusRailItem[] = [
     meta: "Cardiology • March 22, 2024",
     imageSrc:
       "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
-    href: "/blog-details",
   },
   {
     id: 3,
@@ -122,7 +120,6 @@ const blogFocusItems: FocusRailItem[] = [
     meta: "Pediatrics • March 05, 2024",
     imageSrc:
       "https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&q=80&w=800",
-    href: "/blog-details",
   },
   {
     id: 4,
@@ -131,7 +128,6 @@ const blogFocusItems: FocusRailItem[] = [
     meta: "Surgery • February 18, 2024",
     imageSrc:
       "https://images.unsplash.com/photo-1581594549595-35f6edc7b762?auto=format&fit=crop&q=80&w=800",
-    href: "/blog-details",
   },
   {
     id: 5,
@@ -140,7 +136,6 @@ const blogFocusItems: FocusRailItem[] = [
     meta: "Women’s Health • January 30, 2024",
     imageSrc:
       "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
-    href: "/blog-details",
   },
 ];
 

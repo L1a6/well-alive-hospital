@@ -290,7 +290,7 @@ export function FocusRail({
               </button>
             </div>
 
-            {activeItem.href && (
+            {activeItem.href ? (
               <Link
                 href={activeItem.href}
                 className="group flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:scale-105 active:scale-95"
@@ -298,6 +298,16 @@ export function FocusRail({
                 Explore
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
+            ) : (
+              <button
+                type="button"
+                disabled
+                aria-disabled="true"
+                className="inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-white/55 px-5 py-3 text-sm font-semibold text-neutral-700"
+              >
+                Explore
+                <ArrowUpRight className="h-4 w-4" />
+              </button>
             )}
           </div>
         </div>

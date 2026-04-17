@@ -273,9 +273,9 @@ export default function Team({ members }: TeamProps) {
             loading="lazy"
           />
           <p className="mt-4 text-sm font-medium leading-relaxed text-neutral-700 md:text-base">
-            Surgery is precision with compassion, from first consultation to full recovery.
+            "Surgery is precision with compassion, from first consultation to full recovery."
           </p>
-          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700/85">
+          <p className="mt-2 text-xs font-semibold tracking-[0.04em] text-emerald-700/85 md:text-sm">
             Dr. Israel Ben, Chief Consultant General Surgery, MD Well Alive Hospital
           </p>
         </div>
