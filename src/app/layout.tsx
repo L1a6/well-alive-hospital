@@ -1,10 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/plus-jakarta-sans/700.css";
-import "@fontsource/plus-jakarta-sans/800.css";
+import { DM_Sans, Inter } from "next/font/google";
 
 import "./globals.css";
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Well Alive Hospital, Uyo",
@@ -24,10 +35,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="no-js scroll-smooth">
+    <html lang="en" className={`no-js scroll-smooth ${dmSans.variable} ${inter.variable}`}>
       <head>
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </head>
       <body>{children}</body>
     </html>

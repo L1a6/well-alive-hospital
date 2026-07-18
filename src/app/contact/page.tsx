@@ -3,43 +3,46 @@ import { SiteShell } from "../../components/site-shell";
 export default function ContactPage() {
   return (
     <SiteShell
-      title="Contact"
+      title="Get In Touch"
+      titleDim={[1]}
       subtitle="Reach Well Alive Hospital for appointments and support"
     >
-      <section className="pb-[100px] pt-[130px]">
+      <section className="bg-[#FEFDF9] py-20 lg:py-28">
         <div className="page-container grid gap-8 lg:grid-cols-[2fr_1fr]">
-          <form className="bg-white p-2">
-            <h2 className="mb-5 text-[27px] font-[600] text-[#0D210B]">Get in Touch</h2>
+          <form className="rounded-2xl bg-white p-6 sm:p-10">
+            <h2 className="mb-6 text-2xl">Send us a message</h2>
             <textarea
               name="message"
               rows={8}
               placeholder="Enter Message"
-              className="w-full border border-[#e5e6e9] px-[18px] py-3 text-[13px]"
+              className="w-full rounded-lg border border-black/10 bg-[#FEFDF9] px-[18px] py-3 text-sm focus:outline-none focus:ring-2 focus:ring-black/20"
             />
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <input
                 name="name"
                 type="text"
                 placeholder="Enter your name"
-                className="h-[48px] w-full border border-[#e5e6e9] px-[18px] text-[13px]"
+                className="h-[48px] w-full rounded-lg border border-black/10 bg-[#FEFDF9] px-[18px] text-sm focus:outline-none focus:ring-2 focus:ring-black/20"
               />
               <input
                 name="email"
                 type="email"
                 placeholder="Enter email address"
-                className="h-[48px] w-full border border-[#e5e6e9] px-[18px] text-[13px]"
+                className="h-[48px] w-full rounded-lg border border-black/10 bg-[#FEFDF9] px-[18px] text-sm focus:outline-none focus:ring-2 focus:ring-black/20"
               />
             </div>
-            <button type="submit" className="mt-6 border border-[#5AAC4E] bg-white px-11 py-[18px] text-[14px] uppercase tracking-[3px] text-[#5AAC4E] hover:bg-[#5AAC4E] hover:text-white">
+            <button type="submit" className="cta-btn !h-14 mt-6">
               Send Message
             </button>
           </form>
 
-          <aside className="bg-[#fbf9ff] p-8">
-            <h3 className="text-[20px] font-[500]">Contact Details</h3>
-            <p className="mt-4 text-[14px] text-[#8a8a8a]">Phone: +234 9131193359</p>
-            <p className="mt-2 text-[14px] text-[#8a8a8a]">Email: care@wellalivehospital.com</p>
-            <p className="mt-2 text-[14px] text-[#8a8a8a]">Address: 24 Wellness Avenue, Medical District</p>
+          <aside className="rounded-2xl bg-[#ECEDEC] p-8">
+            <h3 className="text-xl">Contact Details</h3>
+            <div className="mt-6 space-y-4 text-sm text-black/60" style={{ letterSpacing: "-0.03em" }}>
+              <p>Phone: +234 913 119 3359</p>
+              <p>Email: care@wellalivehospital.com</p>
+              <p>Address: Shelter Afrique, Plot 2 Prof. Nse Essien Street, Uyo</p>
+            </div>
           </aside>
         </div>
       </section>

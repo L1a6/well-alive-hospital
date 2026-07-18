@@ -1,12 +1,15 @@
 'use client';
 
 import type { ComponentProps, ComponentType, ReactNode } from 'react';
+import Link from 'next/link';
 import { motion, useReducedMotion } from 'motion/react';
 import {
   FacebookIcon,
   InstagramIcon,
   YoutubeIcon,
-  HeartPulseIcon,
+  Mail,
+  MapPin,
+  Phone,
 } from 'lucide-react';
 
 interface FooterLink {
@@ -24,10 +27,18 @@ const footerLinks: FooterSection[] = [
   {
     label: 'Clinical Services',
     links: [
-      { title: 'General Medical Services', href: '#services' },
-      { title: 'Expert Surgeries', href: '#services' },
-      { title: 'Cancer Care Centre', href: '#services' },
-      { title: 'Maternity Services', href: '#services' },
+      { title: 'General Medical Services', href: '/services' },
+      { title: 'Expert Surgeries', href: '/services' },
+      { title: 'Cancer Care Centre', href: '/services' },
+      { title: 'Maternity Services', href: '/services' },
+    ],
+  },
+  {
+    label: 'Company',
+    links: [
+      { title: 'About Us', href: '/about' },
+      { title: 'Blog', href: '/blog' },
+      { title: 'Contact', href: '/contact' },
     ],
   },
   {
@@ -42,50 +53,71 @@ const footerLinks: FooterSection[] = [
 
 export function Footer() {
   return (
-    <footer className="relative w-full overflow-hidden border-t border-emerald-200/30 bg-[linear-gradient(160deg,#2d7c37_0%,#5aac4e_52%,#2d7c37_100%)] text-emerald-50">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_0%,rgba(217,250,211,0.18),transparent_74%)]" />
-
-      <div className="relative mx-auto w-full max-w-6xl px-6 py-12 md:px-10 lg:py-14">
-        <div className="grid w-full gap-9 md:grid-cols-[1.3fr_1fr] md:gap-12">
+    <footer className="relative w-full overflow-hidden bg-emerald-950 text-white">
+      <div className="relative mx-auto w-full max-w-[1400px] px-6 py-16 sm:px-8 lg:px-8 lg:py-20">
+        <div className="grid w-full gap-10 md:grid-cols-[1.2fr_1fr_1fr_1fr] md:gap-8">
           <AnimatedContainer className="space-y-5">
-            <div className="inline-flex items-center gap-3 rounded-full border border-emerald-100/50 bg-white/18 px-4 py-2 text-sm text-emerald-50 shadow-[0_12px_28px_rgba(7,34,24,0.28)] backdrop-blur-xl">
-              <HeartPulseIcon className="h-4 w-4" />
-              Trusted Care In Uyo
-            </div>
-            <h3 className="text-2xl font-semibold tracking-tight text-white">Well Alive Hospital</h3>
-            <p className="max-w-md text-sm leading-relaxed text-emerald-50/80">
-              Precision care and compassionate specialists for emergency response, surgery, women&apos;s
-              health, pediatrics, and preventive medicine.
+            <h3
+              className="text-[28px] font-medium text-white"
+              style={{ fontFamily: 'var(--font-dm-sans), sans-serif', letterSpacing: '-0.05em' }}
+            >
+              Well Alive Hospital
+            </h3>
+            <p className="max-w-xs text-sm leading-relaxed text-white/60" style={{ letterSpacing: '-0.03em' }}>
+              Precision care and compassionate specialists for emergency response, surgery,
+              women&apos;s health, pediatrics, and preventive medicine.
             </p>
+            <div className="space-y-2 pt-2 text-sm text-white/60" style={{ letterSpacing: '-0.03em' }}>
+              <span className="flex items-center gap-2">
+                <Phone className="h-4 w-4" strokeWidth={1.5} />
+                +234 913 119 3359
+              </span>
+              <span className="flex items-center gap-2">
+                <Mail className="h-4 w-4" strokeWidth={1.5} />
+                care@wellalivehospital.com
+              </span>
+              <span className="flex items-center gap-2">
+                <MapPin className="h-4 w-4" strokeWidth={1.5} />
+                Shelter Afrique, Uyo
+              </span>
+            </div>
           </AnimatedContainer>
 
-          <div className="grid grid-cols-2 gap-8">
-            {footerLinks.map((section, index) => (
-              <AnimatedContainer key={section.label} delay={0.08 + index * 0.08}>
-                <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200/85">
-                  {section.label}
-                </h4>
-                <ul className="mt-4 space-y-3 text-sm text-emerald-50/80">
-                  {section.links.map((link) => (
-                    <li key={link.title}>
-                      <a
-                        href={link.href}
-                        className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-white"
-                      >
-                        {link.icon && <link.icon className="h-4 w-4" />}
-                        {link.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </AnimatedContainer>
-            ))}
-          </div>
+          {footerLinks.map((section, index) => (
+            <AnimatedContainer key={section.label} delay={0.08 + index * 0.08}>
+              <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">
+                {section.label}
+              </h4>
+              <ul className="mt-4 space-y-3 text-sm text-white/60" style={{ letterSpacing: '-0.03em' }}>
+                {section.links.map((link) => (
+                  <li key={link.title}>
+                    <Link
+                      href={link.href}
+                      className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-white"
+                    >
+                      {link.icon && <link.icon className="h-4 w-4" />}
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </AnimatedContainer>
+          ))}
         </div>
 
-        <p className="mt-8 text-center text-xs tracking-wide text-emerald-100/70">
-          © {new Date().getFullYear()} Well Alive Hospital. All rights reserved.
-        </p>
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-8 text-xs text-white/40 sm:flex-row">
+          <p style={{ letterSpacing: '-0.03em' }}>
+            © {new Date().getFullYear()} Well Alive Hospital. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6" style={{ letterSpacing: '-0.03em' }}>
+            <Link href="/contact" className="transition-colors hover:text-white">
+              Privacy Policy
+            </Link>
+            <Link href="/contact" className="transition-colors hover:text-white">
+              Terms of Service
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

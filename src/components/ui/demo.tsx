@@ -6,6 +6,8 @@ import Image from "next/image";
 
 import { AtSign, Clock3, Plus, ShieldCheck, Stethoscope } from "lucide-react";
 
+import { DimmedHeadline } from "@/components/ui/dimmed-headline";
+
 const items = [
   {
     id: "1",
@@ -41,18 +43,22 @@ function Component() {
   return (
     <div className="grid w-full gap-8 lg:grid-cols-[0.95fr_1.05fr]">
       <div className="space-y-5">
-        <p className="inline-flex rounded-full border border-emerald-200/80 bg-white/35 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700 shadow-[0_10px_24px_rgba(31,120,84,0.14)] backdrop-blur-xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
           Frequently Asked Questions
         </p>
-        <h2 className="text-2xl font-semibold leading-snug text-neutral-900 md:text-3xl">
-          Everything You Need Before Your Visit.
-        </h2>
-        <p className="max-w-lg text-sm leading-6 text-neutral-600 md:text-base md:leading-7">
+        <DimmedHeadline
+          as="h2"
+          words={["Everything", "You", "Need", "Before", "Your", "Visit."]}
+          dim={[1, 3, 4]}
+          surface="light"
+          className="text-2xl leading-snug md:text-3xl"
+        />
+        <p className="max-w-lg text-sm leading-6 text-black/60 md:text-base md:leading-7" style={{ letterSpacing: "-0.03em" }}>
           Quick answers on appointments, emergency response, insurance, and support so you can make
           care decisions with confidence.
         </p>
 
-        <div className="relative h-[250px] overflow-hidden rounded-[1.5rem] border border-emerald-200/70 sm:h-[280px]">
+        <div className="relative h-[250px] overflow-hidden rounded-[1.5rem] sm:h-[280px]">
           <Image
             src="/faq.jpg"
             alt="Well Alive patient care and support"
@@ -60,14 +66,14 @@ function Component() {
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 40vw"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,95,58,0.12),rgba(10,44,27,0.7))]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
           <div className="absolute bottom-0 w-full p-5 text-white">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-100">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
               Need Fast Guidance?
             </p>
             <a
               href="tel:+2349131193359"
-              className="mt-1 inline-block text-base font-semibold text-white transition hover:text-emerald-100"
+              className="mt-1 inline-block text-base font-semibold text-white transition hover:text-white/80"
             >
               Call +234 913 119 3359
             </a>
@@ -80,12 +86,12 @@ function Component() {
           {items.map((item) => (
             <AccordionItem value={item.id} key={item.id} className="py-2">
               <AccordionPrimitive.Header className="flex">
-                <AccordionPrimitive.Trigger className="flex flex-1 items-center justify-between py-2 text-left text-[15px] font-semibold leading-6 text-neutral-900 transition-all [&>svg>path:last-child]:origin-center [&>svg>path:last-child]:transition-all [&>svg>path:last-child]:duration-200 [&[data-state=open]>svg>path:last-child]:rotate-90 [&[data-state=open]>svg>path:last-child]:opacity-0 [&[data-state=open]>svg]:rotate-180">
+                <AccordionPrimitive.Trigger className="flex flex-1 items-center justify-between py-2 text-left text-[15px] font-semibold leading-6 text-black transition-all [&>svg>path:last-child]:origin-center [&>svg>path:last-child]:transition-all [&>svg>path:last-child]:duration-200 [&[data-state=open]>svg>path:last-child]:rotate-90 [&[data-state=open]>svg>path:last-child]:opacity-0 [&[data-state=open]>svg]:rotate-180">
                   <span className="flex items-center gap-3">
                     <item.icon
                       size={16}
                       strokeWidth={2}
-                      className="shrink-0 text-emerald-700/80"
+                      className="shrink-0 text-black/60"
                       aria-hidden="true"
                     />
                     <span>{item.title}</span>
@@ -93,12 +99,12 @@ function Component() {
                   <Plus
                     size={16}
                     strokeWidth={2}
-                    className="shrink-0 text-neutral-500 transition-transform duration-200"
+                    className="shrink-0 text-black/40 transition-transform duration-200"
                     aria-hidden="true"
                   />
                 </AccordionPrimitive.Trigger>
               </AccordionPrimitive.Header>
-              <AccordionContent className="pb-2 ps-7 text-neutral-600">{item.content}</AccordionContent>
+              <AccordionContent className="pb-2 ps-7 text-black/60">{item.content}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

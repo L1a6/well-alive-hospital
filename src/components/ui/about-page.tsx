@@ -2,25 +2,29 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Activity, ChevronRight, HeartPulse, ShieldCheck } from "lucide-react";
+import { ChevronRight, HeartPulse, ShieldCheck } from "lucide-react";
 
 import { Button } from "./button";
+import { DimmedHeadline } from "./dimmed-headline";
 
 export default function AboutPage() {
   return (
-    <section className="py-2 md:py-6">
-      <div className="mx-auto max-w-5xl space-y-6 px-4 sm:px-6">
+    <div className="page-container">
+      <div className="mx-auto max-w-6xl space-y-8">
         <div className="grid gap-4 text-center md:grid-cols-2 md:gap-8 md:text-left">
           <div>
-            <p className="mb-3 inline-flex rounded-full border border-emerald-200/80 bg-white/35 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-800 shadow-[0_10px_24px_rgba(31,120,84,0.15)] backdrop-blur-xl">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
               About Well Alive
             </p>
-            <h2 className="text-2xl font-semibold leading-snug text-neutral-900 md:text-3xl">
-              Clinical Clarity. Human Comfort.
-            </h2>
+            <DimmedHeadline
+              as="h2"
+              words={["Clinical", "Clarity.", "Human", "Comfort."]}
+              dim={[2]}
+              surface="light"
+              className="text-2xl leading-snug md:text-3xl"
+            />
           </div>
-          <p className="text-xs leading-6 text-neutral-600 md:text-sm">
+          <p className="text-xs leading-6 text-black/60 md:text-sm" style={{ letterSpacing: "-0.03em" }}>
             Well Alive brings emergency medicine, diagnostics, surgery, and recovery teams into one
             coordinated pathway so care decisions are faster, safer, and easier for families.
           </p>
@@ -40,47 +44,32 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <p className="text-[10px] uppercase tracking-[0.24em] text-[#e2f5d9] font-semibold drop-shadow-lg shadow-black">Critical Care</p>
-                <h3 className="mt-1.5 text-2xl font-bold text-white drop-shadow-xl shadow-black">24/7 Emergency Command</h3>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/70">Critical Care</p>
+                <h3 className="mt-1.5 text-2xl text-white">24/7 Emergency Command</h3>
               </div>
             </div>
           </div>
 
           <div className="flex h-full flex-col gap-4 md:flex-1 md:h-[420px]">
-            <motion.article
-              whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="rounded-3xl bg-[#2d7c37] p-6 text-white shadow-xl flex flex-col justify-center min-h-[200px] relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 -mr-8 -mt-8 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
-              <div className="absolute bottom-0 left-0 -ml-8 -mb-8 h-24 w-24 rounded-full bg-[#5AAC4E]/45 blur-xl" />
-              
-              <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/20 text-white relative z-10 backdrop-blur-md">
+            <article className="relative flex min-h-[200px] flex-1 flex-col justify-center overflow-hidden rounded-3xl bg-emerald-950 p-6 text-white transition-transform duration-300 hover:-translate-y-1">
+              <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-emerald-800">
                 <ShieldCheck className="h-4 w-4" />
               </div>
 
-              <h3 className="text-lg font-semibold text-white relative z-10">Clinical Systems</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-[#e9f7e1] relative z-10">
+              <h3 className="text-lg text-white">Clinical Systems</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-white/60" style={{ letterSpacing: "-0.03em" }}>
                 Protocol-driven handoffs reduce errors and protect outcomes.
               </p>
 
-              <Button
-                asChild
-                size="sm"
-                className="mt-5 w-max gap-1.5 bg-white text-[#2d7c37] hover:bg-neutral-100 shadow-md relative z-10 font-semibold"
-              >
-                <Link href="#contact">
+              <Button asChild size="sm" className="mt-5 w-max gap-1.5 bg-white text-black hover:bg-white/90">
+                <Link href="/contact">
                   Book Consultation
                   <ChevronRight className="h-3 w-3" />
                 </Link>
               </Button>
-            </motion.article>
+            </article>
 
-            <motion.article
-              whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="relative flex min-h-[170px] flex-1 overflow-hidden rounded-3xl shadow-lg md:min-h-[200px]"
-            >
+            <article className="relative flex min-h-[170px] flex-1 overflow-hidden rounded-3xl transition-transform duration-300 hover:-translate-y-1 md:min-h-[200px]">
               <Image
                 src="/about.jpg"
                 alt="Diagnostic imaging"
@@ -89,19 +78,20 @@ export default function AboutPage() {
                 height={300}
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                <div className="mb-2 flex gap-2">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.2em] backdrop-blur-md text-white font-semibold">
-                    <HeartPulse className="h-3 w-3" /> Intensive
+                <div className="mb-2 flex items-center gap-1.5">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-cyan-800">
+                    <HeartPulse className="h-3 w-3 text-white" />
                   </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">Intensive</span>
                 </div>
-                <h3 className="text-lg font-bold text-white drop-shadow-xl shadow-black">Rapid Diagnostics</h3>
+                <h3 className="text-lg text-white">Rapid Diagnostics</h3>
               </div>
-            </motion.article>
+            </article>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

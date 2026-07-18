@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Stethoscope } from "lucide-react";
 
+import { DimmedHeadline } from "./dimmed-headline";
+
 export type TeamMember = {
   image: string;
   name: string;
@@ -130,7 +132,7 @@ export default function Team({ members }: TeamProps) {
   return (
     <section
       id="doctors"
-      className="relative w-full overflow-hidden bg-white py-12 md:py-24"
+      className="relative w-full overflow-hidden bg-[#FEFDF9] py-20 lg:py-28"
     >
       <div>
         <svg
@@ -163,31 +165,19 @@ export default function Team({ members }: TeamProps) {
           className="mx-auto mb-12 flex max-w-5xl flex-col items-center px-6 text-center lg:px-0"
           data-reveal
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/35 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-800 shadow-[0_10px_24px_rgba(31,120,84,0.14)] backdrop-blur-xl">
+          <div className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
             <Stethoscope className="h-4 w-4" />
             Clinical Team
           </div>
 
-          <h2 className="relative mb-4 text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
-            Our Clinical Specialists
-            <svg
-              className="absolute -right-8 -top-2 -z-10 w-24 text-neutral-200"
-              fill="currentColor"
-              height="86"
-              viewBox="0 0 108 86"
-              width="108"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M38.8484 16.236L15 43.5793L78.2688 15L18.1218 71L93 34.1172L70.2047 65.2739"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="28"
-              />
-            </svg>
-          </h2>
-          <p className="max-w-2xl text-neutral-600">
+          <DimmedHeadline
+            as="h2"
+            words={["Our", "Clinical", "Specialists"]}
+            dim={[0]}
+            surface="light"
+            className="mb-4 text-4xl sm:text-5xl"
+          />
+          <p className="max-w-2xl text-black/60" style={{ letterSpacing: "-0.03em" }}>
             A coordinated team of specialists delivering precise, compassionate care across every stage
             of your recovery journey.
           </p>
@@ -198,7 +188,7 @@ export default function Team({ members }: TeamProps) {
             <button
               type="button"
               onClick={() => scrollCards("left")}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-emerald-200 bg-white/90 text-emerald-700 shadow-[0_10px_24px_rgba(24,94,63,0.14)] transition hover:-translate-y-0.5 hover:bg-white"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-emerald-800 text-white transition hover:-translate-y-0.5 hover:opacity-90"
               aria-label="Scroll care team left"
             >
               <ArrowLeft className="h-5 w-5" />
@@ -206,7 +196,7 @@ export default function Team({ members }: TeamProps) {
             <button
               type="button"
               onClick={() => scrollCards("right")}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-emerald-200 bg-white/90 text-emerald-700 shadow-[0_10px_24px_rgba(24,94,63,0.14)] transition hover:-translate-y-0.5 hover:bg-white"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-emerald-800 text-white transition hover:-translate-y-0.5 hover:opacity-90"
               aria-label="Scroll care team right"
             >
               <ArrowRight className="h-5 w-5" />
@@ -215,8 +205,8 @@ export default function Team({ members }: TeamProps) {
         </div>
 
         <div className="relative w-full" data-reveal>
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-white to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-white to-transparent" />
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[#FEFDF9] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[#FEFDF9] to-transparent" />
 
           <div
             ref={railRef}
@@ -238,10 +228,8 @@ export default function Team({ members }: TeamProps) {
                   data-cursor="grow"
                 >
                   <div
-                    className={`relative h-[14.5rem] overflow-hidden rounded-2xl border bg-neutral-900 shadow-[0_24px_44px_rgba(8,36,24,0.2)] transition-all duration-500 sm:h-[17rem] md:h-[19rem] ${
-                      isActiveCard
-                        ? "border-emerald-300/80 ring-2 ring-emerald-200/70"
-                        : "border-emerald-100/70"
+                    className={`relative h-[14.5rem] overflow-hidden rounded-2xl bg-black transition-all duration-500 sm:h-[17rem] md:h-[19rem] ${
+                      isActiveCard ? "ring-2 ring-emerald-800" : ""
                     }`}
                   >
                     <img
@@ -253,8 +241,8 @@ export default function Team({ members }: TeamProps) {
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90" />
 
                     <div className="absolute inset-x-0 bottom-0 p-4 text-left">
-                      <h3 className="text-base font-bold text-white drop-shadow-xl shadow-black z-10 relative">{member.name}</h3>
-                      <p className="text-[11px] font-semibold text-[#d6f1ce] drop-shadow-lg shadow-black z-10 relative mt-0.5">
+                      <h3 className="text-base font-semibold text-white z-10 relative">{member.name}</h3>
+                      <p className="text-[11px] font-semibold text-white/70 z-10 relative mt-0.5">
                         {role}
                       </p>
                     </div>
@@ -269,13 +257,13 @@ export default function Team({ members }: TeamProps) {
           <img
             src="/israelben.jpg"
             alt="Dr. Israel Ben"
-            className="h-16 w-16 rounded-full object-cover ring-2 ring-emerald-200"
+            className="h-16 w-16 rounded-full object-cover"
             loading="lazy"
           />
-          <p className="mt-4 text-sm font-medium leading-relaxed text-neutral-700 md:text-base">
+          <p className="mt-4 text-sm font-medium leading-relaxed text-black/70 md:text-base">
             "Surgery is precision with compassion, from first consultation to full recovery."
           </p>
-          <p className="mt-2 text-xs font-semibold tracking-[0.04em] text-emerald-700/85 md:text-sm">
+          <p className="mt-2 text-xs font-semibold tracking-[0.04em] text-black/50 md:text-sm">
             Dr. Israel Ben, Chief Consultant General Surgery, MD Well Alive Hospital
           </p>
         </div>

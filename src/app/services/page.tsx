@@ -1,57 +1,81 @@
 import Link from "next/link";
+import { Activity, FlaskConical, Stethoscope } from "lucide-react";
 
 import { SiteShell } from "../../components/site-shell";
+import { DimmedHeadline } from "../../components/ui/dimmed-headline";
+
+const services = [
+  {
+    icon: Stethoscope,
+    accent: "bg-emerald-900",
+    title: "Primary and Family Medicine",
+    desc: "Routine consultations, chronic disease management, and preventive screenings for every age group.",
+  },
+  {
+    icon: Activity,
+    accent: "bg-emerald-800",
+    title: "Emergency and Trauma Care",
+    desc: "Round-the-clock emergency services with rapid diagnostics, stabilization, and specialist referrals.",
+  },
+  {
+    icon: FlaskConical,
+    accent: "bg-cyan-800",
+    title: "Laboratory and Imaging",
+    desc: "Accurate testing and modern imaging systems that support faster diagnosis and treatment planning.",
+  },
+];
 
 export default function ServicesPage() {
   return (
     <SiteShell
-      title="Services"
+      title="Clinical Services"
+      titleDim={[0]}
       subtitle="Comprehensive clinical services tailored to every patient"
     >
-      <section className="pb-[100px] pt-[120px]">
+      <section className="bg-[#FEFDF9] py-20 lg:py-28">
         <div className="page-container grid gap-6 md:grid-cols-3">
-          {[
-            {
-              icon: 1,
-              title: "Primary and Family Medicine",
-              desc: "Routine consultations, chronic disease management, and preventive screenings for every age group.",
-            },
-            {
-              icon: 2,
-              title: "Emergency and Trauma Care",
-              desc: "Round-the-clock emergency services with rapid diagnostics, stabilization, and specialist referrals.",
-            },
-            {
-              icon: 3,
-              title: "Laboratory and Imaging",
-              desc: "Accurate testing and modern imaging systems that support faster diagnosis and treatment planning.",
-            },
-          ].map((item) => (
-            <article key={item.title} className="rounded-bl-[50px] bg-[#5AAC4E] px-[22px] py-[41px] text-center text-white">
-              <img src={`/assets/img/icon/services${item.icon}.svg`} alt="service" className="h-14 w-14" />
-              <h3 className="mt-[31px] text-[20px] font-[500] text-white">{item.title}</h3>
-              <p className="mb-[36px] mt-5 text-[16px] font-[300] leading-[30px] text-white">
-                {item.desc}
-              </p>
-              <Link href="/contact" className="inline-flex h-[41px] w-[41px] items-center justify-center rounded-full border-2 border-white text-lg text-white transition hover:bg-white hover:text-[#5AAC4E]">
-                +
-              </Link>
-            </article>
-          ))}
+          {services.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article
+                key={item.title}
+                className="flex flex-col rounded-2xl bg-white p-8 transition-transform duration-300 hover:-translate-y-1"
+              >
+                <span className={`inline-flex h-12 w-12 items-center justify-center rounded-full text-white ${item.accent}`}>
+                  <Icon size={20} strokeWidth={1.5} />
+                </span>
+                <h3 className="mt-6 text-xl">{item.title}</h3>
+                <p className="mb-8 mt-3 flex-1 text-sm leading-relaxed text-black/60" style={{ letterSpacing: "-0.03em" }}>
+                  {item.desc}
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-block text-sm font-medium text-black underline underline-offset-4"
+                  style={{ letterSpacing: "-0.03em" }}
+                >
+                  Take this service
+                </Link>
+              </article>
+            );
+          })}
         </div>
       </section>
 
-      <section className="bg-cover bg-center pb-[140px] pt-[120px]" style={{ backgroundImage: "url('/assets/img/gallery/section_bg01.png')" }}>
-        <div className="page-container md:flex md:items-center md:justify-between">
+      <section className="bg-emerald-950 py-20 lg:py-28">
+        <div className="page-container flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-[50px] font-[300] leading-[1.2] text-[#0D210B]">
-              Compassionate medicine,
-              <br />
-              measurable outcomes
-            </h2>
-            <p className="mt-3 text-[26px] font-[300] text-[#234821]">Book a service and get guidance from the right specialist team.</p>
+            <DimmedHeadline
+              as="h2"
+              words={["Compassionate", "Medicine,", "Measurable", "Outcomes"]}
+              dim={[1]}
+              surface="dark"
+              className="text-[36px] leading-[1.1] sm:text-[50px]"
+            />
+            <p className="mt-4 max-w-lg text-lg text-white/60" style={{ letterSpacing: "-0.03em" }}>
+              Book a service and get guidance from the right specialist team.
+            </p>
           </div>
-          <Link href="/contact" className="primary-btn mt-8 md:mt-0">
+          <Link href="/contact" className="cta-btn !bg-white !text-black shrink-0">
             Take a Service
           </Link>
         </div>
