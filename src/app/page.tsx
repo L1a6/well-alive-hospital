@@ -152,7 +152,7 @@ export default function HomePage() {
     <div>
       <Navbar />
 
-      <section className="relative flex min-h-[85vh] items-end overflow-hidden bg-emerald-950 sm:min-h-screen">
+      <section className="relative flex min-h-[460px] items-end overflow-hidden bg-emerald-950 sm:min-h-[560px] lg:min-h-[640px]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${heroImage}')` }}
@@ -165,8 +165,8 @@ export default function HomePage() {
           }}
         />
 
-        <div className="page-container relative pb-16 pt-32 sm:pb-20">
-          <p className="animate-fade-up delay-0 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
+        <div className="page-container relative pb-10 pt-20 sm:pb-14 sm:pt-16">
+          <p className="animate-fade-up delay-0 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
             Well Alive Hospital, Uyo
           </p>
 
@@ -177,24 +177,24 @@ export default function HomePage() {
             surface="dark"
             trigger="mount"
             baseDelay={3}
-            className="mt-4 max-w-3xl text-[40px] leading-[1.05] sm:text-[52px] md:text-[64px] lg:text-[72px]"
+            className="mt-3 max-w-2xl text-[32px] leading-[1.08] sm:text-[42px] md:text-[52px] lg:text-[58px]"
           />
 
           <p
-            className="animate-fade-in delay-500 mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg"
+            className="animate-fade-in delay-500 mt-4 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base"
             style={{ letterSpacing: "-0.03em" }}
           >
             {heroSubtitle}
           </p>
 
-          <div className="animate-fade-up delay-700 mt-8 flex flex-wrap items-center gap-6">
-            <Link href="/contact" className="cta-btn">
+          <div className="animate-fade-up delay-700 mt-6 flex flex-wrap items-center gap-5">
+            <Link href="/contact" className="cta-btn !h-12 px-6 text-sm sm:!h-14">
               Book an Appointment
-              <ArrowUpRight size={20} />
+              <ArrowUpRight size={18} />
             </Link>
             <Link
               href="/services"
-              className="inline-flex items-center gap-1 text-sm font-medium text-white/80 underline underline-offset-4 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1 text-sm font-medium text-white/85 underline underline-offset-4 transition-colors hover:text-white"
               style={{ letterSpacing: "-0.03em" }}
             >
               Explore services
@@ -248,42 +248,43 @@ export default function HomePage() {
 
       <section className="bg-[#FEFDF9] px-4 pb-20 lg:pb-28">
         <div className="mx-auto w-full max-w-[1400px]">
-          <div className="relative min-h-[320px] overflow-hidden rounded-2xl sm:min-h-[380px]">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/cta.jpg')" }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.7) 100%)",
-              }}
-            />
+          <div className="relative overflow-hidden rounded-[2rem] bg-emerald-950 px-6 py-14 sm:px-12 sm:py-16 lg:px-16">
+            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-emerald-800/30 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-emerald-700/20 blur-3xl" />
 
-            <div className="relative flex h-full min-h-[320px] flex-col items-center justify-center px-6 py-14 text-center sm:min-h-[380px] sm:px-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
-                Premium Care Access
-              </p>
-              <DimmedHeadline
-                as="h3"
-                words={["Book", "A", "Specialist", "Consultation", "In", "Minutes."]}
-                dim={[1, 4]}
-                surface="dark"
-                className="mt-4 max-w-2xl text-[32px] leading-[1.08] sm:text-[48px]"
-              />
-              <p className="mx-auto mt-4 max-w-2xl text-sm text-white/70 sm:text-base" style={{ letterSpacing: "-0.03em" }}>
-                Priority scheduling, private diagnostics, and a coordinated care plan from the
-                Well Alive clinical team.
-              </p>
+            <div className="relative flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-end">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
+                  Premium Care Access
+                </p>
+                <DimmedHeadline
+                  as="h3"
+                  words={["Ready", "When", "You", "Are."]}
+                  dim={[1, 2]}
+                  surface="dark"
+                  className="mt-4 max-w-lg text-[36px] leading-[1.08] sm:text-[52px]"
+                />
+                <p className="mt-4 max-w-md text-sm text-white/70 sm:text-base" style={{ letterSpacing: "-0.03em" }}>
+                  Priority scheduling and a coordinated care plan from the Well Alive clinical team.
+                </p>
+                <Link href="/contact" className="cta-btn mt-8 !bg-white !text-black">
+                  Book an Appointment
+                  <ArrowUpRight size={18} />
+                </Link>
+              </div>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <a href="mailto:info@wellalivehospital.com" className="cta-btn !bg-white !text-black">
-                  Send Email
+              <div className="w-full shrink-0 border-t border-white/10 pt-8 lg:w-auto lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">Call the front desk</p>
+                <a
+                  href="tel:+2349131193359"
+                  className="mt-2 block text-[32px] text-white transition-colors hover:text-emerald-300 sm:text-[40px]"
+                  style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "-0.05em" }}
+                >
+                  +234 913 119 3359
                 </a>
-                <a href="tel:+2340000000000" className="cta-btn-outline">
-                  Call Front Desk
-                </a>
+                <p className="mt-2 text-sm text-white/50" style={{ letterSpacing: "-0.03em" }}>
+                  Open 24 hours, every day of the year.
+                </p>
               </div>
             </div>
           </div>

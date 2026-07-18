@@ -67,6 +67,14 @@
     letter-spacing: -0.03em;
   }
 
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   .nav-link {
     font-family: var(--font-dm-sans), "DM Sans", sans-serif;
     letter-spacing: -0.05em;

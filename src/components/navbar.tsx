@@ -93,4 +93,28 @@ export function Navbar() {
             className="text-[30px] font-medium text-white transition-colors hover:text-emerald-300"
             style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "-0.05em" }}
           >
-      
+            {link.label}
+          </Link>
+        ))}
+        <Link
+          href="/contact"
+          onClick={() => setOpen(false)}
+          className="cta-btn mt-2 gap-2 !bg-white !text-black"
+        >
+          <CalendarDays size={18} />
+          Book Appointment
+        </Link>
+        <div className="flex items-center gap-6 text-sm text-white/60">
+          <a href="tel:+2349131193359" onClick={() => setOpen(false)} className="inline-flex items-center gap-2">
+            <Phone size={16} strokeWidth={1.5} />
+            +234 913 119 3359
+          </a>
+          <a href="mailto:care@wellalivehospital.com" onClick={() => setOpen(false)} className="inline-flex items-center gap-2">
+            <Mail size={16} strokeWidth={1.5} />
+            Email
+          </a>
+        </div>
+      </div>
+    </header>
+  );
+}
