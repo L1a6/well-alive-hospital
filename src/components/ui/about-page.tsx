@@ -7,11 +7,17 @@ import { ChevronRight, HeartPulse, ShieldCheck } from "lucide-react";
 import { Button } from "./button";
 import { DimmedHeadline } from "./dimmed-headline";
 
+const stats = [
+  { value: "15+", label: "Years of clinical service" },
+  { value: "40+", label: "Resident specialists" },
+  { value: "20K+", label: "Patients treated" },
+];
+
 export default function AboutPage() {
   return (
     <div className="page-container">
-      <div className="mx-auto max-w-6xl space-y-8">
-        <div className="grid gap-4 text-center md:grid-cols-2 md:gap-8 md:text-left">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-6 md:grid-cols-2 md:gap-10">
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
               About Well Alive
@@ -21,16 +27,30 @@ export default function AboutPage() {
               words={["Clinical", "Clarity.", "Human", "Comfort."]}
               dim={[2]}
               surface="light"
-              className="text-2xl leading-snug md:text-3xl"
+              className="text-[28px] leading-[1.05] sm:text-[35px] lg:text-[44px]"
             />
           </div>
-          <p className="text-xs leading-6 text-black/60 md:text-sm" style={{ letterSpacing: "-0.03em" }}>
-            Well Alive brings emergency medicine, diagnostics, surgery, and recovery teams into one
-            coordinated pathway so care decisions are faster, safer, and easier for families.
-          </p>
+          <div className="flex flex-col justify-between gap-6">
+            <p className="text-sm leading-relaxed text-black/60 sm:text-base" style={{ letterSpacing: "-0.03em" }}>
+              Well Alive brings emergency medicine, diagnostics, surgery, and recovery teams into one
+              coordinated pathway so care decisions are faster, safer, and easier for families.
+            </p>
+            <div className="flex gap-6 border-t border-black/10 pt-5 sm:gap-10">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-2xl text-black sm:text-3xl" style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "-0.05em" }}>
+                    {stat.value}
+                  </p>
+                  <p className="mt-1 max-w-[10ch] text-xs text-black/50" style={{ letterSpacing: "-0.03em" }}>
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-5 md:flex-row">
+        <div className="mt-8 flex flex-col gap-4 sm:mt-10 md:flex-row">
           <div className="md:flex-[1.1]">
             <div className="relative h-[220px] overflow-hidden rounded-3xl md:h-[420px]">
               <Image
@@ -61,7 +81,7 @@ export default function AboutPage() {
                 Protocol-driven handoffs reduce errors and protect outcomes.
               </p>
 
-              <Button asChild size="sm" className="mt-5 w-max gap-1.5 bg-white text-black hover:bg-white/90">
+              <Button asChild size="sm" className="mt-5 w-max gap-1.5 rounded-full bg-white text-black hover:bg-white/90">
                 <Link href="/contact">
                   Book Consultation
                   <ChevronRight className="h-3 w-3" />

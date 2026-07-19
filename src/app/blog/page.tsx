@@ -46,7 +46,21 @@ const BLOG_ITEMS: BlogPost[] = [
   },
 ];
 
-export default function BlogPage() {
+export default function BlogPage({
+  searchParams,
+}: {
+  searchParams?: { q?: string };
+}) {
+  const query = searchParams?.q?.trim().toLowerCase() ?? "";
+  const posts = query
+    ? BLOG_ITEMS.filter(
+        (post) =>
+          post.title.toLowerCase().includes(query) ||
+          post.excerpt.toLowerCase().includes(query) ||
+          post.meta.toLowerCase().includes(query),
+      )
+    : BLOG_ITEMS;
+
   return (
     <SiteShell
       title="Blog & Insights"
@@ -56,11 +70,17 @@ export default function BlogPage() {
       <section className="bg-[#FEFDF9] px-4 py-20 lg:py-28">
         <div className="page-container mb-12">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/40">Featured Stories</p>
-          <h2 className="mt-3 text-4xl">Latest medical stories</h2>
-          <p className="mt-2 text-black/50">Health insights and guidance from our clinical team.</p>
+          <h2 className="mt-3 text-4xl">{query ? `Results for "${searchParams?.q}"` : "Latest medical stories"}</h2>
+          <p className="mt-2 text-black/50">
+            {query ? `${posts.length} article${posts.length === 1 ? "" : "s"} found.` : "Health insights and guidance from our clinical team."}
+          </p>
         </div>
 
-        <BlogGrid posts={BLOG_ITEMS} />
+        {posts.length > 0 ? (
+          <BlogGrid posts={posts} />
+        ) : (
+          <p className="page-container text-black/50">No articles match your search.</p>
+        )}
       </section>
 
       <section className="bg-[#ECEDEC] py-20 lg:py-28">

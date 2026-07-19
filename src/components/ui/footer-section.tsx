@@ -53,6 +53,9 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer className="relative w-full overflow-hidden bg-emerald-950 text-white">
+      <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-emerald-800/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-emerald-700/15 blur-3xl" />
+
       <div className="relative mx-auto w-full max-w-[1400px] px-6 py-16 sm:px-8 lg:px-8 lg:py-20">
         <div className="grid w-full gap-10 md:grid-cols-[1.3fr_1fr_1fr_1fr] md:gap-8">
           <AnimatedContainer className="space-y-5">

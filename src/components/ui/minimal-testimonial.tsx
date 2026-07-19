@@ -27,7 +27,7 @@ const testimonial = {
     "cared",
     "for.”",
   ],
-  dim: [0, 2, 4, 6, 9, 12, 16],
+  dim: [] as number[],
   name: "Mfor-Abasi Udoh",
   role: "Maternity Patient",
   image: "/mfor-abasi.jpg",

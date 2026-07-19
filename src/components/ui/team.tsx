@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Stethoscope } from "lucide-react";
+import { Stethoscope } from "lucide-react";
 
 import { DimmedHeadline } from "./dimmed-headline";
+import { useInView } from "../../hooks/use-in-view";
 
 export type TeamMember = {
   image: string;
@@ -40,244 +40,82 @@ const fallbackMembers: TeamMember[] = [
     name: "Nurse Eno Bassey",
     role: "Maternity and Neonatal Nurse",
   },
-  {
-    image:
-      "https://images.unsplash.com/photo-1612277795421-9bc7706a4a41?auto=format&fit=crop&q=80&w=1200",
-    name: "Dr. Mfon Uwah",
-    role: "Consultant Gastroenterologist",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&q=80&w=1200",
-    name: "Nurse Imaobong Etim",
-    role: "Women's Health Nurse",
-  },
 ];
 
-const AUTO_SCROLL_SPEED = 0.75;
-const MANUAL_SCROLL_OFFSET = 305;
-
 export default function Team({ members }: TeamProps) {
-  const teamMembers = members && members.length > 0 ? members : fallbackMembers;
-  const doubledMembers = [...teamMembers, ...teamMembers];
-  const railRef = useRef<HTMLDivElement>(null);
-
-  const [isPaused, setIsPaused] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const recenterRail = useCallback(() => {
-    const rail = railRef.current;
-    if (!rail) {
-      return;
-    }
-
-    const halfWidth = rail.scrollWidth / 2;
-    if (halfWidth <= 0) {
-      return;
-    }
-
-    if (rail.scrollLeft >= halfWidth) {
-      rail.scrollLeft -= halfWidth;
-    } else if (rail.scrollLeft <= 0) {
-      rail.scrollLeft += halfWidth;
-    }
-  }, []);
-
-  useEffect(() => {
-    const rail = railRef.current;
-    if (!rail) {
-      return;
-    }
-
-    rail.scrollLeft = 1;
-  }, [teamMembers.length]);
-
-  useEffect(() => {
-    const rail = railRef.current;
-    if (!rail || isPaused || teamMembers.length === 0) {
-      return;
-    }
-
-    let frame = 0;
-
-    const animate = () => {
-      rail.scrollLeft += AUTO_SCROLL_SPEED;
-      recenterRail();
-
-      const cardWidth = rail.scrollWidth / Math.max(doubledMembers.length, 1);
-      const nextIndex = Math.floor((rail.scrollLeft + cardWidth * 0.5) / cardWidth) % teamMembers.length;
-      setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
-
-      frame = window.requestAnimationFrame(animate);
-    };
-
-    frame = window.requestAnimationFrame(animate);
-    return () => window.cancelAnimationFrame(frame);
-  }, [doubledMembers.length, isPaused, recenterRail, teamMembers.length]);
-
-  const scrollCards = (direction: "left" | "right") => {
-    const rail = railRef.current;
-    if (!rail) {
-      return;
-    }
-
-    rail.scrollBy({
-      left: direction === "left" ? -MANUAL_SCROLL_OFFSET : MANUAL_SCROLL_OFFSET,
-      behavior: "smooth",
-    });
-
-    window.setTimeout(recenterRail, 360);
-  };
+  const teamMembers = (members && members.length > 0 ? members : fallbackMembers).slice(0, 8);
+  const { ref, inView } = useInView<HTMLDivElement>(0.1);
 
   return (
-    <section
-      id="doctors"
-      className="relative w-full overflow-hidden bg-[#FEFDF9] py-20 lg:py-28"
-    >
-      <div>
-        <svg
-          className="absolute bottom-0 right-0 text-neutral-200"
-          fill="none"
-          height="154"
-          viewBox="0 0 460 154"
-          width="460"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clipPath="url(#clip0_494_1104)">
-            <path
-              d="M-87.463 458.432C-102.118 348.092 -77.3418 238.841 -15.0744 188.274C57.4129 129.408 180.708 150.071 351.748 341.128C278.246 -374.233 633.954 380.602 548.123 42.7707"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="40"
+    <section id="doctors" className="relative w-full bg-[#FEFDF9] py-16 lg:py-24">
+      <div className="page-container">
+        <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
+              <Stethoscope className="h-4 w-4" />
+              Clinical Team
+            </div>
+            <DimmedHeadline
+              as="h2"
+              words={["The", "People", "Behind", "The", "Care"]}
+              dim={[2, 3]}
+              surface="light"
+              className="text-[28px] leading-[1.05] sm:text-[35px] lg:text-[48px]"
             />
-          </g>
-          <defs>
-            <clipPath id="clip0_494_1104">
-              <rect fill="white" height="154" width="460" />
-            </clipPath>
-          </defs>
-        </svg>
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div
-          className="mx-auto mb-12 flex max-w-5xl flex-col items-center px-6 text-center lg:px-0"
-          data-reveal
-        >
-          <div className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
-            <Stethoscope className="h-4 w-4" />
-            Clinical Team
           </div>
-
-          <DimmedHeadline
-            as="h2"
-            words={["Our", "Clinical", "Specialists"]}
-            dim={[0]}
-            surface="light"
-            className="mb-4 text-4xl sm:text-5xl"
-          />
-          <p className="max-w-2xl text-black/60" style={{ letterSpacing: "-0.03em" }}>
-            A coordinated team of specialists delivering precise, compassionate care across every stage
-            of your recovery journey.
+          <p className="max-w-sm text-sm text-black/60 sm:text-base" style={{ letterSpacing: "-0.03em" }}>
+            A coordinated team of specialists delivering precise, compassionate care at every stage
+            of your recovery.
           </p>
         </div>
 
-        <div className="mb-6 flex justify-end px-6 lg:px-0">
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => scrollCards("left")}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-emerald-800 text-white transition hover:-translate-y-0.5 hover:opacity-90"
-              aria-label="Scroll care team left"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollCards("right")}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-emerald-800 text-white transition hover:-translate-y-0.5 hover:opacity-90"
-              aria-label="Scroll care team right"
-            >
-              <ArrowRight className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
-
-        <div className="relative w-full" data-reveal>
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[#FEFDF9] to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[#FEFDF9] to-transparent" />
-
-          <div
-            ref={railRef}
-            className="team-scrollbar flex gap-5 overflow-x-auto pb-3 pt-1"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            onTouchStart={() => setIsPaused(true)}
-            onTouchEnd={() => setIsPaused(false)}
-          >
-            {doubledMembers.map((member, index) => {
-              const role = member.specialty || member.role || "Clinical Specialist";
-              const isActiveCard = index % teamMembers.length === activeIndex;
-
-              return (
-                <article
-                  className="group flex w-44 shrink-0 flex-col sm:w-52 md:w-64"
-                  key={`${member.name}-${index}`}
-                  data-doctor-card
-                  data-cursor="grow"
-                >
-                  <div
-                    className={`relative h-[14.5rem] overflow-hidden rounded-2xl bg-black transition-all duration-500 sm:h-[17rem] md:h-[19rem] ${
-                      isActiveCard ? "ring-2 ring-emerald-800" : ""
-                    }`}
-                  >
-                    <img
-                      alt={member.name}
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
-                      loading="lazy"
-                      src={member.image}
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90" />
-
-                    <div className="absolute inset-x-0 bottom-0 p-4 text-left">
-                      <h3 className="text-base font-semibold text-white z-10 relative">{member.name}</h3>
-                      <p className="text-[11px] font-semibold text-white/70 z-10 relative mt-0.5">
-                        {role}
-                      </p>
-                    </div>
+        <div
+          ref={ref}
+          className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 scrollbar-hide sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4"
+        >
+          {teamMembers.map((member, index) => {
+            const role = member.specialty || member.role || "Clinical Specialist";
+            return (
+              <article
+                key={`${member.name}-${index}`}
+                className={`group w-[62%] shrink-0 snap-center sm:w-auto ${inView ? "animate-fade-up" : "opacity-0"}`}
+                style={{ animationDelay: `${Math.min(index, 6) * 0.08}s` }}
+              >
+                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-black sm:rounded-3xl">
+                  <img
+                    alt={member.name}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    src={member.image}
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-4">
+                    <h3 className="text-base text-white sm:text-lg">{member.name}</h3>
+                    <p className="mt-0.5 text-xs text-white/70 sm:text-sm">{role}</p>
                   </div>
-                </article>
-              );
-            })}
-          </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
 
-        <div className="mx-auto mt-7 flex max-w-3xl flex-col items-center px-6 text-center">
+        <div className="mt-12 flex flex-col items-center gap-4 rounded-3xl bg-[#ECEDEC] px-6 py-8 text-center sm:mt-14 sm:flex-row sm:gap-6 sm:px-10 sm:text-left">
           <img
             src="/israelben.jpg"
             alt="Dr. Israel Ben"
-            className="h-16 w-16 rounded-full object-cover"
+            className="h-16 w-16 shrink-0 rounded-full object-cover"
             loading="lazy"
           />
-          <p className="mt-4 text-sm font-medium leading-relaxed text-black/70 md:text-base">
-            "Surgery is precision with compassion, from first consultation to full recovery."
-          </p>
-          <p className="mt-2 text-xs font-semibold tracking-[0.04em] text-black/50 md:text-sm">
-            Dr. Israel Ben, Chief Consultant General Surgery, MD Well Alive Hospital
-          </p>
+          <div>
+            <p className="text-base font-medium leading-relaxed text-black/80">
+              &ldquo;Surgery is precision with compassion, from first consultation to full recovery.&rdquo;
+            </p>
+            <p className="mt-2 text-xs font-semibold tracking-[0.04em] text-black/50">
+              Dr. Israel Ben, Chief Consultant General Surgery, Well Alive Hospital
+            </p>
+          </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .team-scrollbar {
-          scrollbar-width: none;
-        }
-
-        .team-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 }

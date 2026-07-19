@@ -4,35 +4,35 @@ import { Accordion, AccordionContent, AccordionItem } from "@/components/ui/acco
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import Image from "next/image";
 
-import { AtSign, Clock3, Plus, ShieldCheck, Stethoscope } from "lucide-react";
+import { Plus } from "lucide-react";
 
 import { DimmedHeadline } from "@/components/ui/dimmed-headline";
 
 const items = [
   {
     id: "1",
-    icon: Clock3,
+    number: "01",
     title: "How quickly can I get an appointment?",
     content:
       "Most consultations are scheduled same-day or within 24 hours. Emergency cases are prioritized immediately by our triage team.",
   },
   {
     id: "2",
-    icon: Stethoscope,
+    number: "02",
     title: "Do you provide specialist and emergency care in one place?",
     content:
       "Yes. Well Alive combines emergency response, diagnostics, surgery, and follow-up clinics in a coordinated care pathway.",
   },
   {
     id: "3",
-    icon: ShieldCheck,
+    number: "03",
     title: "Do you accept insurance and HMO plans?",
     content:
       "Our patient desk supports major plans and can confirm coverage before your visit. Bring your card or details for quick verification.",
   },
   {
     id: "4",
-    icon: AtSign,
+    number: "04",
     title: "Where is Well Alive Hospital located?",
     content:
       "You can find us at Shelter Afrique, Plot 2 Prof. Nse Essien Street, Uyo. For fast guidance before arrival, call our front desk and emergency team.",
@@ -41,7 +41,7 @@ const items = [
 
 function Component() {
   return (
-    <div className="grid w-full gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+    <div className="grid w-full gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
       <div className="space-y-5">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
           Frequently Asked Questions
@@ -51,14 +51,14 @@ function Component() {
           words={["Everything", "You", "Need", "Before", "Your", "Visit."]}
           dim={[1, 3, 4]}
           surface="light"
-          className="text-2xl leading-snug md:text-3xl"
+          className="text-[26px] leading-[1.08] sm:text-[32px] lg:text-[40px]"
         />
         <p className="max-w-lg text-sm leading-6 text-black/60 md:text-base md:leading-7" style={{ letterSpacing: "-0.03em" }}>
           Quick answers on appointments, emergency response, insurance, and support so you can make
           care decisions with confidence.
         </p>
 
-        <div className="relative h-[250px] overflow-hidden rounded-[1.5rem] sm:h-[280px]">
+        <div className="relative hidden h-[260px] overflow-hidden rounded-[1.5rem] sm:block">
           <Image
             src="/faq.jpg"
             alt="Well Alive patient care and support"
@@ -81,30 +81,31 @@ function Component() {
         </div>
       </div>
 
-      <div className="px-1 sm:px-2">
+      <div>
         <Accordion type="single" collapsible className="w-full" defaultValue="2">
           {items.map((item) => (
-            <AccordionItem value={item.id} key={item.id} className="py-2">
+            <AccordionItem
+              value={item.id}
+              key={item.id}
+              className="border-b border-black/10 first:border-t last:border-b-0"
+            >
               <AccordionPrimitive.Header className="flex">
-                <AccordionPrimitive.Trigger className="flex flex-1 items-center justify-between py-2 text-left text-[15px] font-semibold leading-6 text-black transition-all [&>svg>path:last-child]:origin-center [&>svg>path:last-child]:transition-all [&>svg>path:last-child]:duration-200 [&[data-state=open]>svg>path:last-child]:rotate-90 [&[data-state=open]>svg>path:last-child]:opacity-0 [&[data-state=open]>svg]:rotate-180">
-                  <span className="flex items-center gap-3">
-                    <item.icon
-                      size={16}
-                      strokeWidth={2}
-                      className="shrink-0 text-black/60"
-                      aria-hidden="true"
-                    />
-                    <span>{item.title}</span>
+                <AccordionPrimitive.Trigger className="group flex flex-1 items-center gap-4 py-5 text-left [&>span.toggle>svg]:transition-transform [&>span.toggle>svg]:duration-200 [&[data-state=open]>span.toggle>svg]:rotate-45">
+                  <span
+                    className="shrink-0 text-xs text-black/30"
+                    style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "-0.03em" }}
+                  >
+                    {item.number}
                   </span>
-                  <Plus
-                    size={16}
-                    strokeWidth={2}
-                    className="shrink-0 text-black/40 transition-transform duration-200"
-                    aria-hidden="true"
-                  />
+                  <span className="flex-1 text-[15px] font-semibold leading-6 text-black transition-colors group-hover:text-emerald-800 sm:text-base">
+                    {item.title}
+                  </span>
+                  <span className="toggle flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-black/[0.04] text-black/50">
+                    <Plus size={14} strokeWidth={2} aria-hidden="true" />
+                  </span>
                 </AccordionPrimitive.Trigger>
               </AccordionPrimitive.Header>
-              <AccordionContent className="pb-2 ps-7 text-black/60">{item.content}</AccordionContent>
+              <AccordionContent className="pb-5 pl-9 pr-9 pt-0 text-black/60">{item.content}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
