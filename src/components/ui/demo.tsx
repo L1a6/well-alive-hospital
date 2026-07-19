@@ -82,12 +82,12 @@ function Component() {
       </div>
 
       <div>
-        <Accordion type="single" collapsible className="w-full" defaultValue="2">
+        <Accordion type="single" collapsible className="flex w-full flex-col gap-3" defaultValue="2">
           {items.map((item) => (
             <AccordionItem
               value={item.id}
               key={item.id}
-              className="border-b border-black/10 first:border-t last:border-b-0"
+              className="overflow-hidden rounded-2xl border-none bg-white px-5 sm:px-6"
             >
               <AccordionPrimitive.Header className="flex">
                 <AccordionPrimitive.Trigger className="group flex flex-1 items-center gap-4 py-5 text-left [&>span.toggle>svg]:transition-transform [&>span.toggle>svg]:duration-200 [&[data-state=open]>span.toggle>svg]:rotate-45">
@@ -97,7 +97,10 @@ function Component() {
                   >
                     {item.number}
                   </span>
-                  <span className="flex-1 text-[15px] font-semibold leading-6 text-black transition-colors group-hover:text-emerald-800 sm:text-base">
+                  <span
+                    className="flex-1 text-[17px] leading-snug text-black transition-colors group-hover:text-emerald-800 sm:text-[19px]"
+                    style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "-0.05em" }}
+                  >
                     {item.title}
                   </span>
                   <span className="toggle flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-black/[0.04] text-black/50">

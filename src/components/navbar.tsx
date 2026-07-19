@@ -50,7 +50,7 @@ export function Navbar() {
         solid ? "bg-[#FEFDF9]/95 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-4 px-5 py-4 sm:px-8 lg:px-10 lg:py-5">
+      <div className="relative z-[60] mx-auto flex w-full max-w-[1400px] items-center justify-between gap-4 px-5 py-4 sm:px-8 lg:px-10 lg:py-5">
         <Link
           href="/"
           className={`animate-slide-left delay-200 shrink-0 text-[24px] font-medium transition-colors duration-300 sm:text-[28px] lg:text-[30px] ${
