@@ -90,30 +90,17 @@ export default function Team({ members }: TeamProps) {
           </p>
         </div>
 
-        {/* Mobile: continuous infinite marquee */}
+        {/* Continuous infinite marquee at every breakpoint */}
         <div
           ref={marqueeRef}
           onTouchStart={pause}
           onMouseDown={pause}
-          className={`relative -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 scrollbar-hide sm:hidden ${
+          className={`relative -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 scrollbar-hide sm:-mx-6 sm:gap-5 sm:px-6 lg:-mx-8 lg:px-8 ${
             inView ? "animate-fade-in" : "opacity-0"
           }`}
         >
           {doubledMembers.map((member, index) => (
-            <div key={`${member.name}-${index}`} className="w-[62%] shrink-0">
-              <DoctorCard member={member} role={member.specialty || member.role || "Clinical Specialist"} />
-            </div>
-          ))}
-        </div>
-
-        {/* Tablet / desktop: static grid */}
-        <div className="hidden sm:grid sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
-          {teamMembers.map((member, index) => (
-            <div
-              key={`${member.name}-${index}`}
-              className={inView ? "animate-fade-up" : "opacity-0"}
-              style={{ animationDelay: `${Math.min(index, 6) * 0.08}s` }}
-            >
+            <div key={`${member.name}-${index}`} className="w-[62%] shrink-0 sm:w-[280px] lg:w-[300px]">
               <DoctorCard member={member} role={member.specialty || member.role || "Clinical Specialist"} />
             </div>
           ))}

@@ -188,7 +188,7 @@ export default function HomePage() {
     <div>
       <Navbar />
 
-      <section className="relative flex min-h-[460px] items-end overflow-hidden bg-emerald-950 sm:min-h-[560px] lg:min-h-[640px]">
+      <section className="relative flex min-h-[460px] items-end overflow-hidden bg-emerald-950 sm:min-h-[560px] lg:min-h-[700px]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${heroImage}')` }}
@@ -201,7 +201,7 @@ export default function HomePage() {
           }}
         />
 
-        <div className="page-container relative pb-10 pt-20 sm:pb-14 sm:pt-16">
+        <div className="page-container relative pb-10 pt-20 sm:pb-14 sm:pt-16 lg:pb-24">
           <p className="animate-fade-up delay-0 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
             Well Alive Hospital, Uyo
           </p>

@@ -61,12 +61,9 @@ export function Footer() {
           <AnimatedContainer className="space-y-5">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-[26px] font-medium text-white"
+              className="inline-flex items-center text-[26px] font-medium text-white"
               style={{ fontFamily: 'var(--font-dm-sans), sans-serif', letterSpacing: '-0.05em' }}
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[15px] text-emerald-800">
-                +
-              </span>
               Well<span className="text-emerald-400">Alive</span>
             </Link>
             <p className="max-w-xs text-sm leading-relaxed text-white/60" style={{ letterSpacing: '-0.03em' }}>
