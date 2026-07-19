@@ -201,7 +201,7 @@ export default function HomePage() {
           }}
         />
 
-        <div className="page-container relative pb-10 pt-20 sm:pb-14 sm:pt-16 lg:pb-24">
+        <div className="page-container relative pb-10 pt-20 sm:pb-14 sm:pt-16 lg:pb-36">
           <p className="animate-fade-up delay-0 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
             Well Alive Hospital, Uyo
           </p>
