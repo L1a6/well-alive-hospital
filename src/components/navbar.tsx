@@ -42,7 +42,7 @@ export function Navbar() {
     setSearchOpen(false);
   };
 
-  const solid = scrolled || open || searchOpen;
+  const solid = scrolled || searchOpen;
 
   return (
     <header
@@ -119,9 +119,9 @@ export function Navbar() {
           aria-label="Toggle navigation"
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
-          className={`animate-slide-right delay-300 flex h-10 w-10 items-center justify-center transition-colors duration-300 md:hidden ${
-            solid ? "text-black" : "text-white"
-          }`}
+          className={`animate-slide-right delay-300 flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-300 md:hidden ${
+            solid ? "text-black hover:bg-black/5" : "text-white hover:bg-white/15"
+          } ${open ? "bg-white/20" : ""}`}
         >
           <MenuToggleIcon open={open} className="h-6 w-6" duration={420} />
         </button>
@@ -155,33 +155,40 @@ export function Navbar() {
       </div>
 
       <div
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-emerald-950/98 transition-opacity duration-300 md:hidden ${
+        className={`absolute inset-x-0 top-full z-[55] max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-emerald-900 bg-emerald-950 px-5 py-10 shadow-[0_18px_50px_rgba(0,0,0,0.28)] transition-opacity duration-300 md:hidden ${
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        {NAV_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            onClick={() => setOpen(false)}
-            className="text-[30px] font-medium text-white transition-colors hover:text-emerald-300"
-            style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "-0.05em" }}
-          >
-            {link.label}
-          </Link>
-        ))}
-        <Link
-          href="/contact"
-          onClick={() => setOpen(false)}
-          className="cta-btn mt-2 gap-2 !bg-white !text-black"
-        >
-          <CalendarDays size={18} />
-          Book Appointment
-        </Link>
-        <a href="tel:+2349131193359" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 text-sm text-white/60">
-          <Phone size={16} strokeWidth={1.5} />
-          +234 913 119 3359
-        </a>
+        <div className="mx-auto flex w-full max-w-[640px] flex-col justify-between gap-10">
+          <div className="flex flex-col gap-7 text-center">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="text-[28px] font-medium text-white transition-colors hover:text-emerald-300 active:text-emerald-200 sm:text-[32px]"
+                style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "-0.05em" }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-4 border-t border-white/10 pt-8">
+            <Link href="/contact" onClick={() => setOpen(false)} className="cta-btn gap-2 !bg-white !text-black">
+              <CalendarDays size={18} />
+              Book Appointment
+            </Link>
+            <a
+              href="tel:+2349131193359"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center justify-center gap-2 text-sm text-white/70 transition-colors hover:text-white"
+            >
+              <Phone size={16} strokeWidth={1.5} />
+              +234 913 119 3359
+            </a>
+          </div>
+        </div>
       </div>
     </header>
   );

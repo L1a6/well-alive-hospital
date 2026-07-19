@@ -10,7 +10,6 @@ const BLOG_ITEMS: BlogPost[] = [
     excerpt: "Learn which annual tests matter most in your 20s, 40s, and beyond, and when specialist referrals become important.",
     meta: "Wellness",
     imageSrc: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop",
-    href: "/blog-details",
   },
   {
     id: 2,
@@ -18,7 +17,6 @@ const BLOG_ITEMS: BlogPost[] = [
     excerpt: "Discover the latest innovations in minimally invasive procedures making recovery faster for children.",
     meta: "Pediatrics",
     imageSrc: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1000&auto=format&fit=crop",
-    href: "/blog-details",
   },
   {
     id: 3,
@@ -26,7 +24,6 @@ const BLOG_ITEMS: BlogPost[] = [
     excerpt: "Cardiologists share vital lifestyle changes that can significantly lower your risk of cardiovascular problems.",
     meta: "Cardiology",
     imageSrc: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1000&auto=format&fit=crop",
-    href: "/blog-details",
   },
   {
     id: 4,
@@ -34,7 +31,6 @@ const BLOG_ITEMS: BlogPost[] = [
     excerpt: "Breaking the stigma: why modern hospitals are integrating psychiatric support into primary care.",
     meta: "Psychiatry",
     imageSrc: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1000&auto=format&fit=crop",
-    href: "/blog-details",
   },
   {
     id: 5,
@@ -42,7 +38,6 @@ const BLOG_ITEMS: BlogPost[] = [
     excerpt: "How targeted dietetics and proper nourishment improve healing times post-operation.",
     meta: "Dietetics",
     imageSrc: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1000&auto=format&fit=crop",
-    href: "/blog-details",
   },
 ];
 

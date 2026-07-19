@@ -63,25 +63,25 @@ const careTeam: TeamProfile[] = [
 
 const blogPosts: BlogPost[] = [
   {
-    id: 1,
-    title: "Stroke First Aid: What to Do in the First 10 Minutes",
-    excerpt: "A practical FAST-based response guide from our emergency and neurology team.",
-    meta: "Emergency",
-    imageSrc: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=800",
-  },
-  {
     id: 2,
-    title: "Blood Pressure Myths That Delay Early Treatment",
-    excerpt: "Understand common misconceptions and when to seek medical review.",
-    meta: "Cardiology",
-    imageSrc: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
+    title: "Future of Pediatric Surgery",
+    excerpt: "Discover the latest innovations in minimally invasive procedures making recovery faster for children.",
+    meta: "Pediatrics",
+    imageSrc: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1000&auto=format&fit=crop",
   },
   {
-    id: 3,
-    title: "Childhood Fever: Home Monitoring vs Hospital Visit",
-    excerpt: "Clear pediatric advice on warning signs that should never be ignored.",
-    meta: "Pediatrics",
-    imageSrc: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&q=80&w=800",
+    id: 4,
+    title: "Mental Wellness in 2024",
+    excerpt: "Breaking the stigma: why modern hospitals are integrating psychiatric support into primary care.",
+    meta: "Psychiatry",
+    imageSrc: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1000&auto=format&fit=crop",
+  },
+  {
+    id: 5,
+    title: "Nutrition for Fast Recovery",
+    excerpt: "How targeted dietetics and proper nourishment improve healing times post-operation.",
+    meta: "Dietetics",
+    imageSrc: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1000&auto=format&fit=crop",
   },
 ];
 
