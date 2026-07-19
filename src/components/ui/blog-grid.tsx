@@ -22,7 +22,7 @@ export function BlogGrid({ posts }: { posts: BlogPost[] }) {
         <Link
           key={post.id}
           href={post.href ?? "/blog-details"}
-          className={`group flex flex-col overflow-hidden rounded-2xl bg-white transition-transform duration-300 hover:-translate-y-1 ${
+          className={`group flex flex-col overflow-hidden rounded-2xl bg-white shadow-none transition-transform duration-300 hover:-translate-y-1 ${
             inView ? "animate-fade-up" : "opacity-0"
           }`}
           style={{ animationDelay: `${index * 0.1}s` }}

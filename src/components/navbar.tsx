@@ -23,7 +23,7 @@ export function Navbar() {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -42,24 +42,35 @@ export function Navbar() {
     setSearchOpen(false);
   };
 
+  const solid = scrolled || open || searchOpen;
+
   return (
     <header
-      className={`sticky top-0 z-50 animate-fade-in bg-[#FEFDF9]/90 backdrop-blur-md transition-shadow duration-300 ${
-        scrolled ? "shadow-[0_1px_0_0_rgba(0,0,0,0.08)]" : ""
+      className={`fixed inset-x-0 top-0 z-50 animate-fade-in transition-colors duration-300 ${
+        solid ? "bg-[#FEFDF9]/95 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-4 px-5 py-4 sm:px-8 lg:px-10 lg:py-5">
         <Link
           href="/"
-          className="animate-slide-left delay-200 shrink-0 text-[24px] font-medium text-black sm:text-[28px] lg:text-[30px]"
+          className={`animate-slide-left delay-200 shrink-0 text-[24px] font-medium transition-colors duration-300 sm:text-[28px] lg:text-[30px] ${
+            solid ? "text-black" : "text-white"
+          }`}
           style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "-0.05em" }}
         >
-          Well<span className="text-emerald-800">Alive</span>
+          Well<span className={solid ? "text-emerald-800" : "text-emerald-300"}>Alive</span>
         </Link>
 
         <nav className="animate-fade-in delay-400 hidden items-center gap-6 md:flex lg:gap-10">
           {NAV_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="nav-link">
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`text-[16px] font-medium transition-colors duration-200 ${
+                solid ? "text-black/65 hover:text-emerald-800" : "text-white/85 hover:text-white"
+              }`}
+              style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "-0.05em" }}
+            >
               {link.label}
             </Link>
           ))}
@@ -70,21 +81,27 @@ export function Navbar() {
             type="button"
             aria-label="Search the site"
             onClick={() => setSearchOpen((value) => !value)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-black/70 transition-colors hover:bg-black/[0.04] hover:text-emerald-800"
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+              solid ? "text-black/70 hover:bg-black/[0.04] hover:text-emerald-800" : "text-white/85 hover:bg-white/10 hover:text-white"
+            }`}
           >
             <Search size={20} strokeWidth={1.5} />
           </button>
           <Link
             href="/contact"
             aria-label="Book an appointment"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-black/70 transition-colors hover:bg-black/[0.04] hover:text-emerald-800"
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+              solid ? "text-black/70 hover:bg-black/[0.04] hover:text-emerald-800" : "text-white/85 hover:bg-white/10 hover:text-white"
+            }`}
           >
             <CalendarDays size={20} strokeWidth={1.5} />
           </Link>
           <a
             href="tel:+2349131193359"
             aria-label="Call Well Alive Hospital"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-black/70 transition-colors hover:bg-black/[0.04] hover:text-emerald-800"
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+              solid ? "text-black/70 hover:bg-black/[0.04] hover:text-emerald-800" : "text-white/85 hover:bg-white/10 hover:text-white"
+            }`}
           >
             <Phone size={20} strokeWidth={1.5} />
           </a>
@@ -102,15 +119,17 @@ export function Navbar() {
           aria-label="Toggle navigation"
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
-          className="animate-slide-right delay-300 flex h-10 w-10 items-center justify-center text-black md:hidden"
+          className={`animate-slide-right delay-300 flex h-10 w-10 items-center justify-center transition-colors duration-300 md:hidden ${
+            solid ? "text-black" : "text-white"
+          }`}
         >
           <MenuToggleIcon open={open} className="h-6 w-6" duration={420} />
         </button>
       </div>
 
       <div
-        className={`overflow-hidden border-t border-black/[0.06] transition-[max-height,opacity] duration-300 ${
-          searchOpen ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
+        className={`overflow-hidden bg-[#FEFDF9] transition-[max-height,opacity] duration-300 ${
+          searchOpen ? "max-h-20 border-t border-black/[0.06] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <form onSubmit={submitSearch} className="mx-auto flex w-full max-w-[1400px] items-center gap-3 px-5 py-3 sm:px-8 lg:px-10">

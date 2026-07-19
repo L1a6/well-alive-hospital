@@ -4,6 +4,7 @@ import { Stethoscope } from "lucide-react";
 
 import { DimmedHeadline } from "./dimmed-headline";
 import { useInView } from "../../hooks/use-in-view";
+import { useMarquee } from "../../hooks/use-marquee";
 
 export type TeamMember = {
   image: string;
@@ -42,13 +43,33 @@ const fallbackMembers: TeamMember[] = [
   },
 ];
 
+function DoctorCard({ member, role }: { member: TeamMember; role: string }) {
+  return (
+    <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-black sm:rounded-3xl">
+      <img
+        alt={member.name}
+        className="h-full w-full object-cover"
+        loading="lazy"
+        src={member.image}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 p-4">
+        <h3 className="text-base text-white sm:text-lg">{member.name}</h3>
+        <p className="mt-0.5 text-xs text-white/70 sm:text-sm">{role}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function Team({ members }: TeamProps) {
   const teamMembers = (members && members.length > 0 ? members : fallbackMembers).slice(0, 8);
+  const doubledMembers = [...teamMembers, ...teamMembers];
   const { ref, inView } = useInView<HTMLDivElement>(0.1);
+  const { ref: marqueeRef, pause } = useMarquee<HTMLDivElement>(teamMembers.length > 1, 0.6);
 
   return (
     <section id="doctors" className="relative w-full bg-[#FEFDF9] py-16 lg:py-24">
-      <div className="page-container">
+      <div ref={ref} className="page-container">
         <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
@@ -69,34 +90,33 @@ export default function Team({ members }: TeamProps) {
           </p>
         </div>
 
+        {/* Mobile: continuous infinite marquee */}
         <div
-          ref={ref}
-          className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 scrollbar-hide sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4"
+          ref={marqueeRef}
+          onTouchStart={pause}
+          onMouseDown={pause}
+          className={`relative -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 scrollbar-hide sm:hidden ${
+            inView ? "animate-fade-in" : "opacity-0"
+          }`}
         >
-          {teamMembers.map((member, index) => {
-            const role = member.specialty || member.role || "Clinical Specialist";
-            return (
-              <article
-                key={`${member.name}-${index}`}
-                className={`group w-[62%] shrink-0 snap-center sm:w-auto ${inView ? "animate-fade-up" : "opacity-0"}`}
-                style={{ animationDelay: `${Math.min(index, 6) * 0.08}s` }}
-              >
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-black sm:rounded-3xl">
-                  <img
-                    alt={member.name}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                    loading="lazy"
-                    src={member.image}
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-4">
-                    <h3 className="text-base text-white sm:text-lg">{member.name}</h3>
-                    <p className="mt-0.5 text-xs text-white/70 sm:text-sm">{role}</p>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+          {doubledMembers.map((member, index) => (
+            <div key={`${member.name}-${index}`} className="w-[62%] shrink-0">
+              <DoctorCard member={member} role={member.specialty || member.role || "Clinical Specialist"} />
+            </div>
+          ))}
+        </div>
+
+        {/* Tablet / desktop: static grid */}
+        <div className="hidden sm:grid sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+          {teamMembers.map((member, index) => (
+            <div
+              key={`${member.name}-${index}`}
+              className={inView ? "animate-fade-up" : "opacity-0"}
+              style={{ animationDelay: `${Math.min(index, 6) * 0.08}s` }}
+            >
+              <DoctorCard member={member} role={member.specialty || member.role || "Clinical Specialist"} />
+            </div>
+          ))}
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-4 rounded-3xl bg-[#ECEDEC] px-6 py-8 text-center sm:mt-14 sm:flex-row sm:gap-6 sm:px-10 sm:text-left">

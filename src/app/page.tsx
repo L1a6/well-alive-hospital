@@ -208,7 +208,7 @@ export default function HomePage() {
 
           <DimmedHeadline
             as="h1"
-            words={["Trusted", "Medical", "Care", "For", "Every", "Family", "In", "Uyo"]}
+            words={["Trusted", "Medical", "Care", "For", "Every", "Family"]}
             dim={[]}
             surface="dark"
             trigger="mount"

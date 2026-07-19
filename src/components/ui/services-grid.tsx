@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   Activity,
   Baby,
-  FlaskConical,
   HeartPulse,
   Microscope,
   ScanLine,
@@ -15,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { useInView } from "../../hooks/use-in-view";
+import { useAutoScroll } from "../../hooks/use-auto-scroll";
 
 type Service = {
   id: string;
@@ -27,12 +27,28 @@ type Service = {
 
 const SERVICES: Service[] = [
   {
+    id: "laboratory-services",
+    label: "Laboratory",
+    icon: Microscope,
+    accent: "bg-cyan-800",
+    description: "Reliable testing with rapid, accurate reporting.",
+    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=1400",
+  },
+  {
+    id: "gastroenterology",
+    label: "Gastroenterology",
+    icon: ScanLine,
+    accent: "bg-emerald-700",
+    description: "Digestive health reviews and long-term GI care.",
+    image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&q=80&w=1000",
+  },
+  {
     id: "general-medical-services",
     label: "General Medicine",
     icon: Stethoscope,
     accent: "bg-emerald-700",
     description: "Consultation, diagnosis, and coordinated follow-up for everyday health needs.",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1400",
+    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=1000",
   },
   {
     id: "expert-surgeries",
@@ -59,36 +75,12 @@ const SERVICES: Service[] = [
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1000",
   },
   {
-    id: "gastroenterology",
-    label: "Gastroenterology",
-    icon: ScanLine,
-    accent: "bg-emerald-700",
-    description: "Digestive health reviews and long-term GI care.",
-    image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&q=80&w=1000",
-  },
-  {
     id: "maternity-services",
     label: "Maternity",
     icon: Baby,
     accent: "bg-emerald-900",
     description: "Antenatal, delivery, and postnatal support.",
     image: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&q=80&w=1000",
-  },
-  {
-    id: "laboratory-services",
-    label: "Laboratory",
-    icon: Microscope,
-    accent: "bg-cyan-800",
-    description: "Reliable testing with rapid, accurate reporting.",
-    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=1000",
-  },
-  {
-    id: "ultrasound-scan-services",
-    label: "Ultrasound",
-    icon: FlaskConical,
-    accent: "bg-amber-700",
-    description: "Soft-tissue and obstetric imaging, clinician reviewed.",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000",
   },
 ];
 
@@ -128,11 +120,17 @@ function ServiceCard({ service, featured }: { service: Service; featured?: boole
 
 export function ServicesGrid() {
   const { ref, inView } = useInView<HTMLDivElement>(0.1);
+  const { ref: scrollRef, pause } = useAutoScroll<HTMLDivElement>(SERVICES.length, 3500);
 
   return (
     <div ref={ref} className="page-container">
-      {/* Mobile: swipe one card at a time */}
-      <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 scrollbar-hide sm:hidden">
+      {/* Mobile: swipes automatically, manual swipe also works */}
+      <div
+        ref={scrollRef}
+        onTouchStart={pause}
+        onMouseDown={pause}
+        className="relative -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 scrollbar-hide sm:hidden"
+      >
         {SERVICES.map((service, index) => (
           <Link
             key={service.id}

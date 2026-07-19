@@ -46,12 +46,13 @@ const BLOG_ITEMS: BlogPost[] = [
   },
 ];
 
-export default function BlogPage({
+export default async function BlogPage({
   searchParams,
 }: {
-  searchParams?: { q?: string };
+  searchParams?: Promise<{ q?: string }>;
 }) {
-  const query = searchParams?.q?.trim().toLowerCase() ?? "";
+  const resolvedSearchParams = await searchParams;
+  const query = resolvedSearchParams?.q?.trim().toLowerCase() ?? "";
   const posts = query
     ? BLOG_ITEMS.filter(
         (post) =>
@@ -70,7 +71,7 @@ export default function BlogPage({
       <section className="bg-[#FEFDF9] px-4 py-20 lg:py-28">
         <div className="page-container mb-12">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/40">Featured Stories</p>
-          <h2 className="mt-3 text-4xl">{query ? `Results for "${searchParams?.q}"` : "Latest medical stories"}</h2>
+          <h2 className="mt-3 text-4xl">{query ? `Results for "${resolvedSearchParams?.q}"` : "Latest medical stories"}</h2>
           <p className="mt-2 text-black/50">
             {query ? `${posts.length} article${posts.length === 1 ? "" : "s"} found.` : "Health insights and guidance from our clinical team."}
           </p>
